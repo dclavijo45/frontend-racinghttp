@@ -1,0 +1,40 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+    <div>
+        <img src="../assets/logoimgd.png" width="68px" height="60px"> 
+    </div>
+    <div class="collapse navbar-collapse">
+        <a class="nav-link text-light" [routerLink]="['/login']">Iniciar Sesion</a>
+        <img src="https://www.flaticon.es/svg/vstatic/svg/3596/3596089.svg?token=exp=1612667037~hmac=bd1b120718bb8eb90cfcc1db314f5423" alt="" width="30px">
+    </div>
+</nav>
+<div *ngIf="load">
+  <form [formGroup]="form" (ngSubmit)="Registrar()">
+    <h1>Registrarse</h1>
+    <div class="contenedor">
+      <div class="form-group">
+          <label for="nombre">Nombre</label>
+          <input type="text" formControlName="nombres" class="form-control" id="nombre">
+      </div>
+      <div class="form-group">
+          <label for="documento">Documento</label>
+          <input type="text" formControlName="documento"  class="form-control" id="documento">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Correo Electronico</label>
+        <input type="email" formControlName="correo" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Contraseña</label>
+        <input type="password" formControlName="password" class="form-control" id="exampleInputPassword1">
+      </div>
+      <button type="submit" class="btn">Registro</button>
+    </div>
+  </form>
+</div>
+<div *ngIf="!load">
+  <div class="text-center">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+</div>

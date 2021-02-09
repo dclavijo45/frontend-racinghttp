@@ -1,0 +1,74 @@
+.btn{
+    display: flex;
+    margin: 15px 170px 0px 170px;
+    border-radius: 2px;
+    cursor: pointer;
+    width: 120px;
+    text-align: center;
+    background: #17A2B8;
+    color: #FFF;
+}
+
+button:hover{
+    background-color: #FFF;
+    color: #17A2B8;
+}
+
+label{
+    color: #FFF;
+}
+  
+.formulario{
+    background: #212529;
+    margin-top: 70px;
+    padding: 3px;
+    border-radius: 8px;
+}
+
+.contenedor{
+    width: 100%;
+    padding: 15px;
+
+}
+
+h1{
+    text-align: center;
+    color: #17A2B8;
+}
+
+input{
+    font-size: 15px;
+    width: 98%;
+    padding: 10px;
+    border: none;
+}
+
+.titulo{
+    color: #FFF;
+    font-size: 25px;
+    margin-top: auto;
+}
+
+.nav-link{
+    color: #FFF;
+    font-size: 20px;
+    margin-top: -10px;
+}
+
+.nav-link:hover{
+    color: #000;
+}
+
+.nav-item{
+    display: flex;
+    padding: 0px 0px 0px 10px;
+}
+
+@media(min-width:768px)
+{
+    .formulario{
+        margin: auto;
+        width: 500px;
+        margin-top: 100px;
+    }
+}
