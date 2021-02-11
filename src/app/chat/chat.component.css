@@ -1,0 +1,47 @@
+.border-2 {
+  border: 2px solid black;
+}
+
+.border-3-primary {
+  border: 3px solid #0d6efd;
+}
+
+.w-60 {
+  width: 60%;
+}
+
+.border-botton-2 {
+  border-bottom: rgba(0, 0, 0, 0.705) 3px solid;
+}
+
+.border-radius-7 {
+  border-radius: 7px;
+}
+
+.w-40{
+  width: 40%;
+}
+
+.ml-25{
+  margin-left: 25%;
+}
+
+.ml-25{
+  margin-left: 25%;
+}
+
+.max-h-452{
+  max-height: 452px;
+}
+
+.ml-56{
+  margin-left: 56%;
+}
+
+.overflow-y-auto{
+  overflow-y: auto;
+}
+
+.max-h-386px{
+  max-height: 386px;
+}

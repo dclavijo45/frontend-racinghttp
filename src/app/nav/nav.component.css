@@ -1,0 +1,38 @@
+.color-bg {
+  background-color: #212529;
+}
+
+.font-20 {
+  font-size: 20px;
+}
+
+.a-c1 {
+  text-decoration-line: none;
+}
+
+.w-10 {
+  width: 10%;
+}
+
+.w-33 {
+  width: 33%;
+}
+
+.font-30 {
+  font-size: 30px;
+}
+
+.text-chat-title {
+  top: 17px;
+  right: 33px;
+}
+
+.text-add-product-title {
+  top: 17px;
+  right: 83px;
+}
+
+.text-settings-title {
+  top: 17px;
+  right: 40px;
+}

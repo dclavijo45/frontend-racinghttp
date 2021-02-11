@@ -1,0 +1,27 @@
+.font-50{
+  font-size: 50px;
+}
+
+.float-right{
+  float: right;
+}
+
+.max-h-500{
+  max-height: 500px;
+}
+
+.min-h-500{
+  min-height: 500px;
+}
+
+.h-400{
+  min-height: 400px;
+}
+
+.top-0{
+  bottom: 0;
+}
+
+.mt-320{
+  margin-top: 320px;
+}

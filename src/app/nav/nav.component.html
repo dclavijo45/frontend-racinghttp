@@ -1,1 +1,28 @@
-<p>nav works!</p>
+<nav class="color-bg d-block py-3">
+  <div class="d-block">
+    <div class="w-33 d-inline-block text-center">
+      <a class="d-inline-block font-30 a-c1 text-light" href="#">Racing-HTPP</a>
+    </div>
+    <div class="w-33 d-inline-block">
+      <input #search class="form-control me-2 d-inline w-50" type="search" placeholder="Buscar productos"
+        aria-label="Search">
+      <button (click)="Buscar(search.value)" class="btn btn-primary">Buscar</button>
+    </div>
+    <div class="w-33 d-inline-block">
+      <div class="d-inline-block text-light">
+        <i class="far fa-edit font-30"></i>
+        <b class="d-inline-block position-relative text-add-product-title">Agregar producto</b>
+      </div>
+      <div class="d-inline-block text-light">
+        <i class="fas fa-comment-dots font-30 d-inline-block"></i>
+        <b class="d-inline-block position-relative text-chat-title">Chat</b>
+      </div>
+      <div class="d-inline-block text-light">
+        <i class="fas fa-cog font-30"></i>
+        <b class="d-inline-block position-relative text-settings-title">Ajustes</b>
+      </div>
+
+    </div>
+  </div>
+
+</nav>
