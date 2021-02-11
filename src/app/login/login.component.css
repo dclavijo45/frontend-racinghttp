@@ -1,74 +1,99 @@
-.btn{
-    display: flex;
-    margin: 15px 170px 0px 170px;
-    border-radius: 2px;
-    cursor: pointer;
-    width: 120px;
-    text-align: center;
-    background: #17A2B8;
-    color: #FFF;
+.btn2 {
+  display: inline-block;
+  border-radius: 4px;
+  height: 37px;
+  border-style: none;
+  cursor: pointer;
+  min-width: 120px;
+  width: auto;
+  text-align: center;
+  background: #17a2b8;
+  color: #fff;
 }
 
-button:hover{
-    background-color: #FFF;
-    color: #17A2B8;
+.btn3 {
+  display: inline-block;
+  border-radius: 4px;
+  height: 37px;
+  border-style: none;
+  cursor: pointer;
+  min-width: 166px;
+  width: auto;
+  text-align: center;
+  background: #17a2b8;
+  color: #fff;
 }
 
-label{
-    color: #FFF;
-}
-  
-.formulario{
-    background: #212529;
-    margin-top: 70px;
-    padding: 3px;
-    border-radius: 8px;
+button:hover {
+  background-color: #fff;
+  color: #17a2b8;
 }
 
-.contenedor{
-    width: 100%;
-    padding: 15px;
-
+label {
+  color: #fff;
 }
 
-h1{
-    text-align: center;
-    color: #17A2B8;
+.formulario {
+  background: #212529;
+  margin-top: 70px;
+  padding: 3px;
+  border-radius: 8px;
 }
 
-input{
-    font-size: 15px;
-    width: 98%;
-    padding: 10px;
-    border: none;
+.contenedor {
+  width: 100%;
+  padding: 15px;
 }
 
-.titulo{
-    color: #FFF;
-    font-size: 25px;
-    margin-top: auto;
+h1 {
+  text-align: center;
+  color: #17a2b8;
 }
 
-.nav-link{
-    color: #FFF;
-    font-size: 20px;
-    margin-top: -10px;
+input {
+  font-size: 15px;
+  width: 98%;
+  padding: 10px;
+  border: none;
 }
 
-.nav-link:hover{
-    color: #000;
+.titulo {
+  color: #fff;
+  font-size: 25px;
+  margin-top: auto;
 }
 
-.nav-item{
-    display: flex;
-    padding: 0px 0px 0px 10px;
+.nav-link {
+  color: #fff;
+  font-size: 20px;
+  margin-top: -10px;
 }
 
-@media(min-width:768px)
-{
-    .formulario{
-        margin: auto;
-        width: 500px;
-        margin-top: 100px;
-    }
+.nav-link:hover {
+  color: #000;
+}
+
+.nav-item {
+  display: flex;
+  padding: 0px 0px 0px 10px;
+}
+
+@media (min-width: 768px) {
+  .formulario {
+    margin: auto;
+    width: 500px;
+    margin-top: 100px;
+  }
+}
+
+.w-28 {
+  width: 28% !important;
+}
+
+.w-35{
+  width: 35%!important;
+}
+
+.font-size-35{
+  font-size: 35px;
 }

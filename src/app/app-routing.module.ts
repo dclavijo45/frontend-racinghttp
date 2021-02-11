@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { ActualizarPerfilComponent } from './actualizar-perfil/actualizar-perfil.component';
+import { ActualizarProductoComponent } from './actualizar-producto/actualizar-producto.component';
 import { AgregarProductoComponent } from './agregar-producto/agregar-producto.component';
 import { CarritoComponent } from './carrito/carrito.component';
 import { ChatComponent } from './chat/chat.component';
@@ -18,7 +20,9 @@ const routes: Routes = [
   {path: 'infoproducto', component: InfoProductoComponent},
   {path: 'carrito', component: CarritoComponent},
   {path: 'agregarproducto', component: AgregarProductoComponent},
-  {path: 'chat', component: ChatComponent}
+  {path: 'chat', component: ChatComponent},
+  {path: 'actualizarperfil', component: ActualizarPerfilComponent},
+  {path: 'actualizarproducto', component: ActualizarProductoComponent}
 ];
 
 @NgModule({

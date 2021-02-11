@@ -1,23 +1,31 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-dark">
-    <div>
-        <img src="../assets/logoimgd.png" width="68px" height="60px"> 
-    </div>
-    <div class="collapse navbar-collapse">
-        <a class="nav-link text-light" [routerLink]="['/registro']">Registrarse</a>
-        <img src="https://www.flaticon.es/svg/vstatic/svg/1672/1672225.svg?token=exp=1612666891~hmac=a07aed4f23b3a9cfe8735b25fed9184d" alt="" width="30px">
-    </div>
+  <div>
+    <img src="../assets/logoimgd.png" width="68px" height="60px">
+  </div>
+  <div class="collapse navbar-collapse">
+    <a class="nav-link text-light" [routerLink]="['/registro']">Registrarse</a>
+    <i class="far fa-address-card font-size-35 text-light"></i>
+  </div>
 </nav>
 <form [formGroup]="form" class="formulario" (ngSubmit)="Validar()">
-    <h1>Iniciar Sesion</h1>
-    <div class="contenedor">
-      <div class="form-group">
-          <label for="correo">Correo</label>
-          <input type="text" formControlName="correo" class="form-control">
-      </div>
-      <div class="form-group">
-        <label for="exampleInputPassword1">Contraseña</label>
-        <input type="password" formControlName="password" class="form-control" id="exampleInputPassword1">
-      </div>
-      <button type="submit" class="btn" >Iniciar Sesion</button>
+  <h1>Iniciar Sesion</h1>
+  <div class="contenedor">
+    <div class="form-group">
+      <label for="correo">Correo</label>
+      <input type="text" formControlName="correo" class="form-control">
     </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Contraseña</label>
+      <input type="password" formControlName="password" class="form-control" id="exampleInputPassword1">
+    </div>
+    <span class="d-block w-28 mx-auto mt-3">
+      <button *ngIf="!load" type="submit" class="btn2">Iniciar Sesion</button>
+    </span>
+    <span *ngIf="load" class="d-block w-35 mx-auto mt-3">
+      <button class="btn3" type="button" disabled>
+        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        Iniciando sesión...
+      </button>
+    </span>
+  </div>
 </form>

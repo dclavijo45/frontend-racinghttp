@@ -1,13 +1,13 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-dark">
     <div>
-        <img src="../assets/logoimgd.png" width="68px" height="60px"> 
+        <img src="../assets/logoimgd.png" width="68px" height="60px">
     </div>
     <div class="collapse navbar-collapse">
         <a class="nav-link text-light" [routerLink]="['/login']">Iniciar Sesion</a>
-        <img src="https://www.flaticon.es/svg/vstatic/svg/3596/3596089.svg?token=exp=1612667037~hmac=bd1b120718bb8eb90cfcc1db314f5423" alt="" width="30px">
+        <i class="fas fa-sign-in-alt font-size-35 text-light"></i>
     </div>
 </nav>
-<div *ngIf="load">
+<div>
   <form [formGroup]="form" (ngSubmit)="Registrar()">
     <h1>Registrarse</h1>
     <div class="contenedor">
@@ -27,14 +27,16 @@
         <label for="exampleInputPassword1">Contraseña</label>
         <input type="password" formControlName="password" class="form-control" id="exampleInputPassword1">
       </div>
-      <button type="submit" class="btn">Registro</button>
+      <span *ngIf="!load" class="d-block w-28 mx-auto mt-3">
+        <button type="submit" class="btn2">Registrarse</button>
+      </span>
+      <span *ngIf="load" class="d-block w-35 mx-auto mt-3">
+        <button class="btn3" type="button" disabled>
+          <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          Registrando...
+        </button>
+      </span>
     </div>
   </form>
 </div>
-<div *ngIf="!load">
-  <div class="text-center">
-    <div class="spinner-border" role="status">
-      <span class="visually-hidden">Loading...</span>
-    </div>
-  </div>
-</div>
+

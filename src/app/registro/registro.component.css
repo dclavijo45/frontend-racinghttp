@@ -1,80 +1,104 @@
-button{
-    display: flex;
-    margin: 15px 200px 0px 200px;
-    border-radius: 2px;
-    cursor: pointer;
-    text-align: center;
-    background: #17A2B8;
-    color: #FFF;
-    border-radius: 6px;
-    
+.btn2 {
+  display: inline-block;
+  border-radius: 4px;
+  height: 37px;
+  border-style: none;
+  cursor: pointer;
+  min-width: 120px;
+  width: auto;
+  text-align: center;
+  background: #17a2b8;
+  color: #fff;
 }
 
-button:hover{
-    background-color: #FFF;
-    color: #17A2B8;
-    border-radius: 6px;
+.btn3 {
+  display: inline-block;
+  border-radius: 4px;
+  height: 37px;
+  border-style: none;
+  cursor: pointer;
+  min-width: 166px;
+  width: auto;
+  text-align: center;
+  background: #17a2b8;
+  color: #fff;
 }
 
-.titulo{
-    color: #FFF;
-    font-size: 25px;
-    margin-top: auto;
+button:hover {
+  background-color: #fff;
+  color: #17a2b8;
+  border-radius: 6px;
 }
 
-.nav-link{
-    color: #FFF;
-    font-size: 20px;
-    margin-top: -10px;
+.titulo {
+  color: #fff;
+  font-size: 25px;
+  margin-top: auto;
 }
 
-.nav-link:hover{
-    color: #000;
+.nav-link {
+  color: #fff;
+  font-size: 20px;
+  margin-top: -10px;
 }
 
-.nav-item{
-    display: flex;
-    padding: 0px 0px 0px 10px;
+.nav-link:hover {
+  color: #000;
 }
 
-label{
-    color: #FFF;
+.nav-item {
+  display: flex;
+  padding: 0px 0px 0px 10px;
 }
 
-form{
-    background: #212529;
-    margin-top: 70px;
-    padding: 3px;
-    border-radius: 8px;
+label {
+  color: #fff;
 }
 
-.contenedor{
-    width: 100%;
-    padding: 15px;
-
+form {
+  background: #212529;
+  margin-top: 70px;
+  padding: 3px;
+  border-radius: 8px;
 }
 
-h1{
-    text-align: center;
-    color: #17A2B8;
+.contenedor {
+  width: 100%;
+  padding: 15px;
 }
 
-input{
-    font-size: 15px;
-    width: 98%;
-    padding: 10px;
-    border: none;
+h1 {
+  text-align: center;
+  color: #17a2b8;
 }
 
-.form-group{
-    margin-bottom: 5px;
+input {
+  font-size: 15px;
+  width: 98%;
+  padding: 10px;
+  border: none;
 }
 
-@media(min-width:768px)
-{
-    form{
-        margin: auto;
-        width: 500px;
-        margin-top: 50px;
-    }
+.form-group {
+  margin-bottom: 5px;
+}
+
+@media (min-width: 768px) {
+  form {
+    margin: auto;
+    width: 500px;
+    margin-top: 50px;
+  }
+}
+
+.font-size-35 {
+  font-size: 35px;
+}
+
+.w-28 {
+  width: 28%;
+}
+
+.w-35 {
+  width: 35%;
 }

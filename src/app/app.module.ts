@@ -15,6 +15,8 @@ import { InfoProductoComponent } from './info-producto/info-producto.component';
 import { CarritoComponent } from './carrito/carrito.component';
 import { AgregarProductoComponent } from './agregar-producto/agregar-producto.component';
 import { ChatComponent } from './chat/chat.component';
+import { ActualizarPerfilComponent } from './actualizar-perfil/actualizar-perfil.component';
+import { ActualizarProductoComponent } from './actualizar-producto/actualizar-producto.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { ChatComponent } from './chat/chat.component';
     InfoProductoComponent,
     CarritoComponent,
     AgregarProductoComponent,
-    ChatComponent
+    ChatComponent,
+    ActualizarPerfilComponent,
+    ActualizarProductoComponent
   ],
   imports: [
     BrowserModule,
