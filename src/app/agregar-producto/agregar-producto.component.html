@@ -2,24 +2,30 @@
 <div class="w-75 mx-auto max-h-500 mt-60">
 
   <div class="d-inline-block ml-190 form form-group">
-    <input class="form-control text-center" type="text" placeholder="Nombre" autofocus required>
-    <select class="form-control text-center text-align-center" name="" id="" required>
-      <option hidden selected value="">Referencia</option>
-      <option value="0">Carro</option>
-      <option value="1">Moto</option>
-    </select>
-    <input class="form-control text-center" type="number" placeholder="Precio" min="1" required>
-    <input class="form-control text-center mb-4" type="number" min="1" placeholder="Cantidad" required>
+    <form [formGroup]="form" (ngSubmit)="Validar()">
+      <input formControlName="nombre" class="form-control text-center" type="text" placeholder="Nombre" autofocus>
+      <select formControlName="referencia" class="form-control text-center text-align-center" name="" id="">
+        <option hidden selected value="">Referencia</option>
+        <option value="0">Carro</option>
+        <option value="1">Moto</option>
+      </select>
+      <input formControlName="precio" class="form-control text-center" type="number" placeholder="Precio" min="1">
+      <input formControlName="cantidad" class="form-control text-center mb-4" type="number" min="1"
+        placeholder="Cantidad">
+      <div class="invisible">
+        <input #fileInput type="file" (change)="log($event.target.files[0], imgCurrent)">
+      </div>
+    </form>
     <span class="d-inline-block w-100">
-      <button class="btn btn-success mr-27 d-inline">Guardar</button>
+      <button (click)="Validar()" class="btn btn-success mr-27 d-inline" >Guardar</button>
       <button class="btn btn-danger d-inline">Cancelar</button>
     </span>
 
   </div>
 
-  <div class="d-inline-block ml-120 position-relative bottom-73">
-    <img src="https://ferreteriavidri.com/images/items/large/91779.jpg" class="img img-thumbnail" alt="" width="250"
-      height="250">
+  <div #divImgView class="d-inline-block ml-120 position-relative bottom-73 mouse-hand">
+    <img #imgCurrent src="https://ferreteriavidri.com/images/items/large/91779.jpg"
+      class="img img-thumbnail-c max-min-w-h-250" alt="" (click)="fileInput.click()" width="250" height="250">
   </div>
 
 </div>

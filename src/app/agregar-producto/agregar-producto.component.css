@@ -25,3 +25,25 @@
 .text-align-center {
   text-align-last: center;
 }
+
+.invisible {
+  display: none;
+}
+
+.mouse-hand {
+  cursor: pointer;
+}
+
+.max-min-w-h-250 {
+  min-width: 250px;
+  max-width: 250px;
+  min-height: 250px;
+  max-height: 250px;
+}
+
+.img-thumbnail-c{
+  padding: .25rem;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: .25rem;
+}

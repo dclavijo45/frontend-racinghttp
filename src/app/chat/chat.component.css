@@ -1,47 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
+
+.font-family-cus-1{
+  font-family: 'Noto Sans JP', sans-serif;
+}
+
 .border-2 {
   border: 2px solid black;
 }
 
-.border-3-primary {
-  border: 3px solid #0d6efd;
+.border-2-secondary {
+  border: 2px solid #6c757d;
 }
 
 .w-60 {
   width: 60%;
 }
 
-.border-botton-2 {
+.border-bottom-2 {
   border-bottom: rgba(0, 0, 0, 0.705) 3px solid;
 }
 
-.border-radius-7 {
-  border-radius: 7px;
+.border-radius-5 {
+  border-radius: 5px;
 }
 
-.w-40{
+.w-40 {
   width: 40%;
 }
 
-.ml-25{
+.ml-25 {
   margin-left: 25%;
 }
 
-.ml-25{
+.ml-25 {
   margin-left: 25%;
 }
 
-.max-h-452{
+.max-h-452 {
   max-height: 452px;
 }
 
-.ml-56{
+.ml-56 {
   margin-left: 56%;
 }
 
-.overflow-y-auto{
+.overflow-y-auto {
   overflow-y: auto;
 }
 
-.max-h-386px{
+.max-h-386px {
   max-height: 386px;
+}
+
+.float-right {
+  float: right;
+}
+
+.font-size-20px {
+  font-size: 20px;
+}
+.max-wh-30px {
+  min-width: 30px;
+  max-width: 30px;
+  min-height: 30px;
+  max-height: 30px;
+}
+
+.font-size-weight-12px {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.max-w-200-min-w-100px {
+  max-width: 200px;
+  min-width: 100px;
+}
+
+.font-size-weight-12px {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.bg-custom-1 {
+  background-color: #f1f2f4;
+}
+
+.text-color-cus-1 {
+  color: #b6bdc5;
+}
+
+.h-120px {
+  min-height: 120px;
+}
+
+.max-min-h-324px {
+  max-height: 324px;
+  min-height: 324px;
+}
+
+.bg-custom-2 {
+  background-color: #b6bdc5;
+}
+
+.border-2-custom-1 {
+  border: 2px solid #b6bdc5;
+}
+
+.text-color-cus-2 {
+  color: #b6bdc5;
+}
+
+.ml-8px {
+  margin-left: 8px;
+}
+
+.w-85 {
+  width: 85%;
+}
+
+.mr-13px {
+  margin-right: 13px;
+}
+
+.border-top-2-custom-2 {
+  border-top: #d4d9de 2px solid;
+}
+
+.border-bottom-2-custom-2 {
+  border-bottom: #dadbdd 2px solid;
+}
+
+.ml-333px{
+  margin-left: 333px;
+}
+
+.font-family-cus-2{
+  font-family: 'Oswald', sans-serif;
+}
+
+.style-custom-1{
+      position: relative;
+    top: 5px;
+    left: 4px;
+}
+
+.style-custom-2{
+  position: relative;
+  top: 7px;
+  left: 12px;
+}
+
+.bg-custom-3 {
+  background: #00C99A;
+}
+.text-color-cus-3 {
+  color: #181616;
 }

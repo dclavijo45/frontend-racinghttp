@@ -1,33 +1,94 @@
 <app-nav></app-nav>
 
-<div class="w-75 p-4 ml-25">
-  <div class="border-2 p-4 d-inline-block position-absolute">
+<div class="w-75">
+  <!-- <div class="border-2 p-4 d-inline-block position-absolute">
     <button class="btn btn-secondary text-light d-block mb-2">Sucursal 1</button>
     <button class="btn btn-secondary text-light d-block mb-2">Sucursal 2</button>
     <button class="btn btn-secondary text-light d-block">Sucursal 3</button>
-  </div>
-  <div class="border-3-primary w-60 d-inline-block border-radius-7 ml-25 max-h-452">
-    <h2 class="border-botton-2 bg-primary">Sucursal 1</h2>
-    <div class="max-h-452 overflow-y-auto max-h-386px">
-      <div class="p-2 border-2 w-40">
-        <h4>Cliente:</h4>
-        <p>Holaaaa quiero awa en polvo!</p>
+  </div> -->
+  <div class="w-60 d-inline-block border-radius-5 max-h-452 border-2-secondary">
+    <!-- CHAT -->
+    <div class="max-h-452">
+      <!-- Panel central chat -->
+      <div class="p-2 border-bottom-2-custom-2">
+        <!-- Nombre remitente -->
+        <div class="">
+          <!-- Area de perfil de remitente -->
+          <img src="https://www.snsmarketing.es/blog/wp-content/uploads/2015/11/experiencia-de-usuario.jpg"
+            class="max-wh-30px img img-thumbnail rounded-circle" alt="Nombre remitente"><!-- Foto remitente -->
+          <h5 class="d-inline-block text-black-50 font-family-cus-2 style-custom-1">El eddy </h5>
+          <!-- Nombre remitente-->
+          <small class="d-inline-block style-custom-2 text-primary"> escribiendo...</small> <!-- Estado remitente-->
+          <i class="fas fa-user-alt float-right font-size-20px text-success"></i> <!-- ícono [area de la derecha] -->
+        </div>
       </div>
-      <div class="p-2 border-2 w-40 ml-56">
-        <h4>Yo:</h4>
-        <p>Holaaaa, vale 1000</p>
+      <div class="p-2 overflow-y-auto max-min-h-324px">
+        <!-- Área de los chats -->
+        <div class="p-1 h-120px font-family-cus-1">
+          <!--Ejemplo chat remitente-->
+          <img src="https://www.snsmarketing.es/blog/wp-content/uploads/2015/11/experiencia-de-usuario.jpg"
+            class="max-wh-30px img img-thumbnail rounded-circle" alt="Nombre remitente"><!-- Foto remitente -->
+          <div class="d-inline-block">
+            <!-- Caja de chat -->
+            <div class="p-1 font-size-weight-12px d-inline-block max-w-200-min-w-100px bg-custom-1 border-radius-5">
+              <!-- Chat [texto] -->
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa sequi quos voluptate perferendis nostrum
+              temporibus expedita
+            </div>
+            <p class="d-block font-size-weight-12px text-color-cus-1">17/02/2021 <small>4:53 PM</small></p>
+            <!-- Fecha de envío del mensaje -->
+          </div>
+        </div>
+        <div class="p-1 h-120px ml-333px font-family-cus-1">
+          <!--Ejemplo chat emitente-->
+          <img src="https://www.snsmarketing.es/blog/wp-content/uploads/2015/11/experiencia-de-usuario.jpg"
+            class="max-wh-30px img img-thumbnail rounded-circle float-right" alt="Nombre remitente">
+          <!-- Foto emitente -->
+          <div class="d-inline-block">
+            <!-- Caja de chat -->
+            <div
+              class="p-1 font-size-weight-12px d-inline-block max-w-200-min-w-100px bg-custom-1 border-radius-5 bg-custom-3 text-color-cus-3">
+              <!-- Chat [texto] -->
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa sequi quos voluptate perferendis nostrum
+              temporibus expedita
+            </div>
+            <p class="d-block font-size-weight-12px text-color-cus-1">17/02/2021 <small>4:53 PM</small></p>
+            <!-- Fecha de envío del mensaje -->
+          </div>
+        </div>
+        <div class="p-1 h-120px font-family-cus-1">
+          <!--Ejemplo chat remitente-->
+          <img src="https://www.snsmarketing.es/blog/wp-content/uploads/2015/11/experiencia-de-usuario.jpg"
+            class="max-wh-30px img img-thumbnail rounded-circle" alt="Nombre remitente"><!-- Foto remitente -->
+          <div class="d-inline-block">
+            <!-- Caja de chat -->
+            <div class="p-1 font-size-weight-12px d-inline-block max-w-200-min-w-100px bg-custom-1 border-radius-5">
+              <!-- Chat [texto] -->
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa sequi quos voluptate perferendis nostrum
+              temporibus expedita
+            </div>
+            <p class="d-block font-size-weight-12px text-color-cus-1">17/02/2021 <small>4:53 PM</small></p>
+            <!-- Fecha de envío del mensaje -->
+          </div>
+        </div>
+
       </div>
-      <div class="p-2 border-2 w-40">
-        <h4>Cliente:</h4>
-        <p>El awa en polvo la puede disolver con awa mojada, ¿verdad?</p>
-      </div>
-      <div class="p-2 border-2 w-40 ml-56">
-        <h4>Yo:</h4>
-        <p>Sii :D</p>
+      <div class="p-2 border-top-2-custom-2">
+        <!-- Pie de comunicación -->
+        <div class="d-inline px-2">
+          <!-- Area de comunicación -->
+          <i class="far fa-smile d-inline-block mr-13px"></i>
+          <div class="d-inline">
+            <!-- Area de escritura de chat -->
+            <input type="text" class="form-control d-inline-block w-85" placeholder="Escribir mensaje">
+          </div>
+          <div class="d-inline border-2-custom-1 p-1 border-radius-5 px-2 ml-8px">
+            <!-- Botón de envío -->
+            <i class="far fa-paper-plane d-inline-block text-color-cus-2"></i>
+          </div>
+        </div>
       </div>
     </div>
-
   </div>
-</div>
 
-<app-footer></app-footer>
+  <app-footer></app-footer>
