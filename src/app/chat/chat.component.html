@@ -23,54 +23,39 @@
         </div>
       </div>
       <div class="p-2 overflow-y-auto max-min-h-324px">
-        <!-- Área de los chats -->
-        <div class="p-1 h-120px font-family-cus-1">
-          <!--Ejemplo chat remitente-->
-          <img src="https://www.snsmarketing.es/blog/wp-content/uploads/2015/11/experiencia-de-usuario.jpg"
-            class="max-wh-30px img img-thumbnail rounded-circle" alt="Nombre remitente"><!-- Foto remitente -->
-          <div class="d-inline-block">
-            <!-- Caja de chat -->
-            <div class="p-1 font-size-weight-12px d-inline-block max-w-200-min-w-100px bg-custom-1 border-radius-5">
-              <!-- Chat [texto] -->
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa sequi quos voluptate perferendis nostrum
-              temporibus expedita
+        <ng-container *ngFor="let an of data;">
+          <!-- Área de los chats -->
+          <div *ngIf="an.emitente!=user.id" class="p-1 h-120px font-family-cus-1">
+            <!--Ejemplo chat remitente-->
+            <img src="https://www.snsmarketing.es/blog/wp-content/uploads/2015/11/experiencia-de-usuario.jpg"
+              class="max-wh-30px img img-thumbnail rounded-circle" alt="Nombre remitente"><!-- Foto remitente -->
+            <div class="d-inline-block">
+              <!-- Caja de chat -->
+              <div class="p-1 font-size-weight-12px d-inline-block max-w-200-min-w-200px bg-custom-1 border-radius-5">
+                <!-- Chat [texto] -->
+                {{an.msg}}
+              </div>
+              <p class="d-block font-size-weight-12px text-color-cus-1">17/02/2021 <small>4:53 PM</small></p>
+              <!-- Fecha de envío del mensaje -->
             </div>
-            <p class="d-block font-size-weight-12px text-color-cus-1">17/02/2021 <small>4:53 PM</small></p>
-            <!-- Fecha de envío del mensaje -->
           </div>
-        </div>
-        <div class="p-1 h-120px ml-333px font-family-cus-1">
-          <!--Ejemplo chat emitente-->
-          <img src="https://www.snsmarketing.es/blog/wp-content/uploads/2015/11/experiencia-de-usuario.jpg"
-            class="max-wh-30px img img-thumbnail rounded-circle float-right" alt="Nombre remitente">
-          <!-- Foto emitente -->
-          <div class="d-inline-block">
-            <!-- Caja de chat -->
-            <div
-              class="p-1 font-size-weight-12px d-inline-block max-w-200-min-w-100px bg-custom-1 border-radius-5 bg-custom-3 text-color-cus-3">
-              <!-- Chat [texto] -->
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa sequi quos voluptate perferendis nostrum
-              temporibus expedita
+          <div *ngIf="an.emitente==user.id" class="p-1 h-120px ml-333px font-family-cus-1">
+            <!--Ejemplo chat emitente-->
+            <img src="https://www.snsmarketing.es/blog/wp-content/uploads/2015/11/experiencia-de-usuario.jpg"
+              class="max-wh-30px img img-thumbnail rounded-circle float-right" alt="Nombre remitente">
+            <!-- Foto emitente -->
+            <div class="d-inline-block">
+              <!-- Caja de chat -->
+              <div
+                class="p-1 font-size-weight-12px d-inline-block max-w-200-min-w-200px bg-custom-1 border-radius-5 bg-custom-3 text-color-cus-3">
+                <!-- Chat [texto] -->
+                {{an.msg}}
+              </div>
+              <p class="d-block font-size-weight-12px text-color-cus-1">17/02/2021 <small>4:53 PM</small></p>
+              <!-- Fecha de envío del mensaje -->
             </div>
-            <p class="d-block font-size-weight-12px text-color-cus-1">17/02/2021 <small>4:53 PM</small></p>
-            <!-- Fecha de envío del mensaje -->
           </div>
-        </div>
-        <div class="p-1 h-120px font-family-cus-1">
-          <!--Ejemplo chat remitente-->
-          <img src="https://www.snsmarketing.es/blog/wp-content/uploads/2015/11/experiencia-de-usuario.jpg"
-            class="max-wh-30px img img-thumbnail rounded-circle" alt="Nombre remitente"><!-- Foto remitente -->
-          <div class="d-inline-block">
-            <!-- Caja de chat -->
-            <div class="p-1 font-size-weight-12px d-inline-block max-w-200-min-w-100px bg-custom-1 border-radius-5">
-              <!-- Chat [texto] -->
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa sequi quos voluptate perferendis nostrum
-              temporibus expedita
-            </div>
-            <p class="d-block font-size-weight-12px text-color-cus-1">17/02/2021 <small>4:53 PM</small></p>
-            <!-- Fecha de envío del mensaje -->
-          </div>
-        </div>
+        </ng-container>
 
       </div>
       <div class="p-2 border-top-2-custom-2">
@@ -80,9 +65,11 @@
           <i class="far fa-smile d-inline-block mr-13px"></i>
           <div class="d-inline">
             <!-- Area de escritura de chat -->
-            <input type="text" class="form-control d-inline-block w-85" placeholder="Escribir mensaje">
+            <input #msgEmitente [(ngModel)]="inputMsg" (keyup.enter)="emit(msgEmitente.value)" type="text"
+              class="form-control d-inline-block w-85" placeholder="Escribir mensaje">
           </div>
-          <div class="d-inline border-2-custom-1 p-1 border-radius-5 px-2 ml-8px">
+          <div (click)="emit(msgEmitente.value)"
+            class="d-inline border-2-custom-1 p-1 border-radius-5 px-2 ml-8px cursor-pointer">
             <!-- Botón de envío -->
             <i class="far fa-paper-plane d-inline-block text-color-cus-2"></i>
           </div>
@@ -90,5 +77,4 @@
       </div>
     </div>
   </div>
-
   <app-footer></app-footer>

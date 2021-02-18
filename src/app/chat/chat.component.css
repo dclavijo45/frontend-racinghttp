@@ -1,8 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Oswald&display=swap");
 
-.font-family-cus-1{
-  font-family: 'Noto Sans JP', sans-serif;
+.font-family-cus-1 {
+  font-family: "Noto Sans JP", sans-serif;
 }
 
 .border-2 {
@@ -72,9 +72,9 @@
   font-weight: 600;
 }
 
-.max-w-200-min-w-100px {
+.max-w-200-min-w-200px {
   max-width: 200px;
-  min-width: 100px;
+  min-width: 200px;
 }
 
 .font-size-weight-12px {
@@ -131,29 +131,33 @@
   border-bottom: #dadbdd 2px solid;
 }
 
-.ml-333px{
+.ml-333px {
   margin-left: 333px;
 }
 
-.font-family-cus-2{
-  font-family: 'Oswald', sans-serif;
+.font-family-cus-2 {
+  font-family: "Oswald", sans-serif;
 }
 
-.style-custom-1{
-      position: relative;
-    top: 5px;
-    left: 4px;
+.style-custom-1 {
+  position: relative;
+  top: 5px;
+  left: 4px;
 }
 
-.style-custom-2{
+.style-custom-2 {
   position: relative;
   top: 7px;
   left: 12px;
 }
 
 .bg-custom-3 {
-  background: #00C99A;
+  background: #00c99a;
 }
 .text-color-cus-3 {
   color: #181616;
+}
+
+.cursor-pointer {
+  cursor: pointer;
 }
