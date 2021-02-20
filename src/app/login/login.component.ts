@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ClienteService} from '../services/cliente.service';
-import Swal from 'sweetalert2/dist/sweetalert2.js';
+import { ClienteService } from '../services/cliente.service';
+import  Swal  from 'sweetalert2/dist/sweetalert2.js';
+import * as jwt_decode from 'jwt-decode';
 
 @Component({
   selector: 'app-login',
@@ -23,6 +24,8 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  jwt_decode = jwt_decode;
+
   load: boolean = false;
   logueado: boolean = false;
 
@@ -33,12 +36,13 @@ export class LoginComponent implements OnInit {
         correo: this.form.value.correo,
         password: this.form.value.password
       }
-      this.client.postRequest('http://localhost:5000/api/v01/user/login', data).subscribe(
+      this.client.postRequest('http://ace0bbf0f49a.ngrok.io/api/v01/user/login', data, localStorage.getItem("token")).subscribe(
 
         (response: any) => {
           console.log(response);
           this.load = false;
           if (response.logueado) {
+            localStorage.setItem('token', response.token)
             Swal.fire({
             position: 'center',
             icon: 'success',
@@ -48,6 +52,9 @@ export class LoginComponent implements OnInit {
           }).then((result) => {
             this.route.navigate( ['/home'])
           });
+
+
+          console.log(jwt_decode.default(localStorage.getItem("token")));
 
           }else{
             Swal.fire({

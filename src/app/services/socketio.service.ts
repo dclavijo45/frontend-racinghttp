@@ -9,16 +9,30 @@ export class SocketioService {
 
   public socketServer: Socket;
   public init() {
-    this.socketServer = Socket('http://localhost:3000');
+    this.socketServer = Socket('http://8e688a02e47b.ngrok.io');
   }
-  public listener(): Observable<any> {
+
+    public emitMessage(data: any) {
+      this.socketServer.emit("general-message", data);
+    }
+
+    public emitWriting(data: any) {
+      this.socketServer.emit("general-writing", data);
+    }
+
+    public listenerMessages(): Observable<any> {
       return new Observable<any>(obs => {
-          this.socketServer.on("msg-server", (message: any) => {
+          this.socketServer.on("general-message-server", (message: any) => {
               obs.next(message);
           });
       })
     }
-    public emit(data: any) {
-      this.socketServer.emit("msg", data);
+
+    public listenerWriting(): Observable<any> {
+      return new Observable<any>(obs => {
+          this.socketServer.on("general-writing-emit", (message: any) => {
+              obs.next(message);
+          });
+      })
     }
 }

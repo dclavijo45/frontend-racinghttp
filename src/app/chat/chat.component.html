@@ -18,14 +18,15 @@
             class="max-wh-30px img img-thumbnail rounded-circle" alt="Nombre remitente"><!-- Foto remitente -->
           <h5 class="d-inline-block text-black-50 font-family-cus-2 style-custom-1">El eddy </h5>
           <!-- Nombre remitente-->
-          <small class="d-inline-block style-custom-2 text-primary"> escribiendo...</small> <!-- Estado remitente-->
+          <small *ngIf="showWriting" class="d-inline-block style-custom-2 text-primary"> escribiendo...</small>
+          <!-- Estado remitente-->
           <i class="fas fa-user-alt float-right font-size-20px text-success"></i> <!-- ícono [area de la derecha] -->
         </div>
       </div>
-      <div class="p-2 overflow-y-auto max-min-h-324px">
+      <div #boxChatGeneral id="boxChatGeneral" class="p-2 overflow-y-auto max-min-h-324px">
         <ng-container *ngFor="let an of data;">
           <!-- Área de los chats -->
-          <div *ngIf="an.emitente!=user.id" class="p-1 h-120px font-family-cus-1">
+          <div *ngIf="an.emitente!=user" class="p-1 h-120px font-family-cus-1">
             <!--Ejemplo chat remitente-->
             <img src="https://www.snsmarketing.es/blog/wp-content/uploads/2015/11/experiencia-de-usuario.jpg"
               class="max-wh-30px img img-thumbnail rounded-circle" alt="Nombre remitente"><!-- Foto remitente -->
@@ -35,11 +36,11 @@
                 <!-- Chat [texto] -->
                 {{an.msg}}
               </div>
-              <p class="d-block font-size-weight-12px text-color-cus-1">17/02/2021 <small>4:53 PM</small></p>
+              <p class="d-block font-size-weight-12px text-color-cus-1"><small>{{an.dateSend}}</small></p>
               <!-- Fecha de envío del mensaje -->
             </div>
           </div>
-          <div *ngIf="an.emitente==user.id" class="p-1 h-120px ml-333px font-family-cus-1">
+          <div *ngIf="an.emitente==user" class="p-1 h-120px ml-333px font-family-cus-1">
             <!--Ejemplo chat emitente-->
             <img src="https://www.snsmarketing.es/blog/wp-content/uploads/2015/11/experiencia-de-usuario.jpg"
               class="max-wh-30px img img-thumbnail rounded-circle float-right" alt="Nombre remitente">
@@ -51,12 +52,11 @@
                 <!-- Chat [texto] -->
                 {{an.msg}}
               </div>
-              <p class="d-block font-size-weight-12px text-color-cus-1">17/02/2021 <small>4:53 PM</small></p>
+              <p class="d-block font-size-weight-12px text-color-cus-1"><small>{{an.dateSend}}</small></p>
               <!-- Fecha de envío del mensaje -->
             </div>
           </div>
         </ng-container>
-
       </div>
       <div class="p-2 border-top-2-custom-2">
         <!-- Pie de comunicación -->
@@ -65,10 +65,11 @@
           <i class="far fa-smile d-inline-block mr-13px"></i>
           <div class="d-inline">
             <!-- Area de escritura de chat -->
-            <input #msgEmitente [(ngModel)]="inputMsg" (keyup.enter)="emit(msgEmitente.value)" type="text"
+            <input #msgEmitente [(ngModel)]="inputMsg" (change)="emitWriting(msgEmitente.value)"
+              (keyup.enter)="emit(msgEmitente.value, boxChatGeneral)" type="text"
               class="form-control d-inline-block w-85" placeholder="Escribir mensaje">
           </div>
-          <div (click)="emit(msgEmitente.value)"
+          <div (click)="emit(msgEmitente.value, boxChatGeneral)"
             class="d-inline border-2-custom-1 p-1 border-radius-5 px-2 ml-8px cursor-pointer">
             <!-- Botón de envío -->
             <i class="far fa-paper-plane d-inline-block text-color-cus-2"></i>
