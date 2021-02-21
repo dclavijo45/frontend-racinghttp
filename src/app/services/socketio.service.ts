@@ -8,8 +8,11 @@ import * as Socket from '../services/socket.io.js';
 export class SocketioService {
 
   public socketServer: Socket;
-  public init() {
-    this.socketServer = Socket('http://8e688a02e47b.ngrok.io');
+  public init(token) {
+    this.socketServer = Socket('http://8e688a02e47b.ngrok.io',{
+      reconnectionDelayMax: 10000,
+      query: `token=${token}`
+    });
   }
 
     public emitMessage(data: any) {
@@ -34,5 +37,9 @@ export class SocketioService {
               obs.next(message);
           });
       })
+    }
+
+    public disconnect(){
+      this.socketServer.disconnect(true);
     }
 }

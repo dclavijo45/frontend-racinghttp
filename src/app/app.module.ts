@@ -17,6 +17,9 @@ import { AgregarProductoComponent } from './agregar-producto/agregar-producto.co
 import { ChatComponent } from './chat/chat.component';
 import { ActualizarPerfilComponent } from './actualizar-perfil/actualizar-perfil.component';
 import { ActualizarProductoComponent } from './actualizar-producto/actualizar-producto.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -40,7 +43,17 @@ import { ActualizarProductoComponent } from './actualizar-producto/actualizar-pr
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      "preventDuplicates": true,
+      "closeButton": false,
+  "newestOnTop": false,
+  "progressBar": true,
+  "positionClass": "toast-top-right",
+  "timeOut": 2500,
+  "extendedTimeOut": 1000,
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]

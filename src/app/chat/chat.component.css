@@ -161,3 +161,153 @@
 .cursor-pointer {
   cursor: pointer;
 }
+
+.style-custom-3 {
+  height: auto;
+  word-wrap: break-word;
+}
+
+.float-left {
+  float: left;
+}
+
+.ml-17px {
+  margin-left: 17px;
+}
+
+.mt-32px {
+  margin-top: 32px;
+}
+
+.w-44 {
+  width: 45%;
+}
+
+.ml-3 {
+  margin-left: 3%;
+}
+
+.mb-38px {
+  margin-bottom: 38px;
+}
+
+.mr-40px {
+  margin-right: 40px;
+}
+
+.bg-custom-4 {
+  background-color: #ebedef;
+}
+.text-color-cus-4 {
+  color: #b5bcc4;
+}
+
+.border-style-none {
+  border-style: none;
+}
+
+.h-41px {
+  height: 41px;
+}
+
+.border-focus-none:focus {
+  background-color: #cbced0;
+  outline: none;
+}
+
+.hover-cus-1:hover {
+  background-color: #cbced0;
+}
+
+.w-90--9 {
+  width: 90.9%;
+}
+
+.bg-custom-5 {
+  background-color: #f7f8f8;
+}
+
+.ml-1 {
+  margin-left: 1%;
+}
+
+.ml-6 {
+  margin-left: 6%;
+}
+
+.w-32 {
+  width: 32%;
+}
+
+.ml-8 {
+  margin-left: 8%;
+}
+
+.vertical-align-top {
+  vertical-align: top;
+}
+
+.d-inline-grid {
+  display: inline-grid;
+}
+
+.min-h-430px {
+  min-height: 430px;
+}
+
+.mb-3 {
+  margin-bottom: 3% !important;
+}
+
+.hover-cus-2:hover {
+  background-color: #dde1e1;
+}
+
+.min-max-h-365px {
+  min-height: 365px;
+  max-height: 365px;
+}
+
+/* Estilos para motores Webkit y blink (Chrome, Safari, Opera... )*/
+
+.scroll-custom-1::-webkit-scrollbar {
+  -webkit-appearance: none;
+}
+
+.scroll-custom-1::-webkit-scrollbar:vertical {
+  width: 10px;
+}
+
+.scroll-custom-1::-webkit-scrollbar-button:increment::-webkit-scrollbar-button {
+  display: none;
+}
+
+.scroll-custom-1::-webkit-scrollbar:horizontal {
+  height: 10px;
+}
+
+.scroll-custom-1::-webkit-scrollbar-thumb {
+  background-color: #797979;
+  border-radius: 3px;
+  border: 1px solid #f1f2f3;
+}
+
+.scroll-custom-1::-webkit-scrollbar-track {
+  background-color: #6b939f;
+}
+
+.text-color-cus-5 {
+  color: #878e95;
+}
+
+.font-size-24px {
+  font-size: 24px;
+}
+
+.border-left-none {
+  border-left: none;
+}
+
+.ml-11 {
+  margin-left: 11%;
+}
