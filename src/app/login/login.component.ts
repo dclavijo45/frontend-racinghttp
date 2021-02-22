@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
     if (this.form.valid) {
       this.load = true
       let data = {
-        correo: this.form.value.correo,
+        email: this.form.value.correo,
         password: this.form.value.password
       }
       this.client.postRequest('http://ace0bbf0f49a.ngrok.io/api/v01/user/login', data, localStorage.getItem("token")).subscribe(

@@ -85,91 +85,58 @@
       <div class=" w-100 bg-custom-4 hover-cus-1">
         <!--Entrada de búsqueda-->
         <i class="fas fa-search font-size-20px mr-1 d-inline-block text-color-cus-4 mx-2"></i>
-        <input type="text"
+        <input type="text" [(ngModel)]="inputSearch" (ngModelChange)="searchUser($event)"
           class="bg-custom-4 w-90--9 d-inline-block border-style-none h-41px border-focus-none hover-cus-1"
           placeholder="Buscar personas">
+        <h1>{{inputMsg}}</h1>
       </div>
       <div class="mt-2">
         <!--Caja central con resultados de búsqueda-->
         <div class="py-2 min-max-h-365px overflow-y-auto scroll-custom-1">
           <!--Resultados-->
-          <div class="hover-cus-2 cursor-pointer">
-            <!--Ejemplo 1 de resultado-->
-            <div class="py-2">
-              <!--Caja de ejemplo 1 r...-->
-              <img src="https://www.snsmarketing.es/blog/wp-content/uploads/2015/11/experiencia-de-usuario.jpg"
-                class="max-wh-30px img img-thumbnail rounded-circle d-inline-block" alt="Nombre remitente">
-              <!-- Foto usuario ejemplo 1 r...-->
-              <h5 class="d-inline-block ml-1">El Eddy</h5>
-              <h6 class="ml-8 text-color-cus-5">Distribuidor de drogas</h6>
-            </div>
-          </div>
+          <ng-container *ngIf="!showSpinnerSearchUsers">
+            <ng-container *ngFor="let an of listUsersSearch">
+              <div *ngIf="an.found" class="hover-cus-2 cursor-pointer">
+                <!--resultado-->
+                <div class="py-2">
+                  <!--Caja de resultado-->
+                  <img src="https://www.snsmarketing.es/blog/wp-content/uploads/2015/11/experiencia-de-usuario.jpg"
+                    class="max-wh-30px img img-thumbnail rounded-circle d-inline-block" alt="Nombre remitente">
+                  <!-- Foto usuario resultado.-->
+                  <h5 class="d-inline-block ml-1">{{an.nombres}} {{an.apellidos}}</h5>
+                  <h6 class="ml-8 text-color-cus-5">{{an.cargo}}</h6>
+                </div>
+              </div>
+              <div *ngIf="!an.found">
+                <!--Caja central para alguna otra info [opcional]-->
+                <div class="py-4">
+                  <!--Panel de caja [opcional]-->
+                  <p class="word-break">No se encontraron resultados para <b>{{inputSearch}}</b>.</p>
+                </div>
+              </div>
+            </ng-container>
+          </ng-container>
           <!--         -->
-          <div class="hover-cus-2 cursor-pointer">
-            <!--Ejemplo 2 de resultado-->
-            <div class="py-2">
-              <!--Caja de ejemplo 2 r...-->
-              <img src="https://www.snsmarketing.es/blog/wp-content/uploads/2015/11/experiencia-de-usuario.jpg"
-                class="max-wh-30px img img-thumbnail rounded-circle d-inline-block" alt="Nombre remitente">
-              <!-- Foto usuario ejemplo 2 r...-->
-              <h5 class="d-inline-block ml-1">El Eddy</h5>
-              <h6 class="ml-8 text-color-cus-5">Distribuidor de drogas</h6>
+          <div *ngIf="showSpinnerSearchUsers" class="content-custom1 ml-32 mt-37">
+            <div class="load-custom1 center-custom1 bar-custom-1">
+              <div class="loader-custom-1"></div>
             </div>
-          </div>
-          <!--      -->
-          <div class="hover-cus-2 cursor-pointer">
-            <!--Ejemplo 2 de resultado-->
-            <div class="py-2">
-              <!--Caja de ejemplo 2 r...-->
-              <img src="https://www.snsmarketing.es/blog/wp-content/uploads/2015/11/experiencia-de-usuario.jpg"
-                class="max-wh-30px img img-thumbnail rounded-circle d-inline-block" alt="Nombre remitente">
-              <!-- Foto usuario ejemplo 2 r...-->
-              <h5 class="d-inline-block ml-1">El Eddy</h5>
-              <h6 class="ml-8 text-color-cus-5">Distribuidor de drogas</h6>
-            </div>
-          </div>
-          <!--   -->
-          <!--      -->
-          <div class="hover-cus-2 cursor-pointer">
-            <!--Ejemplo 2 de resultado-->
-            <div class="py-2">
-              <!--Caja de ejemplo 2 r...-->
-              <img src="https://www.snsmarketing.es/blog/wp-content/uploads/2015/11/experiencia-de-usuario.jpg"
-                class="max-wh-30px img img-thumbnail rounded-circle d-inline-block" alt="Nombre remitente">
-              <!-- Foto usuario ejemplo 2 r...-->
-              <h5 class="d-inline-block ml-1">El Eddy</h5>
-              <h6 class="ml-8 text-color-cus-5">Distribuidor de drogas</h6>
-            </div>
-          </div>
-          <!--      -->
-          <div class="hover-cus-2 cursor-pointer">
-            <!--Ejemplo 2 de resultado-->
-            <div class="py-2">
-              <!--Caja de ejemplo 2 r...-->
-              <img src="https://www.snsmarketing.es/blog/wp-content/uploads/2015/11/experiencia-de-usuario.jpg"
-                class="max-wh-30px img img-thumbnail rounded-circle d-inline-block" alt="Nombre remitente">
-              <!-- Foto usuario ejemplo 2 r...-->
-              <h5 class="d-inline-block ml-1">El Eddy</h5>
-              <h6 class="ml-8 text-color-cus-5">Distribuidor de drogas</h6>
-            </div>
-          </div>
-          <!--      -->
-          <div>
-            <!--Caja central para alguna otra info [opcional]-->
-            <div class="py-4">
-              <!--Panel de caja [opcional]-->
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, ratione magnam! Odio!</p>
-            </div>
-          </div>
 
+            <!--      -->
+            <!-- <div>
+              -Caja central para alguna otra info [opcional]-
+              <div class="py-4">
+                -Panel de caja [opcional]-
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, ratione magnam! Odio!</p>
+              </div>
+            </div> -->
+
+          </div>
         </div>
-
       </div>
-
-    </div>
-  </div><!-- Panel central de búqueda-->
-</div>
-<!-- <input [(ngModel)]="remitente" type="text" placeholder="Remitente" required>
-  <p>ID: {{user}}</p>
-  <button (click)="disconnet()">Disconnect</button> -->
-<app-footer></app-footer>
+    </div><!-- Panel central de búqueda-->
+  </div>
+  <!-- <input [(ngModel)]="remitente" class="form-control mb-38px" type="text" placeholder="Remitente" required>
+  <p class="text-dark mb-38px">ID: {{user}}</p>
+  <button class="btn btn-danger d-inline-grid mb-38px" (click)="disconnet()">Disconnect</button> -->
+  <app-footer></app-footer>

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { SocketioService } from '../services/socketio.service';
 import * as jwt_decode from 'jwt-decode';
 //import { Pipe, PipeTransform } from '@angular/core';
+import { ClienteService } from '../services/cliente.service';
 import * as dateFormat from 'dateformat';
 //import  Swal  from 'sweetalert2/dist/sweetalert2.js';
 import { ToastrService } from 'ngx-toastr';
@@ -19,11 +20,16 @@ export class ChatComponent implements OnInit {
   public inputMsg: any = "";
   public token_jwt = localStorage.getItem("token");
   public showWriting: boolean = false;
+  public queryEscanear: boolean = false;
   public fecha: Date = new Date();
   public actualizarBoxChat: boolean = false;
   public dateFormat = dateFormat;
   public remitente: string = "";
   public contadorRefreshChat = 0;
+  public showSpinnerSearchUsers: boolean = false;
+  public orderShwSpinnerSrcUsers: boolean = false;
+  public listUsersSearch: any[] = []
+  public inputSearch: string = "";
   public now = ()=>{
     return new Date()
   }
@@ -33,7 +39,8 @@ export class ChatComponent implements OnInit {
   constructor(
     public SocketIoService: SocketioService,
     private route: Router,
-    public Toastr: ToastrService) {
+    public Toastr: ToastrService,
+    private client: ClienteService) {
   }
 
   ngOnInit() {
@@ -98,9 +105,34 @@ export class ChatComponent implements OnInit {
       }
     });
 
-    setInterval(() => {
-    this.emitWriting()
-  }, 500);
+    let viewChatStatusSI = setInterval(() => {
+
+    if (this.inputMsg != "") {
+      this.SocketIoService.emitWriting({
+        emitente: this.user,
+        remitente: this.remitente,
+        writing: true
+      });
+      this.queryEscanear = true;
+    }else{
+
+      if (this.queryEscanear) {
+        this.SocketIoService.emitWriting({
+        emitente: this.user,
+        remitente: this.remitente,
+        writing: false
+      })
+      this.queryEscanear = false
+      }
+
+    }
+      }, 500);
+
+    let viewFixSearchAsyncSI = setInterval(() =>{
+      if (this.inputSearch == "") {
+        this.listUsersSearch = []
+      }
+    }, 100)
 
   }
 
@@ -150,9 +182,10 @@ export class ChatComponent implements OnInit {
     }
   }
 
-  emitWriting(){
+  emitsWriting(){
     if (this.inputMsg != "") {
       console.info(`Writing...`)
+      this.queryEscanear = true;
       this.SocketIoService.emitWriting({
         emitente: this.user,
         remitente: this.remitente,
@@ -160,6 +193,7 @@ export class ChatComponent implements OnInit {
       })
     }else{
       console.info(`Not writing`)
+      this.queryEscanear = false;
       this.SocketIoService.emitWriting({
         emitente: this.user,
         remitente: this.remitente,
@@ -172,19 +206,48 @@ export class ChatComponent implements OnInit {
     this.SocketIoService.disconnect();
   }
 
-//  viewWritingLive = setInterval(this.emitWriting, 3000);
-
-  // if (this.inputMsg != "") {
-  //     this.SocketIoService.emitWriting({
-  //       emitente: this.user,
-  //       remitente: this.remitente,
-  //       writing: true
-  //     })
-  //   }else{
-  //     this.SocketIoService.emitWriting({
-  //       emitente: this.user,
-  //       remitente: this.remitente,
-  //       writing: false
-  //     })
-  //   }
+  async searchUser(key: string){
+    console.info(`Search key: ${key}`)
+    if (key == "" || key == " ") {
+      this.listUsersSearch = []
+      return this.showSpinnerSearchUsers = false;
+    }
+    this.showSpinnerSearchUsers = true;
+    this.client.postRequest('http://ace0bbf0f49a.ngrok.io/api/v01/search/users', {
+      search_key: this.inputSearch
+    }, this.token_jwt).subscribe(
+      (response: any) => {
+        let res = JSON.parse(JSON.stringify(response));
+        let ResValidate;
+        try {
+          ResValidate = res[0].auth_token;
+        } catch (error) {
+          ResValidate = res.auth_token;
+        }
+        if (ResValidate) {
+          this.listUsersSearch = res;
+          this.showSpinnerSearchUsers = false;
+        //   this.Toastr.success(`Datos recibidos`, `Token válido`,{
+        //   closeButton: false,
+        //   extendedTimeOut: 1500
+        // })
+        }else{
+          this.listUsersSearch = []
+          this.showSpinnerSearchUsers = false;
+          this.Toastr.error(`Vuelva a inciar sesión`, `Token inválido`,{
+          closeButton: false,
+          extendedTimeOut: 1500
+        })
+        }
+      },
+      (error) => {
+        console.error(error);
+        this.showSpinnerSearchUsers = false;
+          this.Toastr.error(`Se ha producido un problema`, `Error generado`,{
+          closeButton: false,
+          extendedTimeOut: 1500
+        })
+      }
+    )
+  }
 }

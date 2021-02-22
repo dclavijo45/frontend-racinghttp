@@ -7,14 +7,6 @@ import { HttpClient, HttpHeaders} from '@angular/common/http';
 export class ClienteService {
 
   constructor(private http: HttpClient) { }
-  // postRequest(route: string, data?:any) {
-
-  //   let config:any = {
-  //     responseType: "json"
-  //   }
-
-  //   return this.http.post(route, data, config);
-  // }
 
   getRequest(route: string, token?:string) {
 
@@ -31,16 +23,21 @@ export class ClienteService {
   }
 
   postRequest(route: string, data?:any, token?:string) {
-    let config:any = {
-      responseType: "json"
-    }
 
     if (token){
-      const header = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-      config["header"] = header;
-    }
+      let config = {
+      responseType: "json",
+      whitelistedDomains: ['localhost:5000','bdc587af0fe7.ngrok.io','localhost:4200']
+        }
+      let headers = new HttpHeaders({ 'Content-Type': 'application/json','Authorization': `Bearer ${token}` })
 
-    return this.http.post(route, data, config);
+      return this.http.post(route, data, {headers});
+    }else{
+      let config:any = {
+      responseType: "json"
+        }
+      return this.http.post(route, data, config);
+    }
   }
 
 }
