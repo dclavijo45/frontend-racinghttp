@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SocketioService } from '../services/socketio.service';
-import * as jwt_decode from 'jwt-decode';
+import jwtDecode from 'jwt-decode';
 //import { Pipe, PipeTransform } from '@angular/core';
 import { ClienteService } from '../services/cliente.service';
 import * as dateFormat from 'dateformat';
@@ -16,8 +16,12 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ChatComponent implements OnInit {
 
+  public server: string = "http://localhost:5000";
+  private master_key = "";
+  public dataCurrentUser = {profile_photo: "", name: "", lastname: "", user_id: ""}
   public data : any[] = [];
   public inputMsg: any = "";
+  public jwt_decode: any = jwtDecode;
   public token_jwt = localStorage.getItem("token");
   public showWriting: boolean = false;
   public queryEscanear: boolean = false;
@@ -45,7 +49,8 @@ export class ChatComponent implements OnInit {
 
   ngOnInit() {
     try {
-      this.user = localStorage.getItem("token");
+      let uid = this.jwt_decode(localStorage.getItem("token"));
+      this.user = uid.user_id;
       if (this.user == null) {
         return this.route.navigate( ['/']);
       }
@@ -96,7 +101,7 @@ export class ChatComponent implements OnInit {
     });
 
     this.SocketIoService.listenerWriting().subscribe((msg) => {
-      if (msg.remitente == this.user) {
+      if (msg.remitente == this.user && msg.emitente == this.dataCurrentUser.user_id) {
         if (msg.writing) {
           this.showWriting = true;
         }else{
@@ -110,7 +115,7 @@ export class ChatComponent implements OnInit {
     if (this.inputMsg != "") {
       this.SocketIoService.emitWriting({
         emitente: this.user,
-        remitente: this.remitente,
+        remitente: this.dataCurrentUser.user_id,
         writing: true
       });
       this.queryEscanear = true;
@@ -119,7 +124,7 @@ export class ChatComponent implements OnInit {
       if (this.queryEscanear) {
         this.SocketIoService.emitWriting({
         emitente: this.user,
-        remitente: this.remitente,
+        remitente: this.dataCurrentUser.user_id,
         writing: false
       })
       this.queryEscanear = false
@@ -134,16 +139,39 @@ export class ChatComponent implements OnInit {
       }
     }, 100)
 
+    // function temporal
+    let checkTockenSI = setInterval(() =>{
+      this.client.postRequest(`${this.server}/api/v01/check/jwt`, {}, this.token_jwt).subscribe(
+        (response: any) => {
+          let res = JSON.parse(JSON.stringify(response));
+          if (!res.auth_token) {
+            this.Toastr.error(`Vuelva a inciar sesión`, `Token inválido`,{
+              closeButton: false,
+              extendedTimeOut: 2500
+            })
+            clearInterval(checkTockenSI);
+            return this.route.navigate( ['/']);
+          }
+        },
+        (error) =>{
+          this.Toastr.error(`Revise su conexión a internet`, `Error ocurrido`,{
+            closeButton: false,
+            extendedTimeOut: 1500
+          })
+        }
+      )
+    },10000)
+
   }
 
   emit(msg: any){
     let boxChat = document.getElementById("boxChatGeneral");
     try {
-      if (msg.length == 0 || msg == " ") {
+      if (msg.length == 0 || msg == " " || this.dataCurrentUser.user_id == "") {
         return false;
       }
       this.data.push({
-          remitente: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MTM3OTYyNjIsImVtYWlsIjoiZ3J1cG9qZWRAZ21haWwuY29tIn0.qKwEUmJe608PZN30ALRT8fsw-7KzpYDzmbrRVUdj554",
+          remitente: this.dataCurrentUser.user_id,
           emitente: this.user,
           msg: msg,
           img: "",
@@ -169,7 +197,7 @@ export class ChatComponent implements OnInit {
         console.log(this.data)
         this.showWriting = false;
         this.SocketIoService.emitMessage({
-        remitente: this.remitente,
+        remitente: this.dataCurrentUser.user_id,
         emitente: this.user,
         msg: msg,
         img: "",
@@ -188,7 +216,7 @@ export class ChatComponent implements OnInit {
       this.queryEscanear = true;
       this.SocketIoService.emitWriting({
         emitente: this.user,
-        remitente: this.remitente,
+        remitente: this.dataCurrentUser.user_id,
         writing: true
       })
     }else{
@@ -196,7 +224,7 @@ export class ChatComponent implements OnInit {
       this.queryEscanear = false;
       this.SocketIoService.emitWriting({
         emitente: this.user,
-        remitente: this.remitente,
+        remitente: this.dataCurrentUser.user_id,
         writing: false
       })
     }
@@ -213,12 +241,13 @@ export class ChatComponent implements OnInit {
       return this.showSpinnerSearchUsers = false;
     }
     this.showSpinnerSearchUsers = true;
-    this.client.postRequest('http://ace0bbf0f49a.ngrok.io/api/v01/search/users', {
+    this.client.postRequest(`${this.server}/api/v01/search/users`, {
       search_key: this.inputSearch
     }, this.token_jwt).subscribe(
       (response: any) => {
         let res = JSON.parse(JSON.stringify(response));
         let ResValidate;
+
         try {
           ResValidate = res[0].auth_token;
         } catch (error) {
@@ -249,5 +278,36 @@ export class ChatComponent implements OnInit {
         })
       }
     )
+  }
+
+  asignDataChatBox(user_id){
+    console.log(user_id);
+    let boxChat = document.getElementById("boxChatGeneral");
+    this.listUsersSearch.forEach(element =>{
+      if (element.user_id == user_id){
+        this.actualizarBoxChat = true;
+        let contadorRefreshChatx = 0;
+        this.contadorRefreshChat = contadorRefreshChatx;
+        if (this.actualizarBoxChat) {
+          this.actualizarBoxChat = false;
+          let refresh = setInterval(function fun() {
+            boxChat.scrollTop = boxChat.scrollHeight;
+            contadorRefreshChatx++;
+            if(contadorRefreshChatx == 10){
+              clearInterval(refresh);
+              contadorRefreshChatx = 0
+              this.contadorRefreshChat = contadorRefreshChatx;
+              this.actualizarBoxChat = false;
+            }
+          }, 50);
+        }
+        return this.dataCurrentUser = {
+          profile_photo: "",
+          name: element.nombres,
+          lastname: element.apellidos,
+          user_id: element.user_id
+        }
+      }
+    });
   }
 }

@@ -29,10 +29,18 @@
 
 .text-add-product-title {
   top: 17px;
-  right: 83px;
+  right: 91px;
 }
 
 .text-settings-title {
   top: 17px;
   right: 40px;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.outline-none--focus:focus {
+  outline: none;
 }

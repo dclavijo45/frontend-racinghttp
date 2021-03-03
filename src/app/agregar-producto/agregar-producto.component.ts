@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import  Swal  from 'sweetalert2/dist/sweetalert2.js';
+import { ToastrService } from 'ngx-toastr';
+import { ClienteService } from '../services/cliente.service';
 
 @Component({
   selector: 'app-agregar-producto',
@@ -10,43 +13,108 @@ export class AgregarProductoComponent implements OnInit {
 
   form:FormGroup;
   reader = new FileReader();
+  public showCurrentImg: boolean = false;
+  public imageCurrent: any;
+  private server: string = 'http://localhost:5000';
+  private token: any;
+  public showLoad = false;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(
+    private fb: FormBuilder,
+    private Toastr: ToastrService,
+    private client: ClienteService) { }
 
   ngOnInit(): void {
+    try {
+      this.token = localStorage.getItem('token');
+    } catch (error) {
+
+    }
     this.form = this.fb.group({
-      nombre: ['', Validators.required],
-      referencia: ['', Validators.required],
-      precio: ['', Validators.required],
-      cantidad: ['', Validators.required]
+      nombre_producto: ['', Validators.required],
+      descripcion_producto: ['', Validators.required],
+      precio_producto: ['', Validators.required],
+      cantidad_producto: ['', Validators.required],
+      img_producto: ['', Validators.required],
     });
   }
+
   Validar(){
     if (this.form.valid) {
       console.log("Form valid!")
+      this.showLoad = true;
       let data = {
-        correo: this.form.value.correo,
-        password: this.form.value.password
+        nombre_producto: this.form.value.nombre_producto,
+        descripcion_producto: this.form.value.descripcion_producto,
+        precio_producto: this.form.value.precio_producto,
+        cantidad_producto: this.form.value.cantidad_producto,
+        img_producto: this.imageCurrent
       }
+      this.client.postRequest(`${this.server}/api/v01/add/product`, data, this.token)
+      .subscribe(
+        (response: any) => {
+          
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Producto registrado',
+            showConfirmButton: false,
+            timer: 2000
+          }).then((result) => {
+
+          });
+          console.log(response);
+          this.showLoad = false;
+
+        },
+        (error) => {
+          console.error(error);
+          this.showLoad = false;
+          this.Toastr.error(`Revisa tu conexión a internet`, `Error de conexión`,{closeButton: false,extendedTimeOut: 2500})
+
+        }
+
+      )
+
     }else{
+      console.log(this.form.status);
+
       console.log("Form Invalid!");
+      this.Toastr.error(`Por favor completa todos los campos para agregar el  producto`, ``,{closeButton: false,extendedTimeOut: 2500})
     }
   }
 
-  log(event, imgCurrent){
+  log(event, imgCurrent, opt){
     try {
-      if (event.type == "image/jpeg" || event.type == "image/png") {
-    this.reader.readAsDataURL(event);
+      if (event.target.files[0].type == "image/jpeg" || event.target.files[0].type == "image/png") {
+    this.reader.readAsDataURL(event.target.files[0]);
     this.reader.onload =  () => {
       imgCurrent.src = this.reader.result;
+      this.imageCurrent = this.reader.result;
     }
+    console.log(opt.files);
+    this.showCurrentImg = true;
+
       }else{
-        console.log(`Type file: ${event.type}`);
-
+        console.log(`Type file: ${event.target.files[0].type}`);
+        this.Toastr.info(`Selecciona una imagen`, `Imagen no válida`,{
+              closeButton: false,
+              extendedTimeOut: 2500
+            })
+          console.log("ERROR TYPE");
+          this.showCurrentImg = false;
+          this.imageCurrent = '';
       }
-
     } catch (error) {
-      console.error("Error when change img")
+      console.log("ERROR E:");
+      console.log(opt.files.length);
+      this.imageCurrent = '';
+
+      this.Toastr.info(`Selecciona una imagen`, `Imagen no válida`,{
+              closeButton: false,
+              extendedTimeOut: 2500
+            })
+          this.showCurrentImg = false;
     }
 
   }

@@ -5,6 +5,7 @@ import { ActualizarProductoComponent } from './actualizar-producto/actualizar-pr
 import { AgregarProductoComponent } from './agregar-producto/agregar-producto.component';
 import { CarritoComponent } from './carrito/carrito.component';
 import { ChatComponent } from './chat/chat.component';
+import { GestionarProductosComponent } from './gestionar-productos/gestionar-productos.component';
 import { InfoProductoComponent } from './info-producto/info-producto.component';
 import { LoginComponent } from './login/login.component';
 import { RegistroComponent } from './registro/registro.component';
@@ -18,11 +19,12 @@ const routes: Routes = [
   {path: 'home', component:SeccionPrincipalComponent},
   {path: 'search', component: ResultadoBusquedaComponent},
   {path: 'infoproducto', component: InfoProductoComponent},
-  {path: 'carrito', component: CarritoComponent},
-  {path: 'agregarproducto', component: AgregarProductoComponent},
   {path: 'chat', component: ChatComponent},
+  {path: 'carrito', component: CarritoComponent},
+  {path: 'gestionarproductos', component: GestionarProductosComponent},
+  {path: 'agregarproducto', component: AgregarProductoComponent},
+  {path: 'actualizarproducto', component: ActualizarProductoComponent},
   {path: 'actualizarperfil', component: ActualizarPerfilComponent},
-  {path: 'actualizarproducto', component: ActualizarProductoComponent}
 ];
 
 @NgModule({

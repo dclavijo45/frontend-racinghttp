@@ -1,32 +1,40 @@
 <app-nav></app-nav>
-<div class="w-75 mx-auto max-h-500 mt-60">
-
-  <div class="d-inline-block ml-190 form form-group">
-    <form [formGroup]="form" (ngSubmit)="Validar()">
-      <input formControlName="nombre" class="form-control text-center" type="text" placeholder="Nombre" autofocus>
-      <select formControlName="referencia" class="form-control text-center text-align-center" name="" id="">
-        <option hidden selected value="">Referencia</option>
-        <option value="0">Carro</option>
-        <option value="1">Moto</option>
-      </select>
-      <input formControlName="precio" class="form-control text-center" type="number" placeholder="Precio" min="1">
-      <input formControlName="cantidad" class="form-control text-center mb-4" type="number" min="1"
-        placeholder="Cantidad">
-      <div class="invisible">
-        <input #fileInput type="file" (change)="log($event.target.files[0], imgCurrent)">
-      </div>
-    </form>
-    <span class="d-inline-block w-100">
-      <button (click)="Validar()" class="btn btn-success mr-27 d-inline" >Guardar</button>
-      <button class="btn btn-danger d-inline">Cancelar</button>
-    </span>
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css">
+<div class="w-100 max-h-505px pt-32px bg-custom-1">
+  <div class="bg-white mx-12 p-4 border-2-secondary border-radius-5px max-min-h-436px overflow-hide">
+    <div class="w-100">
+      <form [formGroup]="form" class="d-inline-block form-group w-100">
+        <h5 class="ml-42">Agregar producto</h5>
+        <div class="styles-cus-1 d-inline-block mouse-hand ml-8">
+          <input formControlName="img_producto" id="filex" #fileInput type="file" class="mouse-hand"
+            (change)="log($event, imgCurrent, fileInput)">
+          <p (click)="fileInput.click()">
+            Click para poner imagen al producto
+          </p>
+          <div [ngClass]="{'d-none' : !showCurrentImg}" class="d-inline-block mouse-hand style-cus-3">
+            <img #imgCurrent src="https://ferreteriavidri.com/images/items/large/91779.jpg" class="img img-thumbnail-c"
+              alt="image product" (click)="fileInput.click()" width="290" height="190"
+              title="click para cambiar de imagen">
+          </div>
+        </div>
+        <div class="d-inline-block ml-18 position-absolute">
+          <input formControlName="nombre_producto" type="text" class="form-control mb-2"
+            placeholder="Nombre del producto" maxlength="15">
+          <input formControlName="cantidad_producto" type="number" class="form-control mb-2" placeholder="Cantidad"
+            min="1" max="10000000">
+          <input formControlName="precio_producto" type="number" class="form-control mb-2" placeholder="Precio" min="1"
+            max="10000000">
+          <textarea formControlName="descripcion_producto" class="form-control overflow-y-auto resize-none"
+            placeholder="Pon una breve descripción del producto" cols="30" rows="5" maxlength="25"></textarea>
+        </div><br>
+        <div *ngIf="showLoad" class="spinner-border text-dark ml-47" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+        <button [ngClass]="{'mt-10': !showLoad, 'mt-6': showLoad}" [disabled]="showLoad" (click)="Validar()"
+          class="style-cus-2 d-block ml-33" type="submit">Agregar
+          producto</button>
+      </form>
+    </div>
   </div>
-
-  <div #divImgView class="d-inline-block ml-120 position-relative bottom-73 mouse-hand">
-    <img #imgCurrent src="https://ferreteriavidri.com/images/items/large/91779.jpg"
-      class="img img-thumbnail-c max-min-w-h-250" alt="" (click)="fileInput.click()" width="250" height="250">
-  </div>
-
 </div>
 <app-footer></app-footer>

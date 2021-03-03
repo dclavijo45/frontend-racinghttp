@@ -1,4 +1,5 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AuthBehaviorSubjectService } from '../services/auth-behavior-subject.service';
 import { ClienteService } from '../services/cliente.service';
 
 @Component({
@@ -8,19 +9,11 @@ import { ClienteService } from '../services/cliente.service';
 })
 export class NavComponent implements OnInit {
 
-  constructor(private client: ClienteService) { }
-
-  @Output() public ResData: EventEmitter<any> = new EventEmitter<any>();
+  constructor(private client: ClienteService, public auth: AuthBehaviorSubjectService) { }
 
   ngOnInit(): void {
   }
 
-  enviarEvento(){
-    this.ResData.emit({
-            id: 2,
-            service: "running"
-          })
-  }
   async Buscar(search){
       let data = {
         search: search
@@ -29,10 +22,6 @@ export class NavComponent implements OnInit {
 
         (response: any) => {
           console.log(response)
-          this.ResData.emit({
-            id: 2,
-            service: "running"
-          })
       },
       (error) => {
         //this.load = true;
@@ -40,5 +29,9 @@ export class NavComponent implements OnInit {
         console.log(error.status);
 
       })
+    }
+
+    logout(){
+      this.auth.logout();
     }
 }

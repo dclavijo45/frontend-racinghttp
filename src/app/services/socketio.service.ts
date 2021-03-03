@@ -9,7 +9,7 @@ export class SocketioService {
 
   public socketServer: Socket;
   public init(token) {
-    this.socketServer = Socket('http://8e688a02e47b.ngrok.io',{
+    this.socketServer = Socket('http://localhost:3000',{
       reconnectionDelayMax: 10000,
       query: `token=${token}`
     });

@@ -1,0 +1,59 @@
+<app-nav></app-nav>
+<div class="w-100 max-h-505px pt-32px bg-custom-1">
+  <div class="bg-custom-2 mx-12 p-4 border-2-secondary border-radius-5px max-min-h-436px overflow-hide">
+    <div class="w-100">
+
+      <div class="d-inline-block">
+        <img src="../assets/card1.png" class="d-inline-block mr-20px" width="315" height="110">
+        <h6 *ngIf="!showSpinners" class="position-fixed style-cus-2 text-light">Tus productos</h6>
+        <h5 *ngIf="!showSpinners" class="position-fixed style-cus-1 text-light">45555</h5>
+        <i class="fas fa-shopping-bag position-fixed style-cus-3 text-light d-block"></i>
+        <h6 class="position-fixed style-cus-4 text-light">Ver detalles</h6>
+        <div *ngIf="showSpinners" class="spinner-grow text-warning position-fixed style-cus-5 d-block" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+
+      <div class="d-inline-block">
+        <img src="../assets/card2.png" class="d-inline-block mr-20px" width="315" height="110">
+        <h6 *ngIf="!showSpinners" class="position-fixed style-cus-2 text-light">Productos adquiridos</h6>
+        <h5 *ngIf="!showSpinners" class="position-fixed style-cus-1 text-light">45555</h5>
+        <i class="fas fa-shopping-basket position-fixed style-cus-3 text-light d-block"></i>
+        <h6 class="position-fixed style-cus-4 text-light">Ver detalles</h6>
+        <div *ngIf="showSpinners" class="spinner-grow text-info position-fixed style-cus-5 d-block" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+
+      <div class="d-inline-block">
+        <img src="../assets/card3.png" class="d-inline-block" width="315" height="110">
+        <h6 *ngIf="!showSpinners" class="position-fixed style-cus-2 text-light">Capital recogido</h6>
+        <h5 *ngIf="!showSpinners" class="position-fixed style-cus-1 text-light">45555</h5>
+        <i class="fas fa-dollar-sign position-fixed style-cus-3 text-light d-block"></i>
+        <h6 class="position-fixed style-cus-4 text-light">Ver detalles</h6>
+        <div *ngIf="showSpinners" class="spinner-grow text-warning position-fixed style-cus-5 d-block" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+
+    </div>
+    <div class="w-100 mt-4 ">
+      <div class="d-inline-block h-258px w-49 mr-2">
+        <canvas *ngIf="!showSpinners" id="chart1" class="d-inline w-100 h-100"></canvas>
+        <div *ngIf="showSpinners" class="spinner-grow text-danger d-inline-block mt-8 ml-16 position-fixed"
+          role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+      <div class="bg-warning d-inline-block max-min-h-258px w-49 overflow-y-auto p-2">
+        <!-- <canvas id="chart" class="d-inline w-100 h-100"></canvas> -->
+        <div class="d-inline w-100 h-100 overflow-y-auto max-min-h-258px ">Lorem   beatae fuga officiis est, sint molestias veritatis culpa atque voluptas ipsum animi quia quaerat. Commodi,
+          optio molestias voluptatum nemo tempore nam doloribus cumque repellendus qui, a sunt explicabo quam
+          perspiciatis veritatis quo autem et atque minus totam laboriosam, debitis minima reprehenderit unde
+          voluptatem. Aperiam ratione deleniti magnam temporibus officia eum, aspernatur dolore neque sequi non,
+          veritatis odit.</div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

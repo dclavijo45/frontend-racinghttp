@@ -1,10 +1,10 @@
 <app-nav></app-nav>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css">
-<div class="w-100">
+<div class="w-100 bg-custom-6">
 
   <div class="w-44 ml-11 d-inline-block border-radius-5 max-h-452 border-2-secondary mt-32px mb-38px">
     <!-- CHAT -->
-    <div class="max-h-452">
+    <div class="max-h-452 bg-white">
       <!-- Panel central chat -->
       <div class="p-2 border-bottom-2-custom-2">
         <!-- Nombre remitente -->
@@ -12,7 +12,8 @@
           <!-- Area de perfil de remitente -->
           <img src="https://www.snsmarketing.es/blog/wp-content/uploads/2015/11/experiencia-de-usuario.jpg"
             class="max-wh-30px img img-thumbnail rounded-circle" alt="Nombre remitente"><!-- Foto remitente -->
-          <h5 class="d-inline-block text-black-50 font-family-cus-2 style-custom-1">El eddy </h5>
+          <h5 class="d-inline-block text-black-50 font-family-cus-2 style-custom-1">{{dataCurrentUser.name}}
+            {{dataCurrentUser.lastname}}</h5>
           <!-- Nombre remitente-->
           <small *ngIf="showWriting" class="d-inline-block style-custom-2 text-primary"> escribiendo...</small>
           <!-- Estado remitente-->
@@ -22,7 +23,7 @@
       <div #boxChatGeneral id="boxChatGeneral" class="p-2 overflow-y-auto max-min-h-324px">
         <ng-container *ngFor="let an of data;">
           <!-- Área de los chats -->
-          <div *ngIf="an.emitente!=user" class="p-1 h-120px font-family-cus-1">
+          <div *ngIf="an.emitente!=user && dataCurrentUser.user_id==an.emitente" class="p-1 h-120px font-family-cus-1">
             <!--Ejemplo chat remitente-->
             <img src="https://www.snsmarketing.es/blog/wp-content/uploads/2015/11/experiencia-de-usuario.jpg"
               class="max-wh-30px img img-thumbnail rounded-circle float-left" alt="Nombre remitente">
@@ -38,7 +39,8 @@
               <!-- Fecha de envío del mensaje -->
             </div>
           </div>
-          <div *ngIf="an.emitente==user" class="p-1 h-120px ml-333px font-family-cus-1">
+          <div *ngIf="an.emitente==user && dataCurrentUser.user_id==an.remitente"
+            class="p-1 h-120px ml-333px font-family-cus-1">
             <!--Ejemplo chat emitente-->
             <img src="https://www.snsmarketing.es/blog/wp-content/uploads/2015/11/experiencia-de-usuario.jpg"
               class="max-wh-30px img img-thumbnail rounded-circle float-right" alt="Nombre remitente">
@@ -88,7 +90,6 @@
         <input type="text" [(ngModel)]="inputSearch" (ngModelChange)="searchUser($event)"
           class="bg-custom-4 w-90--9 d-inline-block border-style-none h-41px border-focus-none hover-cus-1"
           placeholder="Buscar personas">
-        <h1>{{inputMsg}}</h1>
       </div>
       <div class="mt-2">
         <!--Caja central con resultados de búsqueda-->
@@ -96,7 +97,7 @@
           <!--Resultados-->
           <ng-container *ngIf="!showSpinnerSearchUsers">
             <ng-container *ngFor="let an of listUsersSearch">
-              <div *ngIf="an.found" class="hover-cus-2 cursor-pointer">
+              <div *ngIf="an.found" (click)="asignDataChatBox(an.user_id)" class="hover-cus-2 cursor-pointer">
                 <!--resultado-->
                 <div class="py-2">
                   <!--Caja de resultado-->
@@ -121,16 +122,7 @@
             <div class="load-custom1 center-custom1 bar-custom-1">
               <div class="loader-custom-1"></div>
             </div>
-
             <!--      -->
-            <!-- <div>
-              -Caja central para alguna otra info [opcional]-
-              <div class="py-4">
-                -Panel de caja [opcional]-
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, ratione magnam! Odio!</p>
-              </div>
-            </div> -->
-
           </div>
         </div>
       </div>

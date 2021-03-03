@@ -20,6 +20,7 @@ import { ActualizarProductoComponent } from './actualizar-producto/actualizar-pr
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ToastrModule } from 'ngx-toastr';
+import { GestionarProductosComponent } from './gestionar-productos/gestionar-productos.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { ToastrModule } from 'ngx-toastr';
     AgregarProductoComponent,
     ChatComponent,
     ActualizarPerfilComponent,
-    ActualizarProductoComponent
+    ActualizarProductoComponent,
+    GestionarProductosComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +54,7 @@ import { ToastrModule } from 'ngx-toastr';
   "progressBar": true,
   "positionClass": "toast-top-right",
   "timeOut": 2500,
-  "extendedTimeOut": 1000,
+  "extendedTimeOut": 1000
     }),
   ],
   providers: [],

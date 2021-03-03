@@ -1,4 +1,4 @@
-<nav class="color-bg d-block py-3">
+<nav *ngIf="auth.isLoggedIn() | async" class="color-bg d-block py-3">
   <div class="d-block">
     <div class="w-33 d-inline-block text-center">
       <a class="d-inline-block font-30 a-c1 text-light" href="#">Racing-HTPP</a>
@@ -9,20 +9,33 @@
       <button (click)="Buscar(search.value)" class="btn btn-primary">Buscar</button>
     </div>
     <div class="w-33 d-inline-block">
-      <div class="d-inline-block text-light">
+      <div routerLink="/gestionarproductos" class="d-inline-block text-light cursor-pointer outline-none--focus">
         <i class="far fa-edit font-30"></i>
-        <b class="d-inline-block position-relative text-add-product-title">Agregar producto</b>
+        <b class="d-inline-block position-relative text-add-product-title">Gestionar productos</b>
       </div>
-      <div class="d-inline-block text-light">
+      <div routerLink="/chat" class="d-inline-block text-light cursor-pointer outline-none--focus">
         <i class="fas fa-comment-dots font-30 d-inline-block"></i>
         <b class="d-inline-block position-relative text-chat-title">Chat</b>
       </div>
-      <div class="d-inline-block text-light">
+      <div routerLink="/actualizarperfil" class="d-inline-block text-light cursor-pointer outline-none--focus">
         <i class="fas fa-cog font-30"></i>
         <b class="d-inline-block position-relative text-settings-title">Ajustes</b>
+      </div>
+      <div (click)="logout()" class="d-inline-block text-light cursor-pointer outline-none--focus">
+        <i class="fas fa-sign-out-alt font-30"></i>
+        <b class="d-inline-block position-relative text-settings-title">Salirme</b>
       </div>
 
     </div>
   </div>
 
+</nav>
+<nav *ngIf="!(auth.isLoggedIn() | async)" class="navbar navbar-expand-lg navbar-light bg-dark">
+  <div>
+    <img src="../assets/logoimgd.png" width="68px" height="60px">
+  </div>
+  <div class="collapse navbar-collapse">
+    <a class="nav-link text-light">Racing Htpp</a>
+    <i class="far fa-address-card font-size-35 text-light"></i>
+  </div>
 </nav>
