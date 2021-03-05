@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ChartjsCreateService } from '../services/chartjs-create.service';
+import { from } from 'rxjs';
+import { ClienteService } from '../services/cliente.service';
+import { ObservableCreateChartService } from '../services/observableCreateChart.service';
+import {CreateChartService} from '../services/create-chart.service';
+import { ChartDataSets, ChartOptions } from 'chart.js';
+import { Color, Label } from 'ng2-charts';
+
 
 @Component({
   selector: 'app-gestionar-productos',
@@ -9,48 +15,76 @@ import { ChartjsCreateService } from '../services/chartjs-create.service';
 export class GestionarProductosComponent implements OnInit {
 
   public showSpinners: boolean = true;
-  private dataChart: object = {
-  labels: ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo"],
-  datasets: [
-    // {
-    //   type: "line",
-    //   label: "Dataset 1",
-    //   borderColor: this.Chart.colorExample.blue,
-    //   borderWidth: 2,
-    //   fill: false,
-    //   data: [100, 200, 300, 150, 350, 100, 400],
-    // },
-    {
-      type: "bar",
-      label: "Ventas",
-      backgroundColor: this.Chart.colorExample.red,
-      data: [160, 200, 300, 150, 350, 170, 400],
-      borderColor: "white",
-      borderWidth: 2,
+  private token: string = localStorage.getItem('token')
+  public myPurchasedPro: number;
+  private server: string = 'http://localhost:5000';
+  public myProducts: number = 0;
+  public res:any;
+  public chartClicked = this.createChart.chartClicked;
+  public chartHovered = this.createChart.chartHovered;
+  public chart1Info: any = {
+    data: [{ data: [0, 0, 0, 0, 0, 0, 0], label: 'Ventas' }],
+    label: ['lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado', 'domingo'],
+    options: {
+      responsive: true
     },
-    {
-      type: "bar",
-      label: "Capital obtenido",
-      backgroundColor: this.Chart.colorExample.green,
-      data: [150, 200, 300, 150, 350, 140, 400],
-      borderColor: "white",
-      borderWidth: 2,
+    colors: [{
+      backgroundColor: this.createChart.colorExample.green,
+      borderColor: this.createChart.colorExample.red
+    }],
+    legend: true,
+    type: 'bar',
+    plugins: []
+  }
+  public chart2Info: any = {
+    data: [{ data: [0, 0, 0, 0, 0, 0, 0], label: 'Ganancias' }],
+    label: ['lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado', 'domingo'],
+    options: {
+      responsive: true
     },
-  ],
-};
-  constructor(
-    private Chart: ChartjsCreateService) { }
+    colors: [{
+      backgroundColor: this.createChart.colorExample.red,
+      borderColor: this.createChart.colorExample.yellow
+    }],
+    legend: true,
+    type: 'bar',
+    plugins: []
+  }
 
+  constructor(
+    private client: ClienteService,
+    private observableCreateChart: ObservableCreateChartService,
+    private createChart: CreateChartService
+    ) { }
 
   ngOnInit(): void {
-    setTimeout(() => {
-      this.showSpinners = false;
-    }, 3000);
 
-    setTimeout(() => {
-      this.Chart.init('chart1', this.dataChart, 'Reporte semanal', 'bar');
-    }, 3100);
+    this.createChart.createChart(this.chart1Info.data, this.chart1Info.label, this.chart1Info.options, this.chart1Info.colors, this.chart1Info.legend, this.chart1Info.type, this.chart1Info.plugins)
+
+    this.observableCreateChart.promiseTest(this.token).then((res:any)=>{
+      console.log(res);
+      this.chart1Info.data[0].data = res.chart_1;
+      this.chart2Info.data[0].data = res.chart_2;
+    })
+
+    // setTimeout(() => {
+    //   this.showSpinners = false;
+    // }, 3000);
+
+    // setTimeout(() => {
+    //   this.Chart.init('chart1', this.dataChart, 'Reporte semanal', 'bar');
+    //   this.Chart.init('chart2', this.dataChart2, 'Reporte semanal', 'bar');
+    // }, 3100);
+  }
+
+  random(){
+    let data = []
+    for (let i = 0; i < 8; i++) {
+      data.push(Math.round(Math.random()*100))
+    }
+    this.chart1Info.data[0].data = data;
 
   }
 
 }
+

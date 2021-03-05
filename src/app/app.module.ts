@@ -22,6 +22,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { GestionarProductosComponent } from './gestionar-productos/gestionar-productos.component';
 
+import {ChartsModule} from 'ng2-charts';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,12 +52,13 @@ import { GestionarProductosComponent } from './gestionar-productos/gestionar-pro
     ToastrModule.forRoot({
       "preventDuplicates": true,
       "closeButton": false,
-  "newestOnTop": false,
-  "progressBar": true,
-  "positionClass": "toast-top-right",
-  "timeOut": 2500,
-  "extendedTimeOut": 1000
+      "newestOnTop": false,
+      "progressBar": true,
+      "positionClass": "toast-top-right",
+      "timeOut": 2500,
+      "extendedTimeOut": 1000
     }),
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

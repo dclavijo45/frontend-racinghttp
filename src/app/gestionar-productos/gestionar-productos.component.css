@@ -71,44 +71,181 @@
 }
 
 .style-cus-5 {
-  top: 193px;
-  font-size: 23px;
+  top: 207px;
+  font-size: 21px;
   margin-left: 35px;
 }
 
-.mt-10{
+.mt-10 {
   margin-top: 10%;
 }
 
-.h-258px{
+.h-258px {
   height: 258px;
 }
 
-.w-49{
+.w-49 {
   width: 49%;
 }
 
-.mr-2{
+.mr-2 {
   margin-right: 2%;
 }
 
-.ml-2{
+.ml-2 {
   margin-left: 2%;
 }
 
-.ml-16{
+.ml-16 {
   margin-left: 16%;
 }
 
-.mt-8{
+.mt-8 {
   margin-top: 8%;
 }
 
-.overflow-y-auto{
+.overflow-y-auto {
   overflow-y: auto;
 }
 
-.max-min-h-258px{
+.max-min-h-258px {
   max-height: 258px;
   min-height: 258px;
+}
+
+.bg-custom-3 {
+  background-color: #a5dfc4;
+}
+
+.min-max-h-58px {
+  min-height: 58px;
+  max-height: 58px;
+}
+
+.bg-custom-4 {
+  background-color: #2ea0f5;
+}
+
+.text-cus-1 {
+  color: #100c08;
+}
+
+.font-size-18px {
+  font-size: 18px;
+}
+
+.ml-11px {
+  margin-left: 11px;
+}
+
+.mt-10px {
+  margin-top: 10px;
+}
+
+.mt-28px {
+  margin-top: 28px;
+}
+
+.ml-12px {
+  margin-left: 12px;
+}
+
+.style-cus-6 {
+  margin-left: 199px;
+  margin-top: 7px;
+  font-size: 21px;
+  font-family: -webkit-pictograph;
+}
+
+.float-right {
+  float: right;
+}
+
+.mt-14px {
+  margin-top: 14px;
+}
+
+.mr-19px {
+  margin-right: 19px;
+}
+
+.text-cus-2 {
+  color: #f4f4f4;
+}
+
+.font-family-cus-1 {
+  font-family: -webkit-pictograph;
+}
+
+.text-cus-3 {
+  color: #e5eefe;
+}
+
+.max-min-h-242px {
+  max-height: 242px;
+  min-height: 242px;
+}
+
+.mt-8px {
+  margin-top: 8px;
+}
+
+.clear-fix-1 {
+  height: 39%;
+}
+
+/* Estilos para motores Webkit y blink (Chrome, Safari, Opera... )*/
+
+.scroll-custom-1::-webkit-scrollbar {
+  -webkit-appearance: none;
+}
+
+.scroll-custom-1::-webkit-scrollbar:vertical {
+  width: 10px;
+}
+
+.scroll-custom-1::-webkit-scrollbar-button:increment::-webkit-scrollbar-button {
+  display: none;
+}
+
+.scroll-custom-1::-webkit-scrollbar:horizontal {
+  height: 10px;
+}
+
+.scroll-custom-1::-webkit-scrollbar-thumb {
+  background-color: #797979;
+  border-radius: 3px;
+  border: 1px solid #f1f2f3;
+}
+
+.scroll-custom-1::-webkit-scrollbar-track {
+  background-color: #6b939f;
+}
+
+.transition-1 {
+  transition: width 2s;
+}
+
+.mt-100px {
+  margin-top: 100px;
+}
+
+.ml-210px {
+  margin-left: 210px;
+}
+
+.hover-cus-1:hover {
+  background-color: #2b9bf3;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.hover-cus-2:hover {
+  background-color: #f88934;
+}
+
+.hover-cus-3:hover {
+  background-color: #10bfd7;
 }

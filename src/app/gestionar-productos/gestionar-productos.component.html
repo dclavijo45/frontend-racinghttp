@@ -3,56 +3,89 @@
   <div class="bg-custom-2 mx-12 p-4 border-2-secondary border-radius-5px max-min-h-436px overflow-hide">
     <div class="w-100">
 
-      <div class="d-inline-block">
+      <div class="d-inline-block cursor-pointer">
         <img src="../assets/card1.png" class="d-inline-block mr-20px" width="315" height="110">
-        <h6 *ngIf="!showSpinners" class="position-fixed style-cus-2 text-light">Tus productos</h6>
-        <h5 *ngIf="!showSpinners" class="position-fixed style-cus-1 text-light">45555</h5>
+        <h6 class="position-fixed style-cus-2 text-light">Tus productos</h6>
+        <h5 *ngIf="!showSpinners" class="position-fixed style-cus-1 text-light">{{myProducts}}</h5>
         <i class="fas fa-shopping-bag position-fixed style-cus-3 text-light d-block"></i>
-        <h6 class="position-fixed style-cus-4 text-light">Ver detalles</h6>
+        <h6 class="position-fixed style-cus-4 text-light hover-cus-1 cursor-pointer">Ver detalles</h6>
         <div *ngIf="showSpinners" class="spinner-grow text-warning position-fixed style-cus-5 d-block" role="status">
           <span class="sr-only">Loading...</span>
         </div>
       </div>
 
-      <div class="d-inline-block">
+      <div class="d-inline-block cursor-pointer">
         <img src="../assets/card2.png" class="d-inline-block mr-20px" width="315" height="110">
-        <h6 *ngIf="!showSpinners" class="position-fixed style-cus-2 text-light">Productos adquiridos</h6>
-        <h5 *ngIf="!showSpinners" class="position-fixed style-cus-1 text-light">45555</h5>
+        <h6 class="position-fixed style-cus-2 text-light">Productos adquiridos</h6>
+        <h5 *ngIf="!showSpinners" class="position-fixed style-cus-1 text-light">2</h5>
         <i class="fas fa-shopping-basket position-fixed style-cus-3 text-light d-block"></i>
-        <h6 class="position-fixed style-cus-4 text-light">Ver detalles</h6>
+        <h6 class="position-fixed style-cus-4 text-light hover-cus-2 cursor-pointer">Ver detalles</h6>
         <div *ngIf="showSpinners" class="spinner-grow text-info position-fixed style-cus-5 d-block" role="status">
           <span class="sr-only">Loading...</span>
         </div>
       </div>
 
-      <div class="d-inline-block">
+      <div class="d-inline-block cursor-pointer">
         <img src="../assets/card3.png" class="d-inline-block" width="315" height="110">
-        <h6 *ngIf="!showSpinners" class="position-fixed style-cus-2 text-light">Capital recogido</h6>
-        <h5 *ngIf="!showSpinners" class="position-fixed style-cus-1 text-light">45555</h5>
+        <h6 class="position-fixed style-cus-2 text-light">Capital recogido</h6>
+        <h5 *ngIf="!showSpinners" class="position-fixed style-cus-1 text-light">2</h5>
         <i class="fas fa-dollar-sign position-fixed style-cus-3 text-light d-block"></i>
-        <h6 class="position-fixed style-cus-4 text-light">Ver detalles</h6>
+        <h6 class="position-fixed style-cus-4 text-light hover-cus-3 cursor-pointer">Ver detalles</h6>
         <div *ngIf="showSpinners" class="spinner-grow text-warning position-fixed style-cus-5 d-block" role="status">
           <span class="sr-only">Loading...</span>
         </div>
       </div>
 
     </div>
+
     <div class="w-100 mt-4 ">
       <div class="d-inline-block h-258px w-49 mr-2">
-        <canvas *ngIf="!showSpinners" id="chart1" class="d-inline w-100 h-100"></canvas>
-        <div *ngIf="showSpinners" class="spinner-grow text-danger d-inline-block mt-8 ml-16 position-fixed"
-          role="status">
-          <span class="sr-only">Loading...</span>
+        <div class="chartjs-container">
+          <canvas class="d-inline w-100 h-100" baseChart [datasets]="chart1Info.data" [labels]="chart1Info.label"
+            [options]="chart1Info.options" [colors]="chart1Info.colors" [legend]="chart1Info.legend"
+            [chartType]="chart1Info.type" [plugins]="chart1Info.plugins" (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)">
+          </canvas>
         </div>
       </div>
-      <div class="bg-warning d-inline-block max-min-h-258px w-49 overflow-y-auto p-2">
-        <!-- <canvas id="chart" class="d-inline w-100 h-100"></canvas> -->
-        <div class="d-inline w-100 h-100 overflow-y-auto max-min-h-258px ">Lorem   beatae fuga officiis est, sint molestias veritatis culpa atque voluptas ipsum animi quia quaerat. Commodi,
-          optio molestias voluptatum nemo tempore nam doloribus cumque repellendus qui, a sunt explicabo quam
-          perspiciatis veritatis quo autem et atque minus totam laboriosam, debitis minima reprehenderit unde
-          voluptatem. Aperiam ratione deleniti magnam temporibus officia eum, aspernatur dolore neque sequi non,
-          veritatis odit.</div>
+
+      <div class="d-inline-block h-258px w-49">
+        <div class="chartjs-container">
+          <!-- <button (click)="random()" class="btn btn-success">Random</button> -->
+          <canvas class="d-inline w-100 h-100" baseChart [datasets]="chart2Info.data" [labels]="chart2Info.label"
+            [options]="chart2Info.options" [colors]="chart2Info.colors" [legend]="chart2Info.legend"
+            [chartType]="chart2Info.type" [plugins]="chart2Info.plugins"
+            (chartHover)=" chartHovered($event)" (chartClick)="chartClicked($event)">
+          </canvas>
+        </div>
       </div>
+
+      <!-- <div class="bg-custom-3 border-radius-5px d-inline-block max-min-h-258px w-49 px-2">
+        <div class="d-inline-block w-100 h-100 overflow-y-auto max-min-h-242px scroll-custom-1 mt-8px ">
+           Area central de lista de usuarios
+
+          <ng-container *ngIf="!showSpinners">
+            <div class="p-1 bg-custom-4 border-radius-5px my-2 d-block transition-1">
+               Ex: usuario 1
+              <div class="d-inline-block w-100">
+                <img
+                  src="https://toppng.com/uploads/preview/user-account-management-logo-user-icon-11562867145a56rus2zwu.png"
+                  alt="name user" class="img img-thumbnail rounded d-inline-block" width="50" height="50">
+                <h6 class="font-size-18px ml-11px d-inline-block text-cus-2">El motas escobar</h6>
+                <h6 class="d-inline-block float-right mt-14px mr-19px  font-family-cus-1 font-size-18px text-cus-3">
+                  Nuevo
+                  cliente!</h6>
+              </div>
+            </div>
+
+          </ng-container>
+          <div *ngIf="showSpinners" class="spinner-grow text-primary mt-100px ml-210px" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+
+          <div class="clear-fix-1"></div>
+        </div>
+      </div> -->
     </div>
   </div>
 </div>

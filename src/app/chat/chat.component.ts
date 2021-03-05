@@ -48,15 +48,8 @@ export class ChatComponent implements OnInit {
   }
 
   ngOnInit() {
-    try {
-      let uid = this.jwt_decode(localStorage.getItem("token"));
-      this.user = uid.user_id;
-      if (this.user == null) {
-        return this.route.navigate( ['/']);
-      }
-    } catch (error) {
-      return this.route.navigate( ['/']);
-    }
+    let uid = this.jwt_decode(localStorage.getItem("token"));
+    this.user = uid.user_id;
 
     let boxChat = document.getElementById("boxChatGeneral");
     this.SocketIoService.init(this.token_jwt);
