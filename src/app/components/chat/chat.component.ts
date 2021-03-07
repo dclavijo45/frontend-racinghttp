@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { SocketioService } from '../services/socketio.service';
+import { SocketioService } from '../../services/socketio.service';
 import jwtDecode from 'jwt-decode';
 //import { Pipe, PipeTransform } from '@angular/core';
-import { ClienteService } from '../services/cliente.service';
+import { ClienteService } from '../../services/cliente.service';
 import * as dateFormat from 'dateformat';
 //import  Swal  from 'sweetalert2/dist/sweetalert2.js';
 import { ToastrService } from 'ngx-toastr';
@@ -48,8 +48,12 @@ export class ChatComponent implements OnInit {
   }
 
   ngOnInit() {
-    let uid = this.jwt_decode(localStorage.getItem("token"));
-    this.user = uid.user_id;
+    try {
+      let uid = this.jwt_decode(localStorage.getItem("token"));
+      this.user = uid.user_id;
+    } catch (error) {
+      this.route.navigate['/login'];
+    }
 
     let boxChat = document.getElementById("boxChatGeneral");
     this.SocketIoService.init(this.token_jwt);

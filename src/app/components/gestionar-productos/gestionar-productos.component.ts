@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { from } from 'rxjs';
-import { ClienteService } from '../services/cliente.service';
-import { ObservableCreateChartService } from '../services/observableCreateChart.service';
-import {CreateChartService} from '../services/create-chart.service';
+import { Observable } from 'rxjs';
+import { ClienteService } from '../../services/cliente.service';
+import { ObservableCreateChartService } from '../../services/observableCreateChart.service';
+import {CreateChartService} from '../../services/create-chart.service';
 import { ChartDataSets, ChartOptions } from 'chart.js';
 import { Color, Label } from 'ng2-charts';
+import Swal from 'sweetalert2';
+// import  Swal  from '../src/components/node_modules/sweetalert2/dist/sweetalert2.js.js';
 
 
 @Component({
@@ -14,12 +16,13 @@ import { Color, Label } from 'ng2-charts';
 })
 export class GestionarProductosComponent implements OnInit {
 
-  public showSpinners: boolean = true;
+  public showSpinners: boolean = false;
   private token: string = localStorage.getItem('token')
-  public myPurchasedPro: number;
+  public myPurchasedPro: any = 0;
+  public myProducts: any = 0;
+  public money: any = 0;
   private server: string = 'http://localhost:5000';
-  public myProducts: number = 0;
-  public res:any;
+  public result:any;
   public chartClicked = this.createChart.chartClicked;
   public chartHovered = this.createChart.chartHovered;
   public chart1Info: any = {
@@ -59,22 +62,28 @@ export class GestionarProductosComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.createChart.createChart(this.chart1Info.data, this.chart1Info.label, this.chart1Info.options, this.chart1Info.colors, this.chart1Info.legend, this.chart1Info.type, this.chart1Info.plugins)
-
-    this.observableCreateChart.promiseTest(this.token).then((res:any)=>{
-      console.log(res);
+    this.observableCreateChart.getData(this.token).then((res:any)=>{
       this.chart1Info.data[0].data = res.chart_1;
       this.chart2Info.data[0].data = res.chart_2;
+      this.showSpinners = !this.showSpinners;
     })
 
-    // setTimeout(() => {
-    //   this.showSpinners = false;
-    // }, 3000);
+    this.observableCreateChart.changeData().subscribe((res:any)=>{
+      if (res.error) {
+        Swal.fire({
+          position: 'top-right',
+          icon: 'error',
+          title: 'Verifique su conexión a internet',
+          showConfirmButton: false,
+          timer: 2000
+        })
+      }
 
-    // setTimeout(() => {
-    //   this.Chart.init('chart1', this.dataChart, 'Reporte semanal', 'bar');
-    //   this.Chart.init('chart2', this.dataChart2, 'Reporte semanal', 'bar');
-    // }, 3100);
+      this.showSpinners = false;
+      this.myPurchasedPro = res.myProductsPurchased[0];
+      this.myProducts = res.myProducts[0];
+      this.money = res.totalMoney[0];
+    })
   }
 
   random(){

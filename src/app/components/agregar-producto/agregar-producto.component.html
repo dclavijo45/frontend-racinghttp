@@ -3,7 +3,7 @@
 <div class="w-100 max-h-505px pt-32px bg-custom-1">
   <div class="bg-white mx-12 p-4 border-2-secondary border-radius-5px max-min-h-436px overflow-hide">
     <div class="w-100">
-      <form [formGroup]="form" class="d-inline-block form-group w-100">
+      <form [formGroup]="form" class="d-inline-block form-group w-100" novalidate>
         <h5 class="ml-42">Agregar producto</h5>
         <div class="styles-cus-1 d-inline-block mouse-hand ml-8">
           <input formControlName="img_producto" id="filex" #fileInput type="file" class="mouse-hand"
@@ -25,13 +25,13 @@
           <input formControlName="precio_producto" type="number" class="form-control mb-2" placeholder="Precio" min="1"
             max="10000000">
           <textarea formControlName="descripcion_producto" class="form-control overflow-y-auto resize-none"
-            placeholder="Pon una breve descripción del producto" cols="30" rows="5" maxlength="25"></textarea>
+            placeholder="Pon una breve descripción del producto" cols="30" rows="5" maxlength="100"></textarea>
         </div><br>
         <div *ngIf="showLoad" class="spinner-border text-dark ml-47" role="status">
           <span class="sr-only">Loading...</span>
         </div>
         <button [ngClass]="{'mt-10': !showLoad, 'mt-6': showLoad}" [disabled]="showLoad" (click)="Validar()"
-          class="style-cus-2 d-block ml-33" type="submit">Agregar
+          class="style-cus-2 d-block ml-33">Agregar
           producto</button>
       </form>
     </div>

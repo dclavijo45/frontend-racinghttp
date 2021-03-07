@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import  Swal  from 'sweetalert2/dist/sweetalert2.js';
 import { ToastrService } from 'ngx-toastr';
-import { ClienteService } from '../services/cliente.service';
+import { ClienteService } from '../../services/cliente.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-agregar-producto',
@@ -22,7 +23,8 @@ export class AgregarProductoComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private Toastr: ToastrService,
-    private client: ClienteService) { }
+    private client: ClienteService,
+    private route: Router) { }
 
   ngOnInit(): void {
     try {
@@ -40,7 +42,7 @@ export class AgregarProductoComponent implements OnInit {
   }
 
   Validar(){
-    if (this.form.valid) {
+    if (this.form.valid) { 
       console.log("Form valid!")
       this.showLoad = true;
       let data = {
@@ -53,7 +55,7 @@ export class AgregarProductoComponent implements OnInit {
       this.client.postRequest(`${this.server}/api/v01/add/product`, data, this.token)
       .subscribe(
         (response: any) => {
-          
+
           Swal.fire({
             position: 'center',
             icon: 'success',
@@ -61,7 +63,7 @@ export class AgregarProductoComponent implements OnInit {
             showConfirmButton: false,
             timer: 2000
           }).then((result) => {
-
+            this.route.navigate(['/tusproductos'])
           });
           console.log(response);
           this.showLoad = false;

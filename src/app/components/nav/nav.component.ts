@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthBehaviorSubjectService } from '../services/auth-behavior-subject.service';
-import { ClienteService } from '../services/cliente.service';
+import { AuthBehaviorSubjectService } from '../../services/auth-behavior-subject.service';
+import { ClienteService } from '../../services/cliente.service';
 
 @Component({
   selector: 'app-nav',

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ClienteService} from '../services/cliente.service';
-import Swal from 'sweetalert2/dist/sweetalert2.js';
+import { ClienteService} from '../../services/cliente.service';
+import Swal from 'sweetalert2';
+// import Swal from 'src/app/components/login/node_modules/src/app/components/gestionar-productos/node_modules/src/app/components/agregar-producto/node_modules/sweetalert2/dist/sweetalert2.js.js.js.js';
 
 @Component({
   selector: 'app-registro',

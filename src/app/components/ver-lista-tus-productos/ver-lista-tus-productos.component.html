@@ -1,0 +1,209 @@
+<app-nav></app-nav>
+<div class="w-100 max-h-505px pt-32px bg-custom-1">
+  <div class="bg-custom-2 mx-12 p-4 border-2-secondary border-radius-5px max-min-h-436px overflow-hide">
+
+    <div class="w-100">
+      <div class="w-100">
+        <!--Caja principal-->
+        <div class="w-100">
+          <!--Contenido principal-->
+          <div class="w-70 d-inline-block">
+            <!--Área de número de productos-->
+            <div>
+              <!--Contenido de ndp-->
+              <h4 routerLink="/gestionarproductos" class="btn btn-success mr-29"><i class="fas fa-arrow-left"></i>
+                Regresar</h4>
+              <h4 class="font-family-cus-2 d-inline-block">Productos</h4>
+              <small *ngIf="!showSpinner" class="font-family-cus-3 font-size-19px opacity-0--5"> |
+                {{listP.length}}</small>
+              <div *ngIf="showSpinner" class="spinner-grow text-secondary position-fixed style-cus-3" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-2 w-70 d-inline-block">
+            <!--Área de búsqueda de productos-->
+            <div>
+              <!--Contenido de bdp-->
+              <div class="w-82--2 py-2 pl-2 border-2-custom-1 d-inline-block mr-4">
+                <!--Input de búsqueda-->
+                <input [(ngModel)]="inputSearch" (ngModelChange)="searchProduct($event)" type="text"
+                  class="w-90 border-focus-none border-style-none bg-custom-5" placeholder="Buscar productos"><i
+                  class="fas fa-search w-10 text-center text-color-cus-1"></i>
+              </div>
+              <div routerLink="/agregarproducto"
+                class="d-inline-block border-cus-3 p-2 outline-none cursor-pointer text-color-cus-2 hover-cus-2">
+                <i class="fas fa-plus"></i> Agregar
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-4 w-70 d-inline-block">
+            <!--Área de opciones de productos-->
+            <div>
+              <!--Contenido de odp-->
+
+              <div [ngClass]="{'cursor-pointer': listProductSelected.length == 1  ||  listProductSelected.length <= 1, 'text-color-cus-2': listProductSelected.length == 1 ||  listProductSelected.length <= 1, 'hover-cus-2': listProductSelected.length == 1 ||  listProductSelected.length <= 1,
+              'bg-custom-6': listProductSelected.length == 0  ||  listProductSelected.length > 1,
+            'text-color-cus-4': listProductSelected.length == 0|| listProductSelected.length > 1,
+          'cursor-no-drop': listProductSelected.length == 0|| listProductSelected.length > 1}" (click)="editProduct()"
+                class="d-inline-block border-cus-3 p-1 mr-1">
+                <i class="fas fa-pencil-alt"></i> Editar
+              </div>
+              <div [ngClass]="{'cursor-pointer': listProductSelected.length != 0, 'text-color-cus-2': listProductSelected.length != 0, 'hover-cus-2': listProductSelected.length !=0 ,
+              'bg-custom-6': listProductSelected.length == 0,
+            'text-color-cus-4': listProductSelected.length == 0,
+          'cursor-no-drop': listProductSelected.length == 0}" (click)="delProduct()"
+                class="d-inline-block border-cus-3 p-1 mr-54">
+                <i class="fas fa-trash-alt"></i> Borrar
+              </div>
+              <div class="d-inline-block">
+                <h5 class="text-color-cus-3">Lista de productos</h5>
+              </div>
+            </div>
+          </div>
+
+          <div class="w-70 mt-2 overflow-y-auto max-min-h-225px scroll-custom-1 d-inline-block">
+            <!--Área de lista de productos-->
+            <div class="border-cus-2">
+              <!--Contenido de ldp-->
+              <div *ngIf="showSpinner" class="spinner-grow text-danger position-fixed style-cus-1" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+              <ng-container *ngIf="filterSearch.length && !showSpinner">
+                <ng-container *ngFor="let item of filterSearch">
+                  <div (click)="clickToP(item.id)" [ngClass]="{'border-cus-1': item.check}"
+                    class="max-min-h-50px bg-custom-4 hover-cus-1 w-100 cursor-pointer">
+                    <!--Ejemplo de usuario-->
+                    <div class="d-inline-block w-10 text-center">
+                      <input (click)="clickp(item.id)" class="form-check-input" type="checkbox" [value]="item.id"
+                        [(ngModel)]="item.check">
+                    </div>
+                    <div class="d-inline-block mt-5px w-35">
+                      <img [src]="'../assets/img/products/'+item.img_product" width="40"
+                        class="img rounded-circle mr-10px" height="40" [alt]="item.name_product">
+                      <div class="d-inline-block">
+                        <span>{{item.name_product}}</span>
+                      </div>
+                    </div>
+
+                    <div class="d-inline-block w-30">
+                      <span>{{item.vol_product}} unidades</span>
+                    </div>
+                    <div class="d-inline-block w-10">
+                      <span><i class="fas fa-dollar-sign"></i>{{item.price_product}}</span>
+                    </div>
+
+                    <div *ngIf="item.vol_product > 10"
+                      class="d-inline-block w-11 bg-primary text-light font-size-13px font-family-cus-1 text-center">
+                      <span>Disponible</span>
+                    </div>
+
+                    <div *ngIf="item.vol_product <= 10 && item.vol_product != 0"
+                      class="d-inline-block w-11 font-size-13px font-family-cus-1 text-center text-light bg-warning">
+                      <span>Escaso</span>
+                    </div>
+                    <div *ngIf="item.vol_product == 0"
+                      class="d-inline-block w-11 font-family-cus-1 text-light font-size-13px bg-danger text-center">
+                      <span>Agotado</span>
+                    </div>
+                  </div>
+                </ng-container>
+              </ng-container>
+
+              <ng-container *ngIf="!filterSearch.length && !notResultSearch && !showSpinner">
+                <ng-container *ngFor="let item of listP">
+                  <div (click)="clickToP(item.id)" [ngClass]="{'border-cus-1': item.check}"
+                    class="max-min-h-50px bg-custom-4 hover-cus-1 w-100 cursor-pointer">
+                    <!--Ejemplo de usuario-->
+                    <div class="d-inline-block w-10 text-center">
+                      <input (click)="clickp(item.id)" class="form-check-input" type="checkbox" [value]="item.id"
+                        [(ngModel)]="item.check">
+                    </div>
+                    <div class="d-inline-block mt-5px w-35">
+                      <img [src]="'../assets/img/products/'+item.img_product" width="40"
+                        class="img rounded-circle mr-10px" height="40" alt="product_name">
+                      <div class="d-inline-block">
+                        <span>{{item.name_product}}</span>
+                      </div>
+                    </div>
+
+                    <div class="d-inline-block w-30">
+                      <span>{{item.vol_product}} unidades</span>
+                    </div>
+                    <div class="d-inline-block w-10">
+                      <span><i class="fas fa-dollar-sign"></i>{{item.price_product}}</span>
+                    </div>
+
+                    <div *ngIf="item.vol_product > 10"
+                      class="d-inline-block w-11 bg-primary text-light font-size-13px font-family-cus-1 text-center">
+                      <span>Disponible</span>
+                    </div>
+
+                    <div *ngIf="item.vol_product <= 10 && item.vol_product != 0"
+                      class="d-inline-block w-11 font-size-13px font-family-cus-1 text-center text-light bg-warning">
+                      <span>Escaso</span>
+                    </div>
+                    <div *ngIf="item.vol_product == 0"
+                      class="d-inline-block w-11 font-family-cus-1 text-light font-size-13px bg-danger text-center">
+                      <span>Agotado</span>
+                    </div>
+                  </div>
+                </ng-container>
+
+              </ng-container>
+              <ng-container *ngIf="notResultSearch && !showSpinner">
+                <h6 class="">No hay resultados para {{inputSearch}}.</h6>
+              </ng-container>
+            </div>
+          </div>
+
+          <div
+            class="w-28 ml-2 d-inline-block vertical-align-top position-relative top--144px min-max-h-377px overflow-y-auto scroll-custom-1 p-1">
+            <div *ngIf="showSpinner" class="spinner-grow text-warning position-fixed style-cus-2" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+            <ng-container *ngIf="listP.length !=0 && !showSpinner">
+              <div class="h-20 py-2 bg-custom-7">
+                <img [src]="'../assets/img/products/'+infoProduct.img_product"
+                  class="img img-thumbnail rounded-circle d-block mx-auto max-min-w-h-120px" alt="product_name"
+                  width="120" height="120">
+              </div>
+
+              <div class="h-20 py-2">
+                <h4 class="d-block mx-auto d-table">{{infoProduct.name_product}}</h4>
+              </div>
+
+              <div class="h-20 pb-2">
+                <h5 class="d-block mx-auto d-table"><i class="fas fa-dollar-sign"
+                    aria-hidden="true"></i>{{infoProduct.price_product}}
+                </h5>
+              </div>
+              <div class="border-2-custom-2 w-70 mx-auto d-block"></div>
+
+              <div class="text-color-dark px-1 pt-3 font-size-14px">
+                <p class="text-center font-family-cus-4">{{infoProduct.description_product}}</p>
+              </div>
+
+            </ng-container>
+
+            <ng-container *ngIf="listP.length == 0 && !showSpinner">
+              <div class="h-20 py-2 bg-custom-7">
+                <img src="../assets/empty1.jpeg"
+                  class="img img-thumbnail rounded-circle d-block mx-auto max-min-w-h-120px" alt="product_name"
+                  width="120" height="120">
+              </div>
+
+              <div class="h-20 pt-4">
+                <h4 class="d-block mx-auto d-table">No tienes productos</h4>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <app-footer></app-footer>

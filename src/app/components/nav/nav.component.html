@@ -1,7 +1,7 @@
 <nav *ngIf="auth.isLoggedIn() | async" class="color-bg d-block py-3">
   <div class="d-block">
     <div class="w-33 d-inline-block text-center">
-      <a class="d-inline-block font-30 a-c1 text-light" href="#">Racing-HTPP</a>
+      <a routerLink="/home" class="d-inline-block font-30 a-c1 text-light">Racing-HTPP</a>
     </div>
     <div class="w-33 d-inline-block">
       <input #search class="form-control me-2 d-inline w-50" type="search" placeholder="Buscar productos"

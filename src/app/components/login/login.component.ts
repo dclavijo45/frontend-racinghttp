@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ClienteService } from '../services/cliente.service';
+import { ClienteService } from '../../services/cliente.service';
 import { ToastrService } from 'ngx-toastr';
-import  Swal  from 'sweetalert2/dist/sweetalert2.js';
+// import  Swal  from 'src/app/components/gestionar-productos/node_modules/src/app/components/agregar-producto/node_modules/sweetalert2/dist/sweetalert2.js.js.js';
 import * as jwt_decode from 'jwt-decode';
-import { AuthBehaviorSubjectService } from '../services/auth-behavior-subject.service';
+import { AuthBehaviorSubjectService } from '../../services/auth-behavior-subject.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
