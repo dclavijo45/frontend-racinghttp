@@ -23,12 +23,12 @@ export class ClienteService {
   }
 
   postRequest(route: string, data?:any, token?:string) {
-
+    
     if (token){
       let config = {
-      responseType: "json",
-      whitelistedDomains: ['localhost:5000','bdc587af0fe7.ngrok.io','localhost:4200']
-        }
+        responseType: "json",
+        whitelistedDomains: ['localhost:5000','bdc587af0fe7.ngrok.io','localhost:4200']
+      }
       let headers = new HttpHeaders({ 'Content-Type': 'application/json','Authorization': `Bearer ${token}` })
 
       return this.http.post(route, data, {headers});

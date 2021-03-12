@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthBehaviorSubjectService } from 'src/app/services/auth-behavior-subject.service';
 import { ClienteService } from 'src/app/services/cliente.service';
+import { UpdateProductService } from 'src/app/services/update-product.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-ver-lista-tus-productos',
@@ -11,18 +15,25 @@ export class VerListaTusProductosComponent implements OnInit {
   private token: string = localStorage.getItem('token')
   private server: string = 'http://localhost:5000';
   public listProductSelected: any[] = [];
-  public showSpinner: boolean = true;
+  public spinnersShow: any = {
+    loadingProducts: true,
+    deleting: false
+  }
   public inputSearch: string = "";
   public filterSearch: any[] = []
   public notResultSearch: boolean = false;
   public listP: any[] = []
   public infoProduct: any;
 
-  constructor(private client: ClienteService) { }
+  constructor(private client: ClienteService,
+    private updateP: UpdateProductService,
+    private router: Router,
+    private auth: AuthBehaviorSubjectService) { }
 
   ngOnInit(): void {
     this.client.postRequest(`${this.server}/api/v01/manage/myproducts`, {}, this.token).subscribe((res:any)=> {
       this.listP = res;
+
       try {
       this.infoProduct=  {
         id: this.listP[0].id,
@@ -31,7 +42,7 @@ export class VerListaTusProductosComponent implements OnInit {
         name_product: this.listP[0].name_product,
         description_product: this.listP[0].description_product
       }
-      this.showSpinner = false;
+      this.spinnersShow.loadingProducts = false;
       } catch (error) {
         this.infoProduct = {
           id: 0,
@@ -40,10 +51,9 @@ export class VerListaTusProductosComponent implements OnInit {
           name_product: "",
           description_product: ""
         }
-        this.showSpinner = false;
+        this.spinnersShow.loadingProducts = false;
       }
     })
-
 
   }
 
@@ -64,12 +74,107 @@ export class VerListaTusProductosComponent implements OnInit {
 
   delProduct(){
     if (this.listProductSelected.length == 0) return false;
+    Swal.fire({
+      title: '¿Seguro que quiere borrar lo seleccionado?',
+      text: "No se podrá revertir esta operación",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Borrar'
+    }).then((result) => {
+
+      if (result.isConfirmed) {
+        this.spinnersShow.deleting = true;
+        this.client.postRequest(`${this.server}/api/v01/manage/myproducts/delete`, {product_id: this.listProductSelected}, this.token).subscribe(
+          ((response:any) =>{
+            if (response.deleted) {
+              this.listProductSelected = [];
+              this.client.postRequest(`${this.server}/api/v01/manage/myproducts`, {},this.token).subscribe(
+                (res:any)=> {
+                  this.spinnersShow.deleting = false;
+                  Swal.fire({
+                    position: 'top-right',
+                    icon: 'success',
+                    title: 'Producto borrado',
+                    showConfirmButton: false,
+                    timer: 1500
+                  }).then((result) => {
+                    this.listP = res;
+                    try {
+                      this.infoProduct=  {
+                        id: this.listP[0].id,
+                        img_product: this.listP[0].img_product,
+                        price_product: this.listP[0].price_product,
+                        name_product: this.listP[0].name_product,
+                        description_product: this.listP[0].description_product
+                      }
+                      } catch (error) {
+                        this.infoProduct = {
+                          id: 0,
+                          img_product: "",
+                          price_product: 0,
+                          name_product: "",
+                          description_product: ""
+                        }
+                      }
+                  });
+                },
+                (error =>{
+                  this.spinnersShow.deleting = false;
+                  Swal.fire({
+                    position: 'top-right',
+                    icon: 'error',
+                    title: 'Verifique su conexión a internet',
+                    showConfirmButton: false,
+                    timer: 1500
+                  }).then((result) => {
+
+                  });
+                })
+              );
+
+
+            }else{
+              console.log(response);
+
+              this.spinnersShow.deleting = false;
+              Swal.fire({
+                position: 'top-right',
+                icon: 'error',
+                title: 'Producto no borrado',
+                showConfirmButton: false,
+                timer: 1500
+              }).then((result) => {
+
+              });
+            }
+          }),
+          (error =>{
+            console.error("ERROR");
+            this.spinnersShow.deleting = false;
+          })
+        )
+
+      }
+    })
 
   }
 
   editProduct(){
     if (this.listProductSelected.length > 1) return false;
+    this.listP.some(data =>{
+      if(data.id.toString().includes(this.listProductSelected[0].toString())){
+        this.updateP.product_img = data.img_product;
+        this.updateP.product_name = data.name_product;
+        this.updateP.product_size = data.vol_product
+        this.updateP.product_description = data.description_product;
+        this.updateP.product_price = data.price_product;
+        this.updateP.product_id = data.id;
+        return this.router.navigate(['/actualizarproducto'])
+      }
 
+    })
   }
 
   searchProduct(dataFilter) {
@@ -86,12 +191,13 @@ export class VerListaTusProductosComponent implements OnInit {
   }
 
   clickToP(id){
-    this.listP.forEach(data =>{
+    //this.auth.validateJwt()
+    this.listP.some(data =>{
       if (data.id.toString().includes(id)) {
         this.infoProduct.img_product = data.img_product;
         this.infoProduct.price_product = data.price_product;
         this.infoProduct.name_product = data.name_product;
-        this.infoProduct.description_product = data.description_product;
+        return this.infoProduct.description_product = data.description_product;
       }
     })
   }

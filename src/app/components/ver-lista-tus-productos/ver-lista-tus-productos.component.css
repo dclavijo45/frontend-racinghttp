@@ -355,3 +355,15 @@
   left: 42.5%;
   top: 22%;
 }
+
+.text-color-cus-5 {
+  color: #080808;
+}
+
+.mr-3px {
+  margin-right: 3px;
+}
+
+.mr-51{
+  margin-right: 51%;
+}

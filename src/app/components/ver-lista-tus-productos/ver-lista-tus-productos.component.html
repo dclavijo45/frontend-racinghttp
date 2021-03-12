@@ -14,9 +14,10 @@
               <h4 routerLink="/gestionarproductos" class="btn btn-success mr-29"><i class="fas fa-arrow-left"></i>
                 Regresar</h4>
               <h4 class="font-family-cus-2 d-inline-block">Productos</h4>
-              <small *ngIf="!showSpinner" class="font-family-cus-3 font-size-19px opacity-0--5"> |
+              <small *ngIf="!spinnersShow.loadingProducts" class="font-family-cus-3 font-size-19px opacity-0--5"> |
                 {{listP.length}}</small>
-              <div *ngIf="showSpinner" class="spinner-grow text-secondary position-fixed style-cus-3" role="status">
+              <div *ngIf="spinnersShow.loadingProducts" class="spinner-grow text-secondary position-fixed style-cus-3"
+                role="status">
                 <span class="visually-hidden">Loading...</span>
               </div>
             </div>
@@ -51,12 +52,14 @@
                 class="d-inline-block border-cus-3 p-1 mr-1">
                 <i class="fas fa-pencil-alt"></i> Editar
               </div>
-              <div [ngClass]="{'cursor-pointer': listProductSelected.length != 0, 'text-color-cus-2': listProductSelected.length != 0, 'hover-cus-2': listProductSelected.length !=0 ,
+              <div
+                [ngClass]="{'cursor-pointer': listProductSelected.length != 0, 'text-color-cus-2': listProductSelected.length != 0, 'hover-cus-2': listProductSelected.length !=0 ,
               'bg-custom-6': listProductSelected.length == 0,
             'text-color-cus-4': listProductSelected.length == 0,
-          'cursor-no-drop': listProductSelected.length == 0}" (click)="delProduct()"
-                class="d-inline-block border-cus-3 p-1 mr-54">
-                <i class="fas fa-trash-alt"></i> Borrar
+          'cursor-no-drop': listProductSelected.length == 0,'mr-54': !spinnersShow.deleting, 'mr-51': spinnersShow.deleting}"
+                (click)="delProduct()" class="d-inline-block border-cus-3 p-1">
+                <span *ngIf="spinnersShow.deleting" class="spinner-grow spinner-grow-sm text-color-cus-5 mr-3px"
+                  role="status" aria-hidden="true"></span><i class="fas fa-trash-alt"></i> Borrar
               </div>
               <div class="d-inline-block">
                 <h5 class="text-color-cus-3">Lista de productos</h5>
@@ -68,11 +71,12 @@
             <!--Área de lista de productos-->
             <div class="border-cus-2">
               <!--Contenido de ldp-->
-              <div *ngIf="showSpinner" class="spinner-grow text-danger position-fixed style-cus-1" role="status">
+              <div *ngIf="spinnersShow.loadingProducts" class="spinner-grow text-danger position-fixed style-cus-1"
+                role="status">
                 <span class="visually-hidden">Loading...</span>
               </div>
-              <ng-container *ngIf="filterSearch.length && !showSpinner">
-                <ng-container *ngFor="let item of filterSearch">
+              <ng-container *ngIf="filterSearch.length && !spinnersShow.loadingProducts">
+                <ng-container *ngFor="let item of filterSearch.slice().reverse()">
                   <div (click)="clickToP(item.id)" [ngClass]="{'border-cus-1': item.check}"
                     class="max-min-h-50px bg-custom-4 hover-cus-1 w-100 cursor-pointer">
                     <!--Ejemplo de usuario-->
@@ -112,8 +116,8 @@
                 </ng-container>
               </ng-container>
 
-              <ng-container *ngIf="!filterSearch.length && !notResultSearch && !showSpinner">
-                <ng-container *ngFor="let item of listP">
+              <ng-container *ngIf="!filterSearch.length && !notResultSearch && !spinnersShow.loadingProducts">
+                <ng-container *ngFor="let item of listP.slice().reverse()">
                   <div (click)="clickToP(item.id)" [ngClass]="{'border-cus-1': item.check}"
                     class="max-min-h-50px bg-custom-4 hover-cus-1 w-100 cursor-pointer">
                     <!--Ejemplo de usuario-->
@@ -153,7 +157,7 @@
                 </ng-container>
 
               </ng-container>
-              <ng-container *ngIf="notResultSearch && !showSpinner">
+              <ng-container *ngIf="notResultSearch && !spinnersShow.loadingProducts">
                 <h6 class="">No hay resultados para {{inputSearch}}.</h6>
               </ng-container>
             </div>
@@ -161,10 +165,11 @@
 
           <div
             class="w-28 ml-2 d-inline-block vertical-align-top position-relative top--144px min-max-h-377px overflow-y-auto scroll-custom-1 p-1">
-            <div *ngIf="showSpinner" class="spinner-grow text-warning position-fixed style-cus-2" role="status">
+            <div *ngIf="spinnersShow.loadingProducts" class="spinner-grow text-warning position-fixed style-cus-2"
+              role="status">
               <span class="visually-hidden">Loading...</span>
             </div>
-            <ng-container *ngIf="listP.length !=0 && !showSpinner">
+            <ng-container *ngIf="listP.length !=0 && !spinnersShow.loadingProducts">
               <div class="h-20 py-2 bg-custom-7">
                 <img [src]="'../assets/img/products/'+infoProduct.img_product"
                   class="img img-thumbnail rounded-circle d-block mx-auto max-min-w-h-120px" alt="product_name"
@@ -188,7 +193,7 @@
 
             </ng-container>
 
-            <ng-container *ngIf="listP.length == 0 && !showSpinner">
+            <ng-container *ngIf="listP.length == 0 && !spinnersShow.loadingProducts">
               <div class="h-20 py-2 bg-custom-7">
                 <img src="../assets/empty1.jpeg"
                   class="img img-thumbnail rounded-circle d-block mx-auto max-min-w-h-120px" alt="product_name"

@@ -17,7 +17,7 @@ export class AgregarProductoComponent implements OnInit {
   public showCurrentImg: boolean = false;
   public imageCurrent: any;
   private server: string = 'http://localhost:5000';
-  private token: any;
+  private token: string = localStorage.getItem('token');
   public showLoad = false;
 
   constructor(
@@ -27,11 +27,7 @@ export class AgregarProductoComponent implements OnInit {
     private route: Router) { }
 
   ngOnInit(): void {
-    try {
-      this.token = localStorage.getItem('token');
-    } catch (error) {
 
-    }
     this.form = this.fb.group({
       nombre_producto: ['', Validators.required],
       descripcion_producto: ['', Validators.required],
@@ -42,7 +38,7 @@ export class AgregarProductoComponent implements OnInit {
   }
 
   Validar(){
-    if (this.form.valid) { 
+    if (this.form.valid) {
       console.log("Form valid!")
       this.showLoad = true;
       let data = {

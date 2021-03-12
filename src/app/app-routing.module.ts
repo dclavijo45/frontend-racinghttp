@@ -17,6 +17,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { ResultadoBusquedaComponent } from './components/resultado-busqueda/resultado-busqueda.component';
 import { SeccionPrincipalComponent } from './components/seccion-principal/seccion-principal.component';
+import { UpdateProductGuard } from './guardians/update-product.guard';
 
 const routes: Routes = [
   {path: '', component:LoginComponent },
@@ -29,7 +30,7 @@ const routes: Routes = [
   {path: 'carrito', component: CarritoComponent},
   {path: 'gestionarproductos', component: GestionarProductosComponent, canActivate: [ManageProductGuard]},
   {path: 'agregarproducto', component: AgregarProductoComponent, canActivate: [AddproductGuardGuard]},
-  {path: 'actualizarproducto', component: ActualizarProductoComponent},
+  {path: 'actualizarproducto', component: ActualizarProductoComponent, canActivate: [UpdateProductGuard]},
   {path: 'actualizarperfil', component: ActualizarPerfilComponent},
   {path: 'tusproductos', component: VerListaTusProductosComponent, canActivate: [VerListaTusProductosGuard]},
 ];

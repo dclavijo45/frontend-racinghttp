@@ -1,14 +1,42 @@
 <app-nav></app-nav>
-<div class="w-100">
-  <div class="w-50 mt-4 ml-40">
-    <input class="form-control text-center w-75" type="text" placeholder="Nombre">
-    <input class="form-control text-center w-75" type="text" placeholder="Descripción">
-    <input class="form-control text-center w-75" type="password" placeholder="Contraseña">
-    <input class="form-control text-center w-75" type="password" placeholder="Confirmar contraseña">
-    <span class="w-75 d-block mt-4">
-      <button class="btn btn-success w-25 d-inline ml-10">Actualizar</button>
-      <button class="btn btn-danger w-25 d-inline ml-40">Cancelar</button>
-    </span>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css">
+<div class="w-100 max-h-505px pt-32px bg-custom-1">
+  <div class="bg-white mx-12 p-4 border-2-secondary border-radius-5px max-min-h-436px overflow-hide">
+    <div class="w-100">
+      <form [formGroup]="form" class="d-inline-block form-group w-100" novalidate>
+        <button class="btn btn-success d-inline-block" routerLink="/tusproductos">Regresar</button>
+        <h5 class="ml-37 d-inline-block">Agregar producto</h5>
+        <div class="styles-cus-1 d-inline-block mouse-hand ml-8">
+          <input formControlName="img_producto" id="filex" #fileInput type="file" class="mouse-hand"
+            (change)="log($event, imgCurrent, fileInput)">
+          <p (click)="fileInput.click()">
+            Click para poner imagen al producto
+          </p>
+          <div [ngClass]="{'d-none' : !showCurrentImg}" class="d-inline-block mouse-hand style-cus-3">
+            <img #imgCurrent [src]="'../assets/img/products/'+productInfo.img" width="40" class="img img-thumbnail-c"
+              alt="image product" (click)="fileInput.click()" width="290" height="190"
+              title="click para cambiar de imagen">
+          </div>
+        </div>
+        <div class="d-inline-block ml-18 position-absolute">
+          <input formControlName="nombre_producto" type="text" class="form-control mb-2" [(ngModel)]="productInfo.name"
+            placeholder="Nombre del producto" maxlength="15">
+          <input formControlName="cantidad_producto" type="number" class="form-control mb-2"
+            [(ngModel)]="productInfo.size" placeholder="Cantidad" min="1" max="10000000">
+          <input formControlName="precio_producto" type="number" class="form-control mb-2"
+            [(ngModel)]="productInfo.price" placeholder="Precio" min="1" max="10000000">
+          <textarea formControlName="descripcion_producto" class="form-control overflow-y-auto resize-none"
+            [(ngModel)]="productInfo.description" placeholder="Pon una breve descripción del producto" cols="30"
+            rows="5" maxlength="100"></textarea>
+        </div><br>
+        <div *ngIf="showLoad" class="spinner-border text-dark ml-47" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+        <button [ngClass]="{'mt-10': !showLoad, 'mt-6': showLoad}" [disabled]="showLoad" (click)="Validar()"
+          class="style-cus-2 d-block ml-33">Agregar
+          producto</button>
+      </form>
+    </div>
   </div>
 </div>
 <app-footer></app-footer>

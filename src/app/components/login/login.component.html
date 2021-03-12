@@ -20,7 +20,7 @@
       class="signIn bg-dark">
       <h3>Bienvenido<br>Inicia sesión</h3>
       <p class="mb-4">Ingresa tu correo y contraseña para iniciar sesión</p>
-      <input formControlName="correo" type="email" placeholder="Ingrese su correo" autocomplete='off'>
+      <input formControlName="correo" type="email" placeholder="Ingrese su correo" autocomplete='off' autofocus>
       <input formControlName="password" type="password" placeholder="Ingrese su contraseña"><br>
       <div *ngIf="load" class="spinner-border text-warning" role="status">
         <span class="visually-hidden">Loading...</span>

@@ -14,22 +14,33 @@ import Swal from 'sweetalert2';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  form:FormGroup;
-  public server: string = 'http://localhost:5000';
-  formRegister: FormGroup;
   constructor(
     private fb: FormBuilder,
     private route: Router,
     private client: ClienteService,
     public auth: AuthBehaviorSubjectService,
     public Toastr: ToastrService) { }
-    public showSignInSignUp: boolean = true;
-    jwt_decode = jwt_decode;
+
+  public form:FormGroup;
+  public server: string = 'http://localhost:5000';
+  public formRegister: FormGroup;
+  public showSignInSignUp: boolean = true;
+  private jwt_decode = jwt_decode;
+
+  public load: boolean = false;
+  private logueado: boolean = false;
 
   ngOnInit(): void {
-    if (localStorage.getItem('token') != null) {
-      //this.route.navigate(['/home'])
-      this.auth.logout();
+    if (localStorage.getItem('token')) {
+      this.load = true;
+      this.client.postRequest(`${this.server}/api/v01/check/jwt`, {}, localStorage.getItem('token')).subscribe((res: any) => {
+        if (res.auth_token) {
+          this.route.navigate(['/home'])
+        }else{
+          localStorage.clear();
+          this.load = false;
+        }
+      })
     }
     this.form = this.fb.group({
       correo: ['', Validators.required],
@@ -43,10 +54,6 @@ export class LoginComponent implements OnInit {
       password: ['', Validators.required]
     })
   }
-
-
-  load: boolean = false;
-  logueado: boolean = false;
 
   async Login(){
     if (this.form.valid) {
