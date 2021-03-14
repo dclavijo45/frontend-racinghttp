@@ -162,7 +162,7 @@ export class VerListaTusProductosComponent implements OnInit {
   }
 
   editProduct(){
-    if (this.listProductSelected.length > 1) return false;
+    if (this.listProductSelected.length == 0) return false;
     this.listP.some(data =>{
       if(data.id.toString().includes(this.listProductSelected[0].toString())){
         this.updateP.product_img = data.img_product;

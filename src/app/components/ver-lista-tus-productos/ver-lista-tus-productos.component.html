@@ -45,7 +45,7 @@
             <div>
               <!--Contenido de odp-->
 
-              <div [ngClass]="{'cursor-pointer': listProductSelected.length == 1  ||  listProductSelected.length <= 1, 'text-color-cus-2': listProductSelected.length == 1 ||  listProductSelected.length <= 1, 'hover-cus-2': listProductSelected.length == 1 ||  listProductSelected.length <= 1,
+              <div [ngClass]="{'cursor-pointer': listProductSelected.length == 1  ||  listProductSelected.length >= 1, 'text-color-cus-2': listProductSelected.length == 1 ||  listProductSelected.length <= 1, 'hover-cus-2': listProductSelected.length == 1 ||  listProductSelected.length >= 1,
               'bg-custom-6': listProductSelected.length == 0  ||  listProductSelected.length > 1,
             'text-color-cus-4': listProductSelected.length == 0|| listProductSelected.length > 1,
           'cursor-no-drop': listProductSelected.length == 0|| listProductSelected.length > 1}" (click)="editProduct()"

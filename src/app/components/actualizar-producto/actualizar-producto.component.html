@@ -3,39 +3,47 @@
 <div class="w-100 max-h-505px pt-32px bg-custom-1">
   <div class="bg-white mx-12 p-4 border-2-secondary border-radius-5px max-min-h-436px overflow-hide">
     <div class="w-100">
-      <form [formGroup]="form" class="d-inline-block form-group w-100" novalidate>
-        <button class="btn btn-success d-inline-block" routerLink="/tusproductos">Regresar</button>
-        <h5 class="ml-37 d-inline-block">Agregar producto</h5>
-        <div class="styles-cus-1 d-inline-block mouse-hand ml-8">
-          <input formControlName="img_producto" id="filex" #fileInput type="file" class="mouse-hand"
+      <div [formGroup]="form" class="d-inline-block form-group w-100">
+        <button class="btn btn-success w-8--3 d-inline-block" routerLink="/tusproductos">Regresar</button>
+        <h5 class="ml-37 d-inline-block">Actualizar producto</h5>
+        <div class="styles-cus-1 d-inline-block style-cus-4 position-relative mouse-hand ml-8">
+          <input id="filex" #fileInput type="file" class="mouse-hand position-relative"
             (change)="log($event, imgCurrent, fileInput)">
           <p (click)="fileInput.click()">
             Click para poner imagen al producto
           </p>
-          <div [ngClass]="{'d-none' : !showCurrentImg}" class="d-inline-block mouse-hand style-cus-3">
-            <img #imgCurrent [src]="'../assets/img/products/'+productInfo.img" width="40" class="img img-thumbnail-c"
-              alt="image product" (click)="fileInput.click()" width="290" height="190"
-              title="click para cambiar de imagen">
+          <div class="d-inline-block mouse-hand style-cus-3">
+            <img #imgCurrent [src]="'../assets/img/products/'+productInfo.img" width="40"
+              class="img img-thumbnail-c position-relative style-cus-5" alt="image product" (click)="fileInput.click()"
+              width="290" height="190" title="click para cambiar de imagen">
           </div>
         </div>
-        <div class="d-inline-block ml-18 position-absolute">
+        <div class="d-inline-block style-cus-3 position-relative">
+          <label for="">Nombre del producto</label>
           <input formControlName="nombre_producto" type="text" class="form-control mb-2" [(ngModel)]="productInfo.name"
-            placeholder="Nombre del producto" maxlength="15">
+            placeholder="Nombre del producto" maxlength="15"
+            (keypress)="$event.keyCode == 13 ? Validar(imgCurrent) : null">
+
+          <label for="">Cantidad del producto</label>
           <input formControlName="cantidad_producto" type="number" class="form-control mb-2"
-            [(ngModel)]="productInfo.size" placeholder="Cantidad" min="1" max="10000000">
+            [(ngModel)]="productInfo.size" placeholder="Cantidad" min="1" max="10000000"
+            (keypress)="$event.keyCode == 13 ? Validar(imgCurrent) : null">
+          <label for="">Precio del producto</label>
           <input formControlName="precio_producto" type="number" class="form-control mb-2"
-            [(ngModel)]="productInfo.price" placeholder="Precio" min="1" max="10000000">
+            [(ngModel)]="productInfo.price" placeholder="Precio" min="1" max="10000000"
+            (keypress)="$event.keyCode == 13 ? Validar(imgCurrent) : null">
+          <label for="">Descripción del producto</label>
           <textarea formControlName="descripcion_producto" class="form-control overflow-y-auto resize-none"
             [(ngModel)]="productInfo.description" placeholder="Pon una breve descripción del producto" cols="30"
-            rows="5" maxlength="100"></textarea>
+            rows="5" maxlength="100" (keypress)="$event.keyCode == 13 ? Validar(imgCurrent) : null"></textarea>
         </div><br>
-        <div *ngIf="showLoad" class="spinner-border text-dark ml-47" role="status">
+        <div *ngIf="showLoad" class="spinner-border text-dark style-cus-7 position-relative" role="status">
           <span class="sr-only">Loading...</span>
         </div>
-        <button [ngClass]="{'mt-10': !showLoad, 'mt-6': showLoad}" [disabled]="showLoad" (click)="Validar()"
-          class="style-cus-2 d-block ml-33">Agregar
+        <button [ngClass]="{'style-cus-6': showLoad, 'style-cus-8': !showLoad}" [disabled]="showLoad"
+          (click)="Validar(imgCurrent)" class="style-cus-2 position-relative">Actualizar
           producto</button>
-      </form>
+      </div>
     </div>
   </div>
 </div>

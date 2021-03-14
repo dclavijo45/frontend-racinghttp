@@ -14,8 +14,8 @@ import { UpdateProductService } from 'src/app/services/update-product.service';
 export class ActualizarProductoComponent implements OnInit {
   form:FormGroup;
   reader = new FileReader();
-  public showCurrentImg: boolean = true;
-  public imageCurrent: any;
+  public showCurrentImg: boolean = false;
+
   private server: string = 'http://localhost:5000';
   private token: string = localStorage.getItem('token');
   public showLoad = false;
@@ -27,6 +27,7 @@ export class ActualizarProductoComponent implements OnInit {
     price: this.updateP.product_price,
     id: this.updateP.product_id
   }
+  public imageCurrent: any = this.updateP.product_img;
 
   constructor(private fb: FormBuilder,
     private Toastr: ToastrService,
@@ -39,8 +40,7 @@ export class ActualizarProductoComponent implements OnInit {
       nombre_producto: ['', Validators.required],
       descripcion_producto: ['', Validators.required],
       precio_producto: ['', Validators.required],
-      cantidad_producto: ['', Validators.required],
-      img_producto: ['', Validators.required],
+      cantidad_producto: ['', Validators.required]
     });
   }
   ngOnDestroy(): void{
@@ -52,25 +52,40 @@ export class ActualizarProductoComponent implements OnInit {
     this.updateP.product_id = undefined;
   }
 
-  Validar(){
+  Validar(img){
     if (this.form.valid) {
-      console.log("Form valid!")
-      this.showLoad = true;
+
       let data = {
         nombre_producto: this.form.value.nombre_producto,
         descripcion_producto: this.form.value.descripcion_producto,
         precio_producto: this.form.value.precio_producto,
         cantidad_producto: this.form.value.cantidad_producto,
-        img_producto: this.imageCurrent
+        img_producto: [this.productInfo.img, this.imageCurrent],
+        img_changed: false,
+        id_producto: this.productInfo.id
       }
-      this.client.postRequest(`${this.server}/api/v01/add/product`, data, this.token)
+      console.log("Form valid!")
+      if (img.src.slice(42) == this.productInfo.img) {
+        console.log("img not ch");
+
+        data.img_changed = false;
+      }else{
+        console.log("img ch");
+        data.img_changed = true;
+      }
+
+      this.showLoad = true;
+      console.log(data);
+
+      this.client.putRequest(`${this.server}/api/v01/manage/products`, data, this.token)
       .subscribe(
         (response: any) => {
 
-          Swal.fire({
-            position: 'center',
+          if (response.saved) {
+            Swal.fire({
+            position: 'top-right',
             icon: 'success',
-            title: 'Producto registrado',
+            title: 'Producto actualizado',
             showConfirmButton: false,
             timer: 2000
           }).then((result) => {
@@ -78,6 +93,18 @@ export class ActualizarProductoComponent implements OnInit {
           });
           console.log(response);
           this.showLoad = false;
+          }else{
+            Swal.fire({
+              position: 'top-right',
+              icon: 'error',
+              title: 'Producto no actualizado',
+              showConfirmButton: false,
+              timer: 2000
+            })
+            console.log(response);
+            this.showLoad = false;
+          }
+
 
         },
         (error) => {
@@ -86,7 +113,6 @@ export class ActualizarProductoComponent implements OnInit {
           this.Toastr.error(`Revisa tu conexión a internet`, `Error de conexión`,{closeButton: false,extendedTimeOut: 2500})
 
         }
-
       )
 
     }else{
