@@ -4,9 +4,34 @@
       <a routerLink="/home" class="d-inline-block font-30 a-c1 text-light">Racing-HTPP</a>
     </div>
     <div class="w-33 d-inline-block">
-      <input #search class="form-control me-2 d-inline w-50" type="search" placeholder="Buscar productos"
+      <input #search class="form-control me-2 d-inline w-75" type="search" placeholder="Buscar productos"
         aria-label="Search">
-      <button (click)="Buscar(search.value)" class="btn btn-primary">Buscar</button>
+      <div class="position-fixed z-index--1 w-cus-1 bg-light p-1">
+        <!--List Products:-->
+        <div class="p-2 bg-custom-1 hover-cus-1 cursor-pointer border-cus-1 mb-1">
+          <!--Product-->
+          <div class="float-left mr-3">
+            <img src="../assets/empty1.jpeg" class="max-wh-50px img img-thumbnail rounded-circle" alt="profile_name"
+              width="50" height="50">
+          </div>
+          <div class="h-50px">
+            <span class="line-h-2--7">Estuco 10g (recién procesado)</span>
+          </div>
+        </div>
+        <!--End Product-->
+        <div class="p-2 text-center  border-cus-1 mb-1">
+          <!--Spinner-->
+          <div class="spinner-grow text-info" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+        <!--End Spinner-->
+        <div class="p-2 text-center border-cus-1 mb-1">
+          <!--Not found-->
+          <span>No hay resultados...</span>
+        </div>
+        <!--End Not found-->
+      </div>
     </div>
     <div class="w-33 d-inline-block">
       <div routerLink="/gestionarproductos" class="d-inline-block text-light cursor-pointer outline-none--focus">

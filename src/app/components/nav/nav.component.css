@@ -44,3 +44,48 @@
 .outline-none--focus:focus {
   outline: none;
 }
+
+.z-index--1{
+  z-index: 1;
+}
+
+.w-16--5{
+  width: 16.5%;
+}
+
+.float-left{
+  float: left;
+}
+
+.max-wh-50px{
+  max-width: 50px;
+  max-height: 50px;
+}
+
+.line-h-2--7{
+  line-height: 2.7;
+}
+
+.h-50px{
+  height: 50px;
+}
+
+.w-cus-1{
+  width: 24.78%;
+}
+
+.border-cus-1{
+  border-radius: 2px;
+}
+
+.mr-3{
+  margin-right: 2%;
+}
+
+.bg-custom-1{
+  background-color: #efefef;
+}
+
+.hover-cus-1:hover{
+  background-color: #e4e2e2;
+}

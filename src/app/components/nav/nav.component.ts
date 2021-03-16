@@ -15,21 +15,18 @@ export class NavComponent implements OnInit {
   }
 
   async Buscar(search){
-      let data = {
-        search: search
-      }
-      this.client.postRequest('http://localhost:5000/api/v01/search/product', data).subscribe(
-
-        (response: any) => {
-          console.log(response)
+    let data = {
+      search: search
+    }
+    this.client.postRequest('http://localhost:5000/api/v01/search/product', data).subscribe(
+      (response: any) => {
+        console.log(response);
       },
       (error) => {
-        //this.load = true;
-
         console.log(error.status);
-
-      })
-    }
+      }
+    )
+  }
 
     logout(){
       this.auth.logout();
