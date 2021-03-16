@@ -37,7 +37,7 @@ export class AgregarProductoComponent implements OnInit {
     });
   }
 
-  Validar(){
+  async Validar(){
     if (this.form.valid) {
       console.log("Form valid!")
       this.showLoad = true;
@@ -48,21 +48,25 @@ export class AgregarProductoComponent implements OnInit {
         cantidad_producto: this.form.value.cantidad_producto,
         img_producto: this.imageCurrent
       }
+      console.log(data);
+
       this.client.postRequest(`${this.server}/api/v01/add/product`, data, this.token)
       .subscribe(
         (response: any) => {
-
-          Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Producto registrado',
-            showConfirmButton: false,
-            timer: 2000
-          }).then((result) => {
-            this.route.navigate(['/tusproductos'])
-          });
           console.log(response);
-          this.showLoad = false;
+          if(response.saved){
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: 'Producto registrado',
+              showConfirmButton: false,
+              timer: 2000
+            }).then((result) => {
+              this.route.navigate(['/tusproductos'])
+            });
+            console.log(response);
+            this.showLoad = false;
+          }
 
         },
         (error) => {
@@ -109,10 +113,10 @@ export class AgregarProductoComponent implements OnInit {
       this.imageCurrent = '';
 
       this.Toastr.info(`Selecciona una imagen`, `Imagen no válida`,{
-              closeButton: false,
+        closeButton: false,
               extendedTimeOut: 2500
-            })
-          this.showCurrentImg = false;
+      })
+      this.showCurrentImg = false;
     }
 
   }

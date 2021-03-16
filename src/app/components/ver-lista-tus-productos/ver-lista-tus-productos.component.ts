@@ -37,10 +37,10 @@ export class VerListaTusProductosComponent implements OnInit {
       try {
       this.infoProduct=  {
         id: this.listP[0].id,
-        img_product: this.listP[0].img_product,
-        price_product: this.listP[0].price_product,
-        name_product: this.listP[0].name_product,
-        description_product: this.listP[0].description_product
+        img_product: this.listP[this.listP.length - 1].img_product,
+        price_product: this.listP[this.listP.length - 1].price_product,
+        name_product: this.listP[this.listP.length - 1].name_product,
+        description_product: this.listP[this.listP.length - 1].description_product
       }
       this.spinnersShow.loadingProducts = false;
       } catch (error) {
