@@ -5,29 +5,34 @@
       [ngClass]="{'active-dx' : showSignInSignUp, 'inactive-sx': showSignInSignUp, 'active-sx': !showSignInSignUp}"
       class="signUp bg-dark">
       <h3>Crear cuenta</h3>
-      <input formControlName="name" class="w100" type="text" placeholder="Ingrese su nombre">
-      <input formControlName="lastname" type="text" placeholder="Ingrese sus apellidos">
-      <input formControlName="email" type="email" placeholder="Ingrese su correo">
-      <input formControlName="position" class="w100" type="text" placeholder="Ingrese su cargo">
-      <input formControlName="password" class="w100" type="password" placeholder="Ingrese su contraseña"><br>
+      <input formControlName="name" class="w100" type="text" placeholder="Ingrese su nombre" [disabled]="load">
+      <input formControlName="lastname" type="text" placeholder="Ingrese sus apellidos" [disabled]="load">
+      <input formControlName="email" type="email" placeholder="Ingrese su correo" [disabled]="load">
+      <input formControlName="position" class="w100" type="text" placeholder="Ingrese su cargo" [disabled]="load">
+      <input formControlName="password" class="w100" type="password" placeholder="Ingrese su contraseña"
+        [disabled]="load"><br>
       <div *ngIf="load" class="spinner-border text-warning" role="status">
         <span class="visually-hidden">Loading...</span>
       </div>
-      <button (click)="changeSignInSignUp()" class="form-btn sx log-in hover-custom-2" type="button">Log In</button>
-      <button (click)="Register()" class="form-btn dx bg-custom1 hover-custom-1" type="submit">Registrar</button>
+      <button (click)="changeSignInSignUp()" class="form-btn sx log-in hover-custom-2" type="button"
+        [disabled]="load">Log In</button>
+      <button (click)="Register()" class="form-btn dx bg-custom1 hover-custom-1" type="submit"
+        [disabled]="load">Registrar</button>
     </form>
     <form [formGroup]="form" [ngClass]="{'active-dx' : showSignInSignUp, 'inactive-dx': !showSignInSignUp}"
       class="signIn bg-dark">
       <h3>Bienvenido<br>Inicia sesión</h3>
       <p class="mb-4">Ingresa tu correo y contraseña para iniciar sesión</p>
-      <input formControlName="correo" type="email" placeholder="Ingrese su correo" autocomplete='off' autofocus>
-      <input formControlName="password" type="password" placeholder="Ingrese su contraseña"><br>
+      <input formControlName="correo" type="email" placeholder="Ingrese su correo" autocomplete='off' [disabled]="load"
+        autofocus>
+      <input formControlName="password" type="password" placeholder="Ingrese su contraseña" [disabled]="load"><br>
       <div *ngIf="load" class="spinner-border text-warning" role="status">
         <span class="visually-hidden">Loading...</span>
       </div>
-      <button (click)="changeSignInSignUp()" class="form-btn sx back bg-custom-2 hover-custom-2" type="button">Crear
+      <button (click)="changeSignInSignUp()" class="form-btn sx back bg-custom-2 hover-custom-2" type="button"
+        [disabled]="load">Crear
         cuenta</button>
-      <button (click)="Login()" class="form-btn dx bg-custom1 hover-custom-1">Iniciar sesión</button>
+      <button (click)="Login()" class="form-btn dx bg-custom1 hover-custom-1" [disabled]="load">Iniciar sesión</button>
     </form>
   </div>
 </div>

@@ -1,27 +1,158 @@
-.font-50{
-  font-size: 50px;
+@import url("https://fonts.googleapis.com/css2?family=Kadwa&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Martel+Sans:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Mukta+Malar:wght@200&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@500&display=swap");
+
+.w-44 {
+  width: 44%;
 }
 
-.float-right{
-  float: right;
+.ml-11 {
+  margin-left: 11%;
 }
 
-.max-h-500{
-  max-height: 500px;
+.border-radius-5 {
+  border-radius: 5px;
 }
 
-.min-h-500{
-  min-height: 500px;
+.max-h-452 {
+  max-height: 452px;
 }
 
-.h-400{
-  min-height: 400px;
+.border-2-secondary {
+  border: 2px solid #6c757d;
 }
 
-.top-0{
-  bottom: 0;
+.mt-32px {
+  margin-top: 32px;
 }
 
-.mt-320{
-  margin-top: 320px;
+.mb-38px {
+  margin-bottom: 38px;
+}
+
+.bg-custom-6 {
+  background-color: #85aeff;
+}
+
+.min-h-441px {
+  min-height: 441px;
+}
+
+.w-77 {
+  width: 77%;
+}
+
+.mt-25px {
+  margin-top: 25px;
+}
+
+.style-cus-1 {
+  border: 1px solid #dee2e6;
+  border-radius: 0.25rem;
+}
+
+.max-min-h-248px {
+  min-height: 248px;
+  max-height: 248px;
+}
+
+.max-min-h-198px {
+  min-height: 198px;
+  max-height: 198px;
+}
+
+.mb-4-cus-1 {
+  margin-bottom: 4%;
+}
+
+.overflow-y-auto {
+  overflow-y: auto;
+}
+
+.max-w-81 {
+  max-width: 81%;
+}
+
+.max-h-35 {
+  max-height: 35% !important;
+}
+
+.min-h-35 {
+  min-height: 35% !important;
+}
+
+/* Estilos para motores Webkit y blink (Chrome, Safari, Opera... )*/
+
+.scroll-custom-2::-webkit-scrollbar {
+  -webkit-appearance: none;
+}
+
+.scroll-custom-2::-webkit-scrollbar:vertical {
+  width: 11px;
+}
+
+.scroll-custom-2::-webkit-scrollbar-button:increment::-webkit-scrollbar-button {
+  display: none;
+}
+
+.scroll-custom-2::-webkit-scrollbar:horizontal {
+  height: 10px;
+}
+
+.scroll-custom-2::-webkit-scrollbar-thumb {
+  background-color: #797979;
+  border-radius: 3px;
+  border: 1px solid #f1f2f3;
+}
+
+.scroll-custom-2::-webkit-scrollbar-track {
+  background-color: #cecece;
+}
+
+/*End scroll*/
+
+.mt-8 {
+  margin-top: 8%;
+}
+
+.mr-2 {
+  margin-right: 2%;
+}
+
+.hover-cus-1:hover {
+  background-color: black !important;
+  color: rgb(255, 255, 255) !important;
+}
+
+.hover-cus-2:hover {
+  background-color: #e6e8eb !important;
+  color: black !important;
+}
+
+.font-family-1 {
+  font-family: "Kadwa", serif;
+}
+
+.font-family-2 {
+  font-family: "Martel Sans", sans-serif;
+}
+
+.font-family-3 {
+  font-family: "Mukta Malar", sans-serif;
+}
+
+.font-family-4 {
+  font-family: "Crimson Pro", serif;
+}
+
+.font-size-18px {
+  font-size: 18px;
+}
+
+.style-cus-2 {
+  min-width: 484px;
+  min-height: 302px;
+  max-width: 484px;
+  max-height: 302px;
 }

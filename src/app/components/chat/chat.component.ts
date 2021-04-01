@@ -16,7 +16,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ChatComponent implements OnInit {
 
-  public server: string = "http://localhost:5000";
+  public server: string = this.client._server;
   private master_key = "";
   public dataCurrentUser = {profile_photo: "", name: "", lastname: "", user_id: ""}
   public data : any[] = [];

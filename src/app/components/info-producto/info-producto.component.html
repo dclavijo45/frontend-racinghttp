@@ -1,24 +1,62 @@
 <app-nav></app-nav>
-<div class="d-block mx-4 my-4 max-h-500 min-h-500">
-  <div class="d-inline-block">
-    <img src="https://ferreteriavidri.com/images/items/large/91779.jpg" width="250" height="250">
-    <h4>Aceite de moto</h4>
-    <p>Aceite de moto para moto :V</p>
-    <h5>Precio: <small>17500</small></h5>
-    <h5>Cantidades disponibles: <small>34</small></h5>
+<div class="w-100 bg-custom-6">
+
+  <div class="w-77 ml-11 d-inline-block border-radius-5 max-h-452 border-2-secondary mt-32px mb-38px min-h-441px">
+    <!-- Panel central -->
+    <div class="max-h-452 bg-white min-h-441px">
+      <!-- Panel de información -->
+      <div class="p-3 border-bottom-2-custom-2">
+        <!--Panel de contenido -->
+        <div class="row">
+          <!--Área central-->
+          <div class="col-sm">
+            <div>
+              <button (click)="onBack()" class="btn btn-success"><i class="far fa-arrow-alt-circle-left"></i>
+                Regresar</button>
+              <!--Imagen producto-->
+              <img [src]="imgLoadingR" jpPreload="{{imagen_producto}}"
+                class="img img-fluid img-thumbnail mt-25px border-0 style-cus-2" alt="nombre_producto">
+            </div>
+          </div>
+          <div class="col-sm p-3">
+            <!--Información del producto-->
+            <div class="">
+              <!--Nombre del producto-->
+              <h4 class="font-family-1">{{xInfoProduct.nombre_producto}}</h4>
+            </div>
+            <div class="">
+              <!--Información principal del vendedor-->
+              <span class="font-family-cus-3">Ofrecido por: <small
+                  class="font-family-2">{{xInfoProduct.vendedor_producto}}</small></span>
+            </div>
+            <div class="mt-4">
+              <!--Precio del producto-->
+              <h4 class=""><i class="fas fa-dollar-sign"></i>{{xInfoProduct.precio_producto}}</h4>
+            </div>
+            <div class="overflow-y-auto scroll-custom-2 max-w-81 max-h-35 min-h-35">
+              <!--Descripción del producto-->
+              <p class="font-family-4 font-size-18px">{{xInfoProduct.descripcion_producto}}
+              </p>
+            </div>
+
+            <div class="mt-8">
+              <button
+                class="btn btn-dark border border-2 border-dark rounded-0 d-inline-block mr-2 hover-cus-1">Comprar</button>
+              <button class="btn border border-2 border-dark rounded-0 d-inline-block hover-cus-2">Agregar al
+                carrito</button>
+            </div>
+            <div class="mt-3">
+              <small *ngIf="xInfoProduct.unidades_producto != 0">Unidades Disponibles {{xInfoProduct.unidades_producto}}
+                - Stock Disponible</small>
+              <small *ngIf="xInfoProduct.unidades_producto == 0">Unidades Disponibles 0 - Stock No Disponible</small>
+            </div>
+          </div>
+
+          <!--End grid-->
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div class="d-inline-block float-right h-400">
-
-    <div class="d-block">
-      <i class="fas fa-shopping-cart font-50"></i>
-      <h5>Agregar</h5>
-    </div>
-    <div class="d-block mt-320">
-      <i class="fas fa-arrow-left font-50"></i>
-      <h5>Atras</h5>
-    </div>
-
-  </div>
 </div>
 <app-footer></app-footer>

@@ -21,7 +21,7 @@ export class GestionarProductosComponent implements OnInit {
   public myPurchasedPro: any = 0;
   public myProducts: any = 0;
   public money: any = 0;
-  private server: string = 'http://localhost:5000';
+  private server: string = this.client._server;
   public result:any;
   public chartClicked = this.createChart.chartClicked;
   public chartHovered = this.createChart.chartHovered;

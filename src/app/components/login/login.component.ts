@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
     public Toastr: ToastrService) { }
 
   public form:FormGroup;
-  public server: string = 'http://localhost:5000';
+  public server: string = this.client._server;
   public formRegister: FormGroup;
   public showSignInSignUp: boolean = true;
   private jwt_decode = jwt_decode;

@@ -85,7 +85,7 @@
                         [(ngModel)]="item.check">
                     </div>
                     <div class="d-inline-block mt-5px w-35">
-                      <img [src]="'../assets/img/products/'+item.img_product" width="40"
+                      <img [src]="imgLoadingR" jpPreload="{{item.img_product}}" width="40"
                         class="img rounded-circle mr-10px" height="40" [alt]="item.name_product">
                       <div class="d-inline-block">
                         <span>{{item.name_product}}</span>
@@ -120,13 +120,16 @@
                 <ng-container *ngFor="let item of listP.slice().reverse()">
                   <div (click)="clickToP(item.id)" [ngClass]="{'border-cus-1': item.check}"
                     class="max-min-h-50px bg-custom-4 hover-cus-1 w-100 cursor-pointer">
-                    <!--Ejemplo de usuario-->
+                    <!--Ejemplo de producto-->
                     <div class="d-inline-block w-10 text-center">
                       <input (click)="clickp(item.id)" class="form-check-input" type="checkbox" [value]="item.id"
                         [(ngModel)]="item.check">
                     </div>
                     <div class="d-inline-block mt-5px w-35">
-                      <img [src]="'../assets/img/products/'+item.img_product" width="40"
+
+                      <!-- <div class="loader mr-10px" [hidden]="viewImage"></div> -->
+
+                      <img [src]="imgLoadingR" jpPreload="{{item.img_product}}" width="40"
                         class="img rounded-circle mr-10px" height="40" alt="product_name">
                       <div class="d-inline-block">
                         <span>{{item.name_product}}</span>
@@ -171,9 +174,11 @@
             </div>
             <ng-container *ngIf="listP.length !=0 && !spinnersShow.loadingProducts">
               <div class="h-20 py-2 bg-custom-7">
-                <img [src]="'../assets/img/products/'+infoProduct.img_product"
-                  class="img img-thumbnail rounded-circle d-block mx-auto max-min-w-h-120px" alt="product_name"
-                  width="120" height="120">
+                <!--<div *ngIf="imgLoading" class="loader1 img img-thumbnail rounded-circle mx-auto max-min-w-h-120px">
+                </div>-->
+                <img #imgLoading [src]="imgLoadingR" jpPreload="{{infoProduct.img_product}}"
+                  class="img img-thumbnail rounded-circle d-block1 mx-auto max-min-w-h-120px" alt="product_name"
+                  width="120" height="120" LoadingImg>
               </div>
 
               <div class="h-20 py-2">

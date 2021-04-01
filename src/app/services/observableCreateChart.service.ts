@@ -7,7 +7,7 @@ import { ClienteService } from '../services/cliente.service';
   providedIn: 'root'
 })
 export class ObservableCreateChartService {
-  private server: string = 'http://localhost:5000';
+  private server: string = this.client._server;
   public daysChartData: any = {
     "monday": [],
     "tuesday": [],

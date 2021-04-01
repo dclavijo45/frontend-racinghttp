@@ -269,33 +269,6 @@
   max-height: 365px;
 }
 
-/* Estilos para motores Webkit y blink (Chrome, Safari, Opera... )*/
-
-.scroll-custom-1::-webkit-scrollbar {
-  -webkit-appearance: none;
-}
-
-.scroll-custom-1::-webkit-scrollbar:vertical {
-  width: 10px;
-}
-
-.scroll-custom-1::-webkit-scrollbar-button:increment::-webkit-scrollbar-button {
-  display: none;
-}
-
-.scroll-custom-1::-webkit-scrollbar:horizontal {
-  height: 10px;
-}
-
-.scroll-custom-1::-webkit-scrollbar-thumb {
-  background-color: #797979;
-  border-radius: 3px;
-  border: 1px solid #f1f2f3;
-}
-
-.scroll-custom-1::-webkit-scrollbar-track {
-  background-color: #6b939f;
-}
 
 .text-color-cus-5 {
   color: #878e95;

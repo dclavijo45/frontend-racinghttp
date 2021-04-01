@@ -14,6 +14,7 @@ export class RegistroComponent implements OnInit {
 
   form: FormGroup;
   load:boolean = false;
+  private server: string = this.client._server;
   constructor(
     private fb: FormBuilder,
     private route: Router,
@@ -39,7 +40,7 @@ export class RegistroComponent implements OnInit {
         password: this.form.value.password,
       }
       this.load = true;
-      this.client.postRequest('http://localhost:5000/api/v01/user/register', data).subscribe(
+      this.client.postRequest(`${this.server}/api/v01/user/register`, data).subscribe(
 
         (response: any) => {
           this.load = true;

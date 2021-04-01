@@ -1,11 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import {HttpClientModule} from  '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DataTablesModule } from 'angular-datatables';
 import { ToastrModule } from 'ngx-toastr';
-import {ChartsModule} from 'ng2-charts';
+import { ChartsModule } from 'ng2-charts';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RegistroComponent } from './components/registro/registro.component';
@@ -23,6 +23,8 @@ import { ActualizarPerfilComponent } from './components/actualizar-perfil/actual
 import { ActualizarProductoComponent } from './components/actualizar-producto/actualizar-producto.component';
 import { VerListaTusProductosComponent } from './components/ver-lista-tus-productos/ver-lista-tus-productos.component';
 import { GestionarProductosComponent } from './components/gestionar-productos/gestionar-productos.component';
+import { LoadingImgDirective } from './directives/loading-img.directive';
+import { JpImagePreloadModule } from '@jaspero/ng-image-preload';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,8 @@ import { GestionarProductosComponent } from './components/gestionar-productos/ge
     ActualizarPerfilComponent,
     ActualizarProductoComponent,
     GestionarProductosComponent,
-    VerListaTusProductosComponent
+    VerListaTusProductosComponent,
+    LoadingImgDirective,
   ],
   imports: [
     BrowserModule,
@@ -51,18 +54,19 @@ import { GestionarProductosComponent } from './components/gestionar-productos/ge
     ReactiveFormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({
-      "preventDuplicates": true,
-      "closeButton": false,
-      "newestOnTop": false,
-      "progressBar": true,
-      "positionClass": "toast-top-right",
-      "timeOut": 2500,
-      "extendedTimeOut": 1000
+      preventDuplicates: true,
+      closeButton: false,
+      newestOnTop: false,
+      progressBar: true,
+      positionClass: 'toast-top-right',
+      timeOut: 2500,
+      extendedTimeOut: 1000,
     }),
     ChartsModule,
-    DataTablesModule
+    DataTablesModule,
+    JpImagePreloadModule.forRoot(),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -4,17 +4,17 @@
   <div class="bg-white mx-12 p-4 border-2-secondary border-radius-5px max-min-h-436px overflow-hide">
     <div class="w-100">
       <div [formGroup]="form" class="d-inline-block form-group w-100">
-        <h5 class="ml-42">Agregar producto</h5>
-        <div class="styles-cus-1 d-inline-block mouse-hand ml-8">
+        <button (click)="onBack()" class="btn btn-success">Regresar</button>
+        <h5 class="style-cus-4 d-inline-block">Agregar producto</h5>
+        <div class="styles-cus-1 d-inline-block mouse-hand ml-8 mt-3px">
           <input formControlName="img_producto" id="filex" #fileInput type="file" class="mouse-hand"
             (change)="log($event, imgCurrent, fileInput)">
           <p (click)="fileInput.click()">
             Click para poner imagen al producto
           </p>
           <div [ngClass]="{'d-none' : !showCurrentImg}" class="d-inline-block mouse-hand style-cus-3">
-            <img #imgCurrent src="https://ferreteriavidri.com/images/items/large/91779.jpg" class="img img-thumbnail-c"
-              alt="image product" (click)="fileInput.click()" width="290" height="190"
-              title="click para cambiar de imagen">
+            <img #imgCurrent src="" class="img img-thumbnail-c mt-9px" alt="image product" (click)="fileInput.click()"
+              width="290" height="190" title="click para cambiar de imagen">
           </div>
         </div>
         <div class="d-inline-block ml-18 position-absolute">

@@ -139,7 +139,7 @@
 
 .style-cus-3 {
   position: absolute;
-  top: 26.8%;
+  top: 27.8%;
   left: 274px;
 }
 
@@ -202,4 +202,17 @@ input[type="number"] {
 
 .mt-6 {
   margin-top: 6.5%;
+}
+
+.style-cus-4 {
+  margin-left: 33.3%;
+  margin-right: 30%;
+}
+
+.mt-9px {
+  margin-top: 9px;
+}
+
+.mt-3px {
+  margin-top: 3px;
 }

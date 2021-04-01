@@ -18,25 +18,50 @@ import { RegistroComponent } from './components/registro/registro.component';
 import { ResultadoBusquedaComponent } from './components/resultado-busqueda/resultado-busqueda.component';
 import { SeccionPrincipalComponent } from './components/seccion-principal/seccion-principal.component';
 import { UpdateProductGuard } from './guardians/update-product.guard';
+import { InfoProductGuard } from './guardians/info-product.guard';
 
 const routes: Routes = [
-  {path: '', component:LoginComponent },
-  {path: 'registro' , component:RegistroComponent },
-  {path: 'login' , component:LoginComponent },
-  {path: 'home', component:SeccionPrincipalComponent, canActivate: [HomeGuardGuard]},
-  {path: 'search', component: ResultadoBusquedaComponent},
-  {path: 'infoproducto', component: InfoProductoComponent},
-  {path: 'chat', component: ChatComponent, canActivate: [ChatGuardGuard]},
-  {path: 'carrito', component: CarritoComponent},
-  {path: 'gestionarproductos', component: GestionarProductosComponent, canActivate: [ManageProductGuard]},
-  {path: 'agregarproducto', component: AgregarProductoComponent, canActivate: [AddproductGuardGuard]},
-  {path: 'actualizarproducto', component: ActualizarProductoComponent, canActivate: [UpdateProductGuard]},
-  {path: 'actualizarperfil', component: ActualizarPerfilComponent},
-  {path: 'tusproductos', component: VerListaTusProductosComponent, canActivate: [VerListaTusProductosGuard]},
+  { path: '', component: LoginComponent },
+  { path: 'registro', component: RegistroComponent },
+  { path: 'login', component: LoginComponent },
+  {
+    path: 'home',
+    component: SeccionPrincipalComponent,
+    canActivate: [HomeGuardGuard],
+  },
+  { path: 'search', component: ResultadoBusquedaComponent },
+  {
+    path: 'infoproducto',
+    component: InfoProductoComponent,
+    canActivate: [InfoProductGuard],
+  },
+  { path: 'chat', component: ChatComponent, canActivate: [ChatGuardGuard] },
+  { path: 'carrito', component: CarritoComponent },
+  {
+    path: 'gestionarproductos',
+    component: GestionarProductosComponent,
+    canActivate: [ManageProductGuard],
+  },
+  {
+    path: 'agregarproducto',
+    component: AgregarProductoComponent,
+    canActivate: [AddproductGuardGuard],
+  },
+  {
+    path: 'actualizarproducto',
+    component: ActualizarProductoComponent,
+    canActivate: [UpdateProductGuard],
+  },
+  { path: 'actualizarperfil', component: ActualizarPerfilComponent },
+  {
+    path: 'tusproductos',
+    component: VerListaTusProductosComponent,
+    canActivate: [VerListaTusProductosGuard],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
