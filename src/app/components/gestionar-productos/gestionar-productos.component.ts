@@ -6,8 +6,6 @@ import {CreateChartService} from '../../services/create-chart.service';
 import { ChartDataSets, ChartOptions } from 'chart.js';
 import { Color, Label } from 'ng2-charts';
 import Swal from 'sweetalert2';
-// import  Swal  from '../src/components/node_modules/sweetalert2/dist/sweetalert2.js.js';
-
 
 @Component({
   selector: 'app-gestionar-productos',
@@ -18,13 +16,14 @@ export class GestionarProductosComponent implements OnInit {
 
   public showSpinners: boolean = false;
   private token: string = localStorage.getItem('token')
-  public myPurchasedPro: any = 0;
-  public myProducts: any = 0;
-  public money: any = 0;
+  public myPurchasedPro: number = 0;
+  public myProducts: number = 0;
+  public money: number = 0;
   private server: string = this.client._server;
   public result:any;
   public chartClicked = this.createChart.chartClicked;
   public chartHovered = this.createChart.chartHovered;
+  public fixIntervalAssignMoney: any;
   public chart1Info: any = {
     data: [{ data: [0, 0, 0, 0, 0, 0, 0], label: 'Ventas' }],
     label: ['lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado', 'domingo'],
@@ -69,6 +68,8 @@ export class GestionarProductosComponent implements OnInit {
     })
 
     this.observableCreateChart.changeData().subscribe((res:any)=>{
+        console.log(res);
+        
       if (res.error) {
         Swal.fire({
           position: 'top-right',
@@ -77,12 +78,26 @@ export class GestionarProductosComponent implements OnInit {
           showConfirmButton: false,
           timer: 2000
         })
+        this.showSpinners = false;
+      }else{
+        this.showSpinners = false;
+        this.myPurchasedPro = res.myProductsPurchased[0];
+        this.myProducts = res.myProducts[0];
+        
+        this.fixIntervalAssignMoney = setInterval(()=>{
+            console.log("INIT");
+            
+            try {
+                res.totalMoney[0].length == 0 ? this.money = 0 : this.money = res.totalMoney[0];
+                clearInterval(this.fixIntervalAssignMoney);
+            } catch (error) {
+                console.log("Error to assign money");
+                clearInterval(this.fixIntervalAssignMoney);
+            }
+        })
       }
 
-      this.showSpinners = false;
-      this.myPurchasedPro = res.myProductsPurchased[0];
-      this.myProducts = res.myProducts[0];
-      this.money = res.totalMoney[0];
+      
     })
   }
 

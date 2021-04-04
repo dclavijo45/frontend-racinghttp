@@ -156,3 +156,21 @@
   max-width: 484px;
   max-height: 302px;
 }
+
+.style-cus-3{
+    width: 55%;
+    margin-left: 23%;
+    margin-top: 3%;
+}
+
+.mr-3{
+    margin-right: 3%;
+}
+
+.m--7px{
+        margin: -7px!important;
+}
+
+.ml-14px{
+    margin-left: 14px;
+}
