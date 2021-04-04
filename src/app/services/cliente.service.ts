@@ -5,7 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root',
 })
 export class ClienteService {
-  public _server: string = 'https://bchrty.alwaysdata.net';
+  public _server: string = 'https://f1ee44030e77.ngrok.io';
 
   constructor(private http: HttpClient) {}
 

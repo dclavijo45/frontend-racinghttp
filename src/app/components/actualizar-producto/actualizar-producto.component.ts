@@ -66,13 +66,27 @@ export class ActualizarProductoComponent implements OnInit {
         id_producto: this.productInfo.id,
       };
       console.log('Form valid!');
-      if (img.src.slice(42) == this.productInfo.img) {
-        console.log('img not ch');
-
-        data.img_changed = false;
-      } else {
+      // if (img.src.slice(42) == this.productInfo.img) {
+      console.clear();
+      if (img.src != this.productInfo.img) {
+        // error compare
         console.log('img ch');
+
+        console.log('Img actual:');
+        console.log(img.src.toString());
+
+        console.log('Img anterior:');
+        console.log(this.productInfo.img.toString());
+
         data.img_changed = true;
+      } else {
+        console.log('img not ch');
+        console.log('Img actual:');
+        console.log(img.src);
+
+        console.log('Img anterior:');
+        console.log(this.productInfo.img);
+        data.img_changed = false;
       }
 
       this.showLoad = true;

@@ -5,12 +5,11 @@
       [ngClass]="{'active-dx' : showSignInSignUp, 'inactive-sx': showSignInSignUp, 'active-sx': !showSignInSignUp}"
       class="signUp bg-dark">
       <h3>Crear cuenta</h3>
-      <input formControlName="name" class="w100" type="text" placeholder="Ingrese su nombre" [disabled]="load">
-      <input formControlName="lastname" type="text" placeholder="Ingrese sus apellidos" [disabled]="load">
-      <input formControlName="email" type="email" placeholder="Ingrese su correo" [disabled]="load">
-      <input formControlName="position" class="w100" type="text" placeholder="Ingrese su cargo" [disabled]="load">
-      <input formControlName="password" class="w100" type="password" placeholder="Ingrese su contraseña"
-        [disabled]="load"><br>
+      <input formControlName="name" class="w100" type="text" placeholder="Ingrese su nombre">
+      <input formControlName="lastname" type="text" placeholder="Ingrese sus apellidos">
+      <input formControlName="email" type="email" placeholder="Ingrese su correo">
+      <input formControlName="position" class="w100" type="text" placeholder="Ingrese su cargo">
+      <input formControlName="password" class="w100" type="password" placeholder="Ingrese su contraseña"><br>
       <div *ngIf="load" class="spinner-border text-warning" role="status">
         <span class="visually-hidden">Loading...</span>
       </div>
@@ -23,9 +22,8 @@
       class="signIn bg-dark">
       <h3>Bienvenido<br>Inicia sesión</h3>
       <p class="mb-4">Ingresa tu correo y contraseña para iniciar sesión</p>
-      <input formControlName="correo" type="email" placeholder="Ingrese su correo" autocomplete='off' [disabled]="load"
-        autofocus>
-      <input formControlName="password" type="password" placeholder="Ingrese su contraseña" [disabled]="load"><br>
+      <input formControlName="correo" type="email" placeholder="Ingrese su correo" autocomplete='off' autofocus>
+      <input formControlName="password" type="password" placeholder="Ingrese su contraseña"><br>
       <div *ngIf="load" class="spinner-border text-warning" role="status">
         <span class="visually-hidden">Loading...</span>
       </div>
