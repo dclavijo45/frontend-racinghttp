@@ -1,14 +1,124 @@
 <app-nav></app-nav>
-<div class="w-100">
-  <div class="w-50 mt-4 ml-40">
-    <input class="form-control text-center w-75" type="number" placeholder="Teléfono">
-    <input class="form-control text-center w-75" type="email" placeholder="Correo">
-    <input class="form-control text-center w-75" type="password" placeholder="Contraseña">
-    <input class="form-control text-center w-75" type="password" placeholder="Confirmar contraseña">
-    <span class="w-75 d-block mt-4">
-      <button class="btn btn-success w-25 d-inline ml-10">Actualizar</button>
-      <button class="btn btn-danger w-25 d-inline ml-40">Cancelar</button>
-    </span>
-  </div>
+<div class="w-100 max-h-505px pt-32px bg-custom-1">
+    <div class="bg-custom-2 mx-12 p-4 border-2-secondary border-radius-5px max-min-h-436px overflow-hide">
+        <div class="w-50 d-inline-block">
+            <div>
+                <div class="bg-custom-3 p-3 w-204px border-radius-7 h-146px d-inline-block ml-3">
+                    <h5 class="text-light opacity-0--8">Productos</h5>
+                    <h4 class="text-light">63029</h4>
+                    <i class="fab fa-angular text-color-cus-1 font-size-24px mt-2 opacity-0--7"></i>
+                    <span class="font-size-14px vertical-align-3--2px">@Angular/JED</span>
+                    <small class="text-light font-size-small opacity-0--7 d-block">Total de productos generados</small>
+                </div>
+
+                <div class="bg-custom-3 p-3 w-204px border-radius-7 h-146px d-inline-block mr-3 float-right">
+                    <h5 class="text-light opacity-0--8">Capital General</h5>
+                    <h4 class="text-light">63029</h4>
+                    <i class="fab fa-angular text-color-cus-1 font-size-24px mt-2 opacity-0--7"></i>
+                    <span class="font-size-14px vertical-align-3--2px">@Angular/JED</span>
+                    <small class="text-light font-size-small opacity-0--7 d-block">Todo el capital generado</small>
+                </div>
+            </div>
+
+            <div class="chartjs-container">
+                <canvas class="d-inline w-100 h-100" baseChart [datasets]="chartInfo.data" [labels]="chartInfo.label"
+                    [options]="chartInfo.options" [colors]="chartInfo.colors" [legend]="chartInfo.legend"
+                    [chartType]="chartInfo.type" [plugins]="chartInfo.plugins" (chartClick)="chartClicked($event)">
+                </canvas>
+            </div>
+
+        </div>
+
+        <div class="w-50 d-inline-block vertical-align-top">
+            <div class="w-100">
+                <div class="">
+                    <img [src]="profileInfo.img" class="img img-fluid rounded-circle d-block mx-auto" alt="img_profile"
+                        width="120" height="120">
+                </div>
+
+                <div class="text-center mt-2 box-custom-1 mouse-pointer" (mouseover)="hoverEvents.name = true"
+                    (mouseout)="hoverEvents.name = false">
+                    <h4 *ngIf="!checkEvents.name" class="text-primary d-inline-block" (click)="checkEvents.name = true">
+                        {{profileInfo.name}}
+                    </h4>
+                    <i *ngIf="hoverEvents.name && !checkEvents.name"
+                        class="fas fa-pen text-blue-900 font-size-21px ml-3" (click)="checkEvents.name = true"></i>
+
+                    <input *ngIf="checkEvents.name" type="text" class="form-control w-25 d-inline border-focus-none"
+                        [value]="profileInfo.name" placeholder="Tu nombre">
+                    <input *ngIf="checkEvents.name" type="text"
+                        class="form-control w-25 d-inline border-focus-none ml-3" [value]="profileInfo.lastname"
+                        placeholder="Tus apellidos">
+                    <h5 *ngIf="checkEvents.name" class="d-inline font-size-21px ml-3"
+                        (click)="checkEvents.name = false"><i class="fas fa-times text-danger"></i></h5>
+                    <h5 *ngIf="checkEvents.name" class="d-inline font-size-21px ml-3"><i
+                            class="fas fa-check text-success"></i></h5>
+                </div>
+
+                <div class="">
+                    <hr class="d-block w-75 mx-auto">
+                </div>
+
+                <div class="ml-12--4 w-75 mouse-pointer" (mouseover)="hoverEvents.email = true"
+                    (mouseout)="hoverEvents.email = false">
+                    <h5 class="d-inline">
+                        <i class="fas fa-envelope"></i> Correo:
+                    </h5>
+                    <h5 *ngIf="!checkEvents.email" class="d-inline text-primary" (click)="checkEvents.email=true">
+                        {{profileInfo.email}}</h5>
+                    <i (click)="checkEvents.email=true" *ngIf="hoverEvents.email && !checkEvents.email"
+                        class="fas fa-pen text-blue-900 font-size-21px ml-3"></i>
+
+                    <input *ngIf="checkEvents.email" type="text" class="form-control w-25 d-inline border-focus-none"
+                        [value]="profileInfo.email" placeholder="Crearlo">
+
+                    <h5 *ngIf="checkEvents.email" class="fas fa-times text-danger  font-size-21px ml-3"
+                        (click)="checkEvents.email = false"></h5>
+                    <h5 *ngIf="checkEvents.email" class="d-inline font-size-21px ml-3"><i
+                            class="fas fa-check text-success"></i></h5>
+                </div>
+
+                <div class="ml-12--4 w-75 mouse-pointer mt-4" (mouseover)="hoverEvents.position = true"
+                    (mouseout)="hoverEvents.position = false">
+                    <h5 class="d-inline">
+                        <i class="fas fa-user-md"></i> Cargo:
+                    </h5>
+                    <h5 *ngIf="!checkEvents.position" class="d-inline text-primary" (click)="checkEvents.position=true">
+                        {{profileInfo.position}}</h5>
+                    <i (click)="checkEvents.position=true" *ngIf="hoverEvents.position && !checkEvents.position"
+                        class="fas fa-pen text-blue-900 font-size-21px ml-3"></i>
+
+                    <input *ngIf="checkEvents.position" type="text" class="form-control w-25 d-inline border-focus-none"
+                        [value]="profileInfo.position" placeholder="Crearlo">
+
+                    <h5 *ngIf="checkEvents.position" class="fas fa-times text-danger  font-size-21px ml-3"
+                        (click)="checkEvents.position = false"></h5>
+                    <h5 *ngIf="checkEvents.position" class="d-inline font-size-21px ml-3"><i
+                            class="fas fa-check text-success"></i></h5>
+                </div>
+
+                <div class="ml-12--4 w-75 mouse-pointer mt-4" (mouseover)="hoverEvents.pwd = true"
+                    (mouseout)="hoverEvents.pwd = false">
+                    <h5 class="d-inline">
+                        <i class="fas fa-lock"></i> Contraseña:
+                    </h5>
+                    <h5 *ngIf="!checkEvents.pwd" class="d-inline text-primary" (click)="checkEvents.pwd=true">
+                        Cambiar</h5>
+                    <i (click)="checkEvents.pwd=true" *ngIf="hoverEvents.pwd && !checkEvents.pwd"
+                        class="fas fa-pen text-blue-900 font-size-21px ml-3"></i>
+
+                    <input *ngIf="checkEvents.pwd" type="text" class="form-control w-25 d-inline border-focus-none"
+                        [value]="profileInfo.pwd" placeholder="Crearla">
+
+                    <h5 *ngIf="checkEvents.pwd" class="fas fa-times text-danger font-size-21px ml-3"
+                        (click)="checkEvents.pwd = false"></h5>
+                    <h5 *ngIf="checkEvents.pwd" class="d-inline font-size-21px ml-3"><i
+                            class="fas fa-check text-success"></i></h5>
+                </div>
+
+            </div>
+        </div>
+    </div>
 </div>
+
 <app-footer></app-footer>

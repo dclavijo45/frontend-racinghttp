@@ -167,13 +167,13 @@
 
                             <ng-container *ngIf="notResultSearch && !spinnersShow.loadingProducts && inputSearch">
                                 <!--Área productos (búsqueda) [cuando no hay resultados de productos]-->
-                                <h6 class="">No hay resultados para {{inputSearch}}.</h6>
+                                <h6 class="text-center">No hay resultados para {{inputSearch}}.</h6>
                             </ng-container>
 
                             <ng-container
                                 *ngIf="listP.length == 0 && !spinnersShow.loadingProducts && inputSearch.length == 0">
                                 <!--Área productos (lista de productos) [cuando no hay productos]-->
-                                <h6 class="">No tienes productos.</h6>
+                                <h6 class="text-center">No tienes productos.</h6>
                             </ng-container>
 
 

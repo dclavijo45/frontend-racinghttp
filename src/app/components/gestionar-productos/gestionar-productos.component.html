@@ -1,75 +1,80 @@
 <app-nav></app-nav>
 <div class="w-100 max-h-505px pt-32px bg-custom-1">
-  <div class="bg-custom-2 mx-12 p-4 border-2-secondary border-radius-5px max-min-h-436px overflow-hide">
-    <div class="w-100">
+    <div class="bg-custom-2 mx-12 p-4 border-2-secondary border-radius-5px max-min-h-436px overflow-hide">
+        <div class="w-100">
 
-      <div class="d-inline-block">
-        <img src="../assets/card1.png" class="d-inline-block mr-20px" width="315" height="110">
-        <h6 class="position-fixed style-cus-2 text-light">Tus productos</h6>
-        <h5 *ngIf="!showSpinners" class="position-fixed style-cus-1 text-light">{{myProducts}}</h5>
-        <i class="fas fa-shopping-bag position-fixed style-cus-3 text-light d-block"></i>
-        <h6 routerLink="/tusproductos"
-          class="position-fixed style-cus-4 text-light hover-cus-1 cursor-pointer outline-none">Ver
-          detalles</h6>
-        <div *ngIf="showSpinners" class="spinner-grow text-warning position-fixed style-cus-5 d-block" role="status">
-          <span class="sr-only">Loading...</span>
+            <div class="d-inline-block">
+                <img src="../assets/card1.png" class="d-inline-block mr-20px" width="315" height="110">
+                <h6 class="position-fixed style-cus-2 text-light">Tus productos</h6>
+                <h5 *ngIf="!showSpinners" class="position-fixed style-cus-1 text-light">{{myProducts}}</h5>
+                <i class="fas fa-shopping-bag position-fixed style-cus-3 text-light d-block"></i>
+                <h6 routerLink="/tusproductos"
+                    class="position-fixed style-cus-4 text-light hover-cus-1 cursor-pointer outline-none">Ver
+                    detalles</h6>
+                <div *ngIf="showSpinners" class="spinner-grow text-warning position-fixed style-cus-5 d-block"
+                    role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+
+            <div class="d-inline-block">
+                <img src="../assets/card2.png" class="d-inline-block mr-20px" width="315" height="110">
+                <h6 class="position-fixed style-cus-2 text-light">Productos adquiridos</h6>
+                <h5 *ngIf="!showSpinners" class="position-fixed style-cus-1 text-light">{{myPurchasedPro}}</h5>
+                <i class="fas fa-shopping-basket position-fixed style-cus-3 text-light d-block"></i>
+                <h6 class="position-fixed style-cus-4 text-light hover-cus-2 cursor-pointer"
+                    routerLink="/productosadquiridos">Ver detalles</h6>
+                <div *ngIf="showSpinners" class="spinner-grow text-info position-fixed style-cus-5 d-block"
+                    role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+
+            <div class="d-inline-block">
+                <img src="../assets/card3.png" class="d-inline-block" width="315" height="110">
+                <h6 class="position-fixed style-cus-2 text-light">Capital recogido</h6>
+                <h5 *ngIf="!showSpinners" class="position-fixed style-cus-1 text-light">{{money}}</h5>
+                <i class="fas fa-dollar-sign position-fixed style-cus-3 text-light d-block"></i>
+                <h6 class="position-fixed style-cus-4 text-light hover-cus-3 cursor-pointer"
+                    routerLink="/productosvendidos">Ver detalles</h6>
+                <div *ngIf="showSpinners" class="spinner-grow text-warning position-fixed style-cus-5 d-block"
+                    role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+
         </div>
-      </div>
 
-      <div class="d-inline-block">
-        <img src="../assets/card2.png" class="d-inline-block mr-20px" width="315" height="110">
-        <h6 class="position-fixed style-cus-2 text-light">Productos adquiridos</h6>
-        <h5 *ngIf="!showSpinners" class="position-fixed style-cus-1 text-light">{{myPurchasedPro}}</h5>
-        <i class="fas fa-shopping-basket position-fixed style-cus-3 text-light d-block"></i>
-        <h6 class="position-fixed style-cus-4 text-light hover-cus-2 cursor-pointer">Ver detalles</h6>
-        <div *ngIf="showSpinners" class="spinner-grow text-info position-fixed style-cus-5 d-block" role="status">
-          <span class="sr-only">Loading...</span>
+        <div class="w-100 mt-4 ">
+            <div class="d-inline-block h-258px w-49 mr-2">
+                <div *ngIf="showSpinners" class="spinner-border text-primary position-fixed bottom-16pc left-27pc"
+                    role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <div class="chartjs-container">
+                    <canvas class="d-inline w-100 h-100" baseChart [datasets]="chart1Info.data"
+                        [labels]="chart1Info.label" [options]="chart1Info.options" [colors]="chart1Info.colors"
+                        [legend]="chart1Info.legend" [chartType]="chart1Info.type" [plugins]="chart1Info.plugins"
+                        (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+                    </canvas>
+                </div>
+            </div>
+
+            <div class="d-inline-block h-258px w-49">
+                <div *ngIf="showSpinners" class="spinner-border text-danger position-fixed bottom-16pc right-25pc"
+                    role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <div class="chartjs-container">
+                    <!-- <button (click)="random()" class="btn btn-success">Random</button> -->
+                    <canvas class="d-inline w-100 h-100" baseChart [datasets]="chart2Info.data"
+                        [labels]="chart2Info.label" [options]="chart2Info.options" [colors]="chart2Info.colors"
+                        [legend]="chart2Info.legend" [chartType]="chart2Info.type" [plugins]="chart2Info.plugins"
+                        (chartHover)=" chartHovered($event)" (chartClick)="chartClicked($event)">
+                    </canvas>
+                </div>
+            </div>
         </div>
-      </div>
-
-      <div class="d-inline-block">
-        <img src="../assets/card3.png" class="d-inline-block" width="315" height="110">
-        <h6 class="position-fixed style-cus-2 text-light">Capital recogido</h6>
-        <h5 *ngIf="!showSpinners" class="position-fixed style-cus-1 text-light">{{money}}</h5>
-        <i class="fas fa-dollar-sign position-fixed style-cus-3 text-light d-block"></i>
-        <h6 class="position-fixed style-cus-4 text-light hover-cus-3 cursor-pointer">Ver detalles</h6>
-        <div *ngIf="showSpinners" class="spinner-grow text-warning position-fixed style-cus-5 d-block" role="status">
-          <span class="sr-only">Loading...</span>
-        </div>
-      </div>
-
     </div>
-
-    <div class="w-100 mt-4 ">
-      <div class="d-inline-block h-258px w-49 mr-2">
-        <div *ngIf="showSpinners" class="spinner-border text-primary position-fixed bottom-16pc left-27pc"
-          role="status">
-          <span class="visually-hidden">Loading...</span>
-        </div>
-        <div class="chartjs-container">
-          <canvas class="d-inline w-100 h-100" baseChart [datasets]="chart1Info.data" [labels]="chart1Info.label"
-            [options]="chart1Info.options" [colors]="chart1Info.colors" [legend]="chart1Info.legend"
-            [chartType]="chart1Info.type" [plugins]="chart1Info.plugins" (chartHover)="chartHovered($event)"
-            (chartClick)="chartClicked($event)">
-          </canvas>
-        </div>
-      </div>
-
-      <div class="d-inline-block h-258px w-49">
-        <div *ngIf="showSpinners" class="spinner-border text-danger position-fixed bottom-16pc right-25pc"
-          role="status">
-          <span class="visually-hidden">Loading...</span>
-        </div>
-        <div class="chartjs-container">
-          <!-- <button (click)="random()" class="btn btn-success">Random</button> -->
-          <canvas class="d-inline w-100 h-100" baseChart [datasets]="chart2Info.data" [labels]="chart2Info.label"
-            [options]="chart2Info.options" [colors]="chart2Info.colors" [legend]="chart2Info.legend"
-            [chartType]="chart2Info.type" [plugins]="chart2Info.plugins" (chartHover)=" chartHovered($event)"
-            (chartClick)="chartClicked($event)">
-          </canvas>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
 <app-footer></app-footer>

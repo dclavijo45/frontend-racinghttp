@@ -2,134 +2,138 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css">
 <div class="w-100 bg-custom-6">
 
-  <div class="w-44 ml-11 d-inline-block border-radius-5 max-h-452 border-2-secondary mt-32px mb-38px">
-    <!-- CHAT -->
-    <div class="max-h-452 bg-white">
-      <!-- Panel central chat -->
-      <div class="p-2 border-bottom-2-custom-2">
-        <!-- Nombre remitente -->
-        <div class="">
-          <!-- Area de perfil de remitente -->
-          <img src="https://www.snsmarketing.es/blog/wp-content/uploads/2015/11/experiencia-de-usuario.jpg"
-            class="max-wh-30px img img-thumbnail rounded-circle" alt="Nombre remitente"><!-- Foto remitente -->
-          <h5 class="d-inline-block text-black-50 font-family-cus-2 style-custom-1">{{dataCurrentUser.name}}
-            {{dataCurrentUser.lastname}}</h5>
-          <!-- Nombre remitente-->
-          <small *ngIf="showWriting" class="d-inline-block style-custom-2 text-primary"> escribiendo...</small>
-          <!-- Estado remitente-->
-          <i class="fas fa-user-alt float-right font-size-24px text-success"></i> <!-- ícono [area de la derecha] -->
-        </div>
-      </div>
-      <div #boxChatGeneral id="boxChatGeneral" class="p-2 overflow-y-auto max-min-h-324px">
-        <ng-container *ngFor="let an of data;">
-          <!-- Área de los chats -->
-          <div *ngIf="an.emitente!=user && dataCurrentUser.user_id==an.emitente" class="p-1 h-120px font-family-cus-1">
-            <!--Ejemplo chat remitente-->
-            <img src="https://www.snsmarketing.es/blog/wp-content/uploads/2015/11/experiencia-de-usuario.jpg"
-              class="max-wh-30px img img-thumbnail rounded-circle float-left" alt="Nombre remitente">
-            <!-- Foto remitente -->
-            <div class="d-inline-block">
-              <!-- Caja de chat -->
-              <div
-                class="p-1 font-size-weight-12px d-inline-block max-w-200-min-w-200px bg-custom-1 border-radius-5  style-custom-3 ml-17px">
-                <!-- Chat [texto] -->
-                <p>{{an.msg}}</p>
-              </div>
-              <p class="d-block font-size-weight-12px text-color-cus-1 ml-17px"><small>{{an.dateSend}}</small></p>
-              <!-- Fecha de envío del mensaje -->
+    <div class="w-44 ml-11 d-inline-block border-radius-5 max-h-452 border-2-secondary mt-32px mb-38px">
+        <!-- CHAT -->
+        <div class="max-h-452 bg-white">
+            <!-- Panel central chat -->
+            <div class="p-2 border-bottom-2-custom-2">
+                <!-- Nombre remitente -->
+                <div class="">
+                    <!-- Area de perfil de remitente -->
+                    <img src="https://www.snsmarketing.es/blog/wp-content/uploads/2015/11/experiencia-de-usuario.jpg"
+                        class="max-wh-30px img img-thumbnail rounded-circle" alt="Nombre remitente">
+                    <!-- Foto remitente -->
+                    <h5 class="d-inline-block text-black-50 font-family-cus-2 style-custom-1">{{dataCurrentUser.name}}
+                        {{dataCurrentUser.lastname}}</h5>
+                    <!-- Nombre remitente-->
+                    <small *ngIf="showWriting" class="d-inline-block style-custom-2 text-primary">
+                        escribiendo...</small>
+                    <!-- Estado remitente-->
+                    <i class="fas fa-user-alt float-right font-size-24px text-success"></i>
+                    <!-- ícono [area de la derecha] -->
+                </div>
             </div>
-          </div>
-          <div *ngIf="an.emitente==user && dataCurrentUser.user_id==an.remitente"
-            class="p-1 h-120px ml-333px font-family-cus-1">
-            <!--Ejemplo chat emitente-->
-            <img src="https://www.snsmarketing.es/blog/wp-content/uploads/2015/11/experiencia-de-usuario.jpg"
-              class="max-wh-30px img img-thumbnail rounded-circle float-right" alt="Nombre remitente">
-            <!-- Foto emitente -->
-            <div class="d-inline-block">
-              <!-- Caja de chat -->
-              <div
-                class="p-1 font-size-weight-12px d-inline-block max-w-200-min-w-200px bg-custom-1 border-radius-5 bg-custom-3 text-color-cus-3 style-custom-3">
-                <!-- Chat [texto] -->
-                <p>{{an.msg}}</p>
-              </div>
-              <p class="d-block font-size-weight-12px text-color-cus-1"><small>{{an.dateSend}}</small></p>
-              <!-- Fecha de envío del mensaje -->
+            <div #boxChatGeneral id="boxChatGeneral" class="p-2 overflow-y-auto max-min-h-324px">
+                <ng-container *ngFor="let an of data;">
+                    <!-- Área de los chats -->
+                    <div *ngIf="an.emitente!=user && dataCurrentUser.user_id==an.emitente"
+                        class="p-1 h-120px font-family-cus-1">
+                        <!--Ejemplo chat remitente-->
+                        <img src="https://www.snsmarketing.es/blog/wp-content/uploads/2015/11/experiencia-de-usuario.jpg"
+                            class="max-wh-30px img img-thumbnail rounded-circle float-left" alt="Nombre remitente">
+                        <!-- Foto remitente -->
+                        <div class="d-inline-block">
+                            <!-- Caja de chat -->
+                            <div
+                                class="p-1 font-size-weight-12px d-inline-block max-w-200-min-w-200px bg-custom-1 border-radius-5  style-custom-3 ml-17px">
+                                <!-- Chat [texto] -->
+                                <p>{{an.msg}}</p>
+                            </div>
+                            <p class="d-block font-size-weight-12px text-color-cus-1 ml-17px">
+                                <small>{{an.dateSend}}</small></p>
+                            <!-- Fecha de envío del mensaje -->
+                        </div>
+                    </div>
+                    <div *ngIf="an.emitente==user && dataCurrentUser.user_id==an.remitente"
+                        class="p-1 h-120px ml-333px font-family-cus-1">
+                        <!--Ejemplo chat emitente-->
+                        <img src="https://www.snsmarketing.es/blog/wp-content/uploads/2015/11/experiencia-de-usuario.jpg"
+                            class="max-wh-30px img img-thumbnail rounded-circle float-right" alt="Nombre remitente">
+                        <!-- Foto emitente -->
+                        <div class="d-inline-block">
+                            <!-- Caja de chat -->
+                            <div
+                                class="p-1 font-size-weight-12px d-inline-block max-w-200-min-w-200px bg-custom-1 border-radius-5 bg-custom-3 text-color-cus-3 style-custom-3">
+                                <!-- Chat [texto] -->
+                                <p>{{an.msg}}</p>
+                            </div>
+                            <p class="d-block font-size-weight-12px text-color-cus-1"><small>{{an.dateSend}}</small></p>
+                            <!-- Fecha de envío del mensaje -->
+                        </div>
+                    </div>
+                </ng-container>
             </div>
-          </div>
-        </ng-container>
-      </div>
-      <div class="p-2 border-top-2-custom-2">
-        <!-- Pie de comunicación -->
-        <div class="d-inline px-2">
-          <!-- Area de comunicación -->
-          <i class="far fa-smile d-inline-block mr-13px"></i>
-          <div class="d-inline">
-            <!-- Area de escritura de chat -->
-            <input #msgEmitente [(ngModel)]="inputMsg" (keyup.enter)="emit(msgEmitente.value)" type="text"
-              class="form-control d-inline-block w-85" placeholder="Escribir mensaje">
-          </div>
-          <div (click)="emit(msgEmitente.value)"
-            class="d-inline border-2-custom-1 p-1 border-radius-5 px-2 ml-8px cursor-pointer">
-            <!-- Botón de envío -->
-            <i class="far fa-paper-plane d-inline-block text-color-cus-2"></i>
-          </div>
+            <div class="p-2 border-top-2-custom-2">
+                <!-- Pie de comunicación -->
+                <div class="d-inline px-2">
+                    <!-- Area de comunicación -->
+                    <i class="far fa-smile d-inline-block mr-13px"></i>
+                    <div class="d-inline">
+                        <!-- Area de escritura de chat -->
+                        <input #msgEmitente [(ngModel)]="inputMsg" (keyup.enter)="emit(msgEmitente.value)" type="text"
+                            class="form-control d-inline-block w-85" placeholder="Escribir mensaje">
+                    </div>
+                    <div (click)="emit(msgEmitente.value)"
+                        class="d-inline border-2-custom-1 p-1 border-radius-5 px-2 ml-8px cursor-pointer">
+                        <!-- Botón de envío -->
+                        <i class="far fa-paper-plane d-inline-block text-color-cus-2"></i>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
-  <!--Panel central de chat-->
+    <!--Panel central de chat-->
 
-  <div
-    class="p-2 d-inline-grid min-h-430px bg-custom-5 w-32 vertical-align-top mt-32px mb-3 border-radius-5 border-2-secondary border-left-none">
-    <!--Panel central de búsqueda-->
-    <div class="">
-      <!--Caja de panel de búsqueda-->
-      <div class=" w-100 bg-custom-4 hover-cus-1">
-        <!--Entrada de búsqueda-->
-        <i class="fas fa-search font-size-20px mr-1 d-inline-block text-color-cus-4 mx-2"></i>
-        <input type="text" [(ngModel)]="inputSearch" (ngModelChange)="searchUser($event)"
-          class="bg-custom-4 w-90--9 d-inline-block border-style-none h-41px border-focus-none hover-cus-1"
-          placeholder="Buscar personas">
-      </div>
-      <div class="mt-2">
-        <!--Caja central con resultados de búsqueda-->
-        <div class="py-2 min-max-h-365px overflow-y-auto scroll-custom-1">
-          <!--Resultados-->
-          <ng-container *ngIf="!showSpinnerSearchUsers">
-            <ng-container *ngFor="let an of listUsersSearch">
-              <div *ngIf="an.found" (click)="asignDataChatBox(an.user_id)" class="hover-cus-2 cursor-pointer">
-                <!--resultado-->
-                <div class="py-2">
-                  <!--Caja de resultado-->
-                  <img src="https://www.snsmarketing.es/blog/wp-content/uploads/2015/11/experiencia-de-usuario.jpg"
-                    class="max-wh-30px img img-thumbnail rounded-circle d-inline-block" alt="Nombre remitente">
-                  <!-- Foto usuario resultado.-->
-                  <h5 class="d-inline-block ml-1">{{an.nombres}} {{an.apellidos}}</h5>
-                  <h6 class="ml-8 text-color-cus-5">{{an.cargo}}</h6>
-                </div>
-              </div>
-              <div *ngIf="!an.found">
-                <!--Caja central para alguna otra info [opcional]-->
-                <div class="py-4">
-                  <!--Panel de caja [opcional]-->
-                  <p class="word-break">No se encontraron resultados para <b>{{inputSearch}}</b>.</p>
-                </div>
-              </div>
-            </ng-container>
-          </ng-container>
-          <!--         -->
-          <div *ngIf="showSpinnerSearchUsers" class="content-custom1 ml-32 mt-37">
-            <div class="load-custom1 center-custom1 bar-custom-1">
-              <div class="loader-custom-1"></div>
+    <div
+        class="p-2 d-inline-grid min-h-430px bg-custom-5 w-32 vertical-align-top mt-32px mb-3 border-radius-5 border-2-secondary border-left-none">
+        <!--Panel central de búsqueda-->
+        <div class="">
+            <!--Caja de panel de búsqueda-->
+            <div class=" w-100 bg-custom-4 hover-cus-1">
+                <!--Entrada de búsqueda-->
+                <i class="fas fa-search font-size-20px mr-1 d-inline-block text-color-cus-4 mx-2"></i>
+                <input type="text" [(ngModel)]="inputSearch" (ngModelChange)="searchUser($event)"
+                    class="bg-custom-4 w-90--9 d-inline-block border-style-none h-41px border-focus-none hover-cus-1"
+                    placeholder="Buscar personas">
             </div>
-            <!--      -->
-          </div>
-        </div>
-      </div>
-    </div><!-- Panel central de búqueda-->
-  </div>
+            <div class="mt-2">
+                <!--Caja central con resultados de búsqueda-->
+                <div class="py-2 min-max-h-365px overflow-y-auto scroll-custom-1">
+                    <!--Resultados-->
+                    <ng-container *ngIf="!showSpinnerSearchUsers">
+                        <ng-container *ngFor="let an of listUsersSearch">
+                            <div *ngIf="an.found" (click)="asignDataChatBox(an.user_id)"
+                                class="hover-cus-2 cursor-pointer">
+                                <!--resultado-->
+                                <div class="py-2">
+                                    <!--Caja de resultado-->
+                                    <img src="https://www.snsmarketing.es/blog/wp-content/uploads/2015/11/experiencia-de-usuario.jpg"
+                                        class="max-wh-30px img img-thumbnail rounded-circle d-inline-block"
+                                        alt="Nombre remitente">
+                                    <!-- Foto usuario resultado.-->
+                                    <h5 class="d-inline-block ml-1">{{an.nombres}} {{an.apellidos}}</h5>
+                                    <h6 class="ml-8 text-color-cus-5">{{an.cargo}}</h6>
+                                </div>
+                            </div>
+                            <div *ngIf="!an.found">
+                                <!--Caja central para alguna otra info [opcional]-->
+                                <div class="py-4">
+                                    <!--Panel de caja [opcional]-->
+                                    <p class="word-break">No se encontraron resultados para <b>{{inputSearch}}</b>.</p>
+                                </div>
+                            </div>
+                        </ng-container>
+                    </ng-container>
+                    <!--         -->
+                    <div *ngIf="showSpinnerSearchUsers" class="content-custom1 ml-32 mt-37">
+                        <div class="load-custom1 center-custom1 bar-custom-1">
+                            <div class="loader-custom-1"></div>
+                        </div>
+                        <!--      -->
+                    </div>
+                </div>
+            </div>
+        </div><!-- Panel central de búqueda-->
+    </div>
 </div>
-<!-- <input [(ngModel)]="remitente" class="form-control mb-38px" type="text" placeholder="Remitente" required>
-  <p class="text-dark mb-38px">ID: {{user}}</p>
-  <button class="btn btn-danger d-inline-grid mb-38px" (click)="disconnet()">Disconnect</button> -->
 <app-footer></app-footer>

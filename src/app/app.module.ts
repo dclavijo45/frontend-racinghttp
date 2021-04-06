@@ -25,6 +25,8 @@ import { VerListaTusProductosComponent } from './components/ver-lista-tus-produc
 import { GestionarProductosComponent } from './components/gestionar-productos/gestionar-productos.component';
 import { LoadingImgDirective } from './directives/loading-img.directive';
 import { JpImagePreloadModule } from '@jaspero/ng-image-preload';
+import { ProductosadquiridosComponent } from './components/productosadquiridos/productosadquiridos.component';
+import { ProductosVendidosComponent } from './components/productos-vendidos/productos-vendidos.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +47,8 @@ import { JpImagePreloadModule } from '@jaspero/ng-image-preload';
     GestionarProductosComponent,
     VerListaTusProductosComponent,
     LoadingImgDirective,
+    ProductosadquiridosComponent,
+    ProductosVendidosComponent,
   ],
   imports: [
     BrowserModule,

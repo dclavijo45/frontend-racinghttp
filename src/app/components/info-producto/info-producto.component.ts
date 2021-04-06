@@ -7,6 +7,7 @@ import { ClienteService } from 'src/app/services/cliente.service';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { AuthBehaviorSubjectService } from 'src/app/services/auth-behavior-subject.service';
 
 @Component({
     selector: 'app-info-producto',
@@ -21,7 +22,8 @@ export class InfoProductoComponent implements OnInit {
         private _client: ClienteService,
         private fb: FormBuilder,
         private _Router: Router,
-        public Toastr: ToastrService
+        public Toastr: ToastrService,
+        private _auth: AuthBehaviorSubjectService
     ) { }
 
     private _server: string = this._client._server;
@@ -42,6 +44,7 @@ export class InfoProductoComponent implements OnInit {
     };
 
     ngOnInit(): void {
+        this._auth.validateJwt();
         this.infoProduct.foundProduct().subscribe((find) => {
             if (find) this.refresh();
         });
@@ -75,8 +78,11 @@ export class InfoProductoComponent implements OnInit {
     requestProduct() {
         if (this.requestForm.valid) {
             this.load = true;
+            this._auth.validateJwt();
             this._client.getRequest(`${this._server}/api/v01/request/products/${this.xInfoProduct.id_producto}/${this.requestForm.value.quantity}/`, localStorage.getItem('token')).subscribe(
                 (res: any) => {
+                    console.log(res);
+
                     if (res.bought) {
                         Swal.fire({
                             position: 'top-right',
@@ -91,7 +97,7 @@ export class InfoProductoComponent implements OnInit {
                         Swal.fire({
                             position: 'top-right',
                             icon: 'error',
-                            title: 'No se pudo solicitar el producto!',
+                            title: 'Las unidades del producto pedidas no estan disponibles!',
                             showConfirmButton: false,
                             timer: 2000
                         });
